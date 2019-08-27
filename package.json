@@ -2,6 +2,10 @@
   "name": "launchcart_demo_2019",
   "version": "1.0.0",
   "description": "cording environment for LaunchCart DEMO 2019",
+  "repository": {
+    "type": "git",
+    "url": "ssh://ftp.ud-ac.com/home/ud-ac/www/lc-demo-2019/20190827.git"
+  },
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
