@@ -1,0 +1,35 @@
+{
+  "name": "launchcart_demo_2019",
+  "version": "1.0.0",
+  "description": "cording environment for LaunchCart DEMO 2019",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "author": "Sterfield Co., Ltd.",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "acorn": "^6.2.1",
+    "autoprefixer": "^9.6.1",
+    "babel": "^6.23.0",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.7",
+    "browserify": "^16.3.0",
+    "core-js": "^3.1.4",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-live-server": "0.0.31",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

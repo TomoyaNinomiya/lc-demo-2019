@@ -1,0 +1,8 @@
+header.l-header
+  h1.l-header__logo
+    if title
+      a(href="/"): img(src="/assets/img/logo.png")
+      small &nbsp;-&nbsp;#{ title }
+    else
+      a(href="/")
+        img(src="/assets/img/logo.png")
