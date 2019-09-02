@@ -89,6 +89,13 @@ export default () => {
       }
     }
 
+    $('.js-toggleMenu').on('click', () => {
+      $body.toggleClass('is-menuActive')
+    })
+    $('.js-closeMenu').on('click', () => {
+      $body.removeClass('is-menuActive')
+    })
+
   })
 
 
