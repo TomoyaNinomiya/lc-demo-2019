@@ -663,3 +663,221 @@
     }
   }
 }
+
+.l-breadcrumbList {
+  padding: 60px calc(50vw - 580px);
+  margin-bottom: 52px;
+  border-bottom: solid 1px $c_border;
+  font-size: 1.4rem;
+  overflow: auto;
+  &__list {
+    display: flex;
+  }
+  &__item {
+    > a {
+      display: flex;
+      align-items: center;
+      height: 44px;
+      color: $c_main;
+      white-space: nowrap;
+    }
+    &:not(:first-child) {
+      padding-left: 46px;
+      position: relative;
+      @extend .c-icon;
+      @extend .icon--arrow2Right;
+      &::before {
+        color: $c_text_gray;
+        position: absolute;
+        left: 23px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    &:last-child {
+      > a {
+        color: $c_text;
+      }
+    }
+  }
+  + .l-main__inner {
+    padding-top: 20px;
+  }
+  @include media(1280px) {
+    padding: 0 60px;
+  }
+  @include media(tab) {
+    padding: 6px 15px 6px;
+    margin-bottom: 30px;
+    border-bottom: solid 1px $c_border;
+    font-size: 1.2rem;
+    position: relative;
+    &__list {
+      padding-left: 36px;
+    }
+    &__item {
+      position: relative;
+      z-index: 0;
+      > a {
+        height: 32px;
+      }
+      &:first-child {
+        background: $c_base;
+        position: absolute;
+        left: -20px;
+        top: 6px;
+        z-index: 1;
+        &::after {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          right: -11px;
+          top: 0;
+          z-index: 0;
+        }
+      }
+      &:not(:first-child) {
+        &::before {
+          left: 12px;
+        }
+      }
+      &:not(:nth-child(-n+2)) {
+        padding-left: 24px;
+        &::before {
+          left: 12px;
+        }
+      }
+      &:last-child {
+        padding-right: 6px;
+      }
+    }
+    body:not(.no-css--posSticky) & {
+      &::-webkit-scrollbar {
+        height: 0;
+      }
+      &__list {
+        padding-left: 0;
+      }
+      &__item {
+        > a {
+        }
+        &:first-child {
+          position: sticky;
+          left: 0;
+        }
+        &:nth-child(2) {
+          padding-left: 24px;
+        }
+        &:not(:nth-child(-n+2)) {
+          padding-left: 24px;
+        }
+      }
+    }
+  }
+}
+
+.pagingNavi {
+  font-size: 1.4rem;
+  text-align: center;
+  > em {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+}
+.archiveController {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  &__label {
+    margin-right: 15px;
+  }
+  .selectBox__select {
+    width: auto;
+  }
+  @include media(tab) {
+    flex-direction: column;
+    margin-bottom: 20px;
+    &__list {
+      justify-content: center;
+      margin-top: 10px;
+    }
+    &__item {
+      margin-left: 15px;
+    }
+    &__label {
+      margin-right: 5px;
+    }
+  }
+  @include media(320px) {
+    &__item {
+      margin-left: 0;
+      margin-top: 15px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+.archiveGuide {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+  > .pagingNavi {
+    margin-bottom: 20px;
+  }
+  @include media(tab) {
+    margin-top: 30px;
+    > .pagingNavi {
+      margin-bottom: 15px;
+    }
+  }
+}
+.pagination_nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  > a,
+  > strong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    margin: 0 10px;
+    &.current {
+      color: $c_main;
+    }
+  }
+  > a {
+    @include media(tab-min) {
+      &:hover {
+        color: $c_main;
+        opacity: 1;
+      }
+    }
+  }
+  @include media(tab) {
+    font-size: 1.6rem;
+    > a,
+    > strong {
+      margin: 0 5px;
+    }
+  }
+}
