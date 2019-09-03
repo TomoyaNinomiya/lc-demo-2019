@@ -10,8 +10,16 @@
 
 
 //==========================================================
-// base
-// 基本CSS
+// components
+// コンポーネントCSS
+// - slick
+//==========================================================
+@import "component/_slick";
+
+
+//==========================================================
+// layout
+// レイアウトCSS
 // - header
 // - layout
 // - footer
@@ -19,3 +27,4 @@
 @import "layout/_header";
 @import "layout/_layout";
 @import "layout/_footer";
+

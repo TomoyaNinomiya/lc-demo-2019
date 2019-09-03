@@ -58,7 +58,7 @@
     &__bg {
       display: none;
     }
-    body.is-scrollUp:not(.is-pageTopHide) & {
+    body.is-scrollUp:not(.is-pageTopHide):not(.is-menuActive) & {
       height: 0;
       overflow: hidden;
       opacity: 0;
