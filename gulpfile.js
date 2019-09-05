@@ -119,7 +119,14 @@ gulp.task('serve', function(done) {
 
     browserSync.init({
       server: {
-        baseDir: paths.dist
+        baseDir: paths.dist,
+        middleware: function (req, res, next) {
+          if (/\/$|\.html/.test(req.url) && req.method.toUpperCase() == 'POST') {
+            console.log('[POST => GET] : ' + req.url);
+            req.method = 'GET';
+          }
+          next();
+        }
       },
       open: false,
       port: 3000,

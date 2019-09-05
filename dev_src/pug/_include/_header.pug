@@ -33,6 +33,7 @@ header.l-header
     ul.l-navi__list
       li.l-navi__item.only-pc
         button.l-navi__button.js-openModal(
+            type="button"
             aria-controls="modalLangCurrency"
             aria-haspopup="true"
           )
@@ -112,10 +113,10 @@ header.l-header
             select.selectBox__select.js-lc--selectCurrency
               option(value="1") CNY
     p.l-modal__buttons
-      button.l-button--submit.js-lc--changeLangCurrency
+      button(type="button").l-button--submit.js-lc--changeLangCurrency
         span.l-button__label 保存更改
         i.l-button__icon.icon--check
-      button.l-button--cancel.js-closeModal
+      button(type="button").l-button--cancel.js-closeModal
         i.l-button__icon.icon--close
         span.l-button__label 取消
   script.

@@ -319,6 +319,9 @@ textarea {
   &--heart:before {
     content: "\e90d";
   }
+  &--heartActive:before {
+    content: "\e90d";
+  }
   &--menu:before {
     content: "\e90e";
   }

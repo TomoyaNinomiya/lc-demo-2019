@@ -1,0 +1,48 @@
+extends ../_include/_layout.pug
+
+block title
+  title 最新消息 | Sample Project
+block header
+  - var title = '最新消息'
+  include ../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '最新消息',
+        href: '/news/'
+      }
+    ]
+  include ../_include/_breadcrumblist.pug
+
+  section.contentSection
+    h2.contentSection__title.contentSection__title--center 最新消息
+    .l-contentsInner
+      ul.newsArchive
+        - for (var i = 1; i <= 20; i++)
+          li.newsArchive__item
+            a(href="/page/detail/")
+              .newsArchive__status
+                p.pageCategory お知らせ
+                p.pageDate
+                  time(datetime="2019-08-30T18:16:34+09:00") 2018.06.11
+              .newsArchive__title 仅限6天通知199分仅限6天通知199分仅限6天通知199分仅很棒的购物车！
+      .archiveGuide
+        p.pagingNavi <em>64</em> 商品中 的 <em>1 - 20</em>件
+        .pagination_nav
+          a(href="/archive/")
+            span.icon-laquo.ir &laquo;
+          strong.current 1
+          a(href="/archive/") 2
+          a(href="/archive/") 3
+          a(href="/archive/") 4
+          a(href="/archive/") 5
+          a(href="/archive/")
+            span.icon-gt.ir &gt;
+          a(href="/archive/")
+            span.icon-raquo.ir &raquo;

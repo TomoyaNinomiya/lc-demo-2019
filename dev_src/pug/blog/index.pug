@@ -1,0 +1,49 @@
+extends ../_include/_layout.pug
+
+block title
+  title 商店博客 | Sample Project
+block header
+  - var title = '商店博客'
+  include ../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '商店博客',
+        href: '/blog/'
+      }
+    ]
+  include ../_include/_breadcrumblist.pug
+
+  section.contentSection
+    h2.contentSection__title.contentSection__title--center 商店博客
+    ul.blogArchive
+      - for (var i = 1; i <= 20; i++)
+        li.blogArchive__item
+          a(href="/page/detail/")
+            figure.blogArchive__figure
+              img(src=`/assets/img/img_product_${('0' + ((i + 3) % 10 + 1)).slice(-2)}.jpg`, alt="blog title")
+            .blogArchive__status
+              p.pageCategory お知らせ
+              p.pageDate
+                time(datetime="2019-08-30T18:16:34+09:00") 2018.06.11
+            .blogArchive__title ベストコスメ2018上半期！注目を浴びたコスメ
+    .archiveGuide
+      p.pagingNavi <em>64</em> 商品中 的 <em>1 - 20</em>件
+      .pagination_nav
+        a(href="/archive/")
+          span.icon-laquo.ir &laquo;
+        strong.current 1
+        a(href="/archive/") 2
+        a(href="/archive/") 3
+        a(href="/archive/") 4
+        a(href="/archive/") 5
+        a(href="/archive/")
+          span.icon-gt.ir &gt;
+        a(href="/archive/")
+          span.icon-raquo.ir &raquo;
