@@ -1,0 +1,103 @@
+extends ../_include/_layout.pug
+
+block title
+  title 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖 | Sample Project
+block header
+  - var title = '小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖'
+  include ../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '购物车',
+        href: '/cart/'
+      }
+    ]
+  include ../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 购物车
+    div.l-contentsInner
+      ul
+        li.productInfo
+          figure.productInfo__figure
+            a.productInfo__figure__inner(href="/detail/")
+              img(src="/assets/img/img_product_01.jpg", alt="product name")
+          .productInfo__text
+            h2.productInfo__name
+              a(href="/detail/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
+            .productInfo__detail
+              dl.productInfo__detail__list
+                .productInfo__detail__item
+                  dt.productInfo__detail__label 价格
+                  dd.productInfo__detail__detail
+                    | 159.00CNY
+                    small (2,393JPY)
+                .productInfo__detail__item
+                  dt.productInfo__detail__label 重量
+                  dd.productInfo__detail__detail 0g
+            p.productInfo__controls
+              span
+                | 数量&nbsp;&nbsp;
+                span.selectBox
+                  select.selectBox__select(name="quantity")
+                    - for (var i = 1; i <= 10; i++)
+                      option(value=i) #{i}
+              a(href="").l-button--delete
+                span.l-button__label 删除
+          dl.productInfo__additions
+            .productInfo__additions__item
+              dt.productInfo__additions__name 礼品包装
+              dd.productInfo__additions__detail
+                dl.productInfo__detail__list
+                  .productInfo__detail__item
+                    dt.productInfo__detail__label 价格
+                    dd.productInfo__detail__detail
+                      | 0.00CNY
+                      small (0JPY)
+                  .productInfo__detail__item
+                    dt.productInfo__detail__label 重量
+                    dd.productInfo__detail__detail 0g
+              dd.productInfo__controls
+                a(href="").l-button--delete
+                  span.l-button__label 删除
+        li.productInfo
+          figure.productInfo__figure
+            a.productInfo__figure__inner(href="/detail/")
+              img(src="/assets/img/img_product_02.jpg", alt="product name")
+          .productInfo__text
+            h2.productInfo__name
+              a(href="/detail/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
+            .productInfo__detail
+              dl.productInfo__detail__list
+                .productInfo__detail__item
+                  dt.productInfo__detail__label 价格
+                  dd.productInfo__detail__detail
+                    | 159.00CNY
+                    small (2,393JPY)
+                .productInfo__detail__item
+                  dt.productInfo__detail__label 重量
+                  dd.productInfo__detail__detail 0g
+            p.productInfo__controls
+              span
+                | 数量&nbsp;&nbsp;
+                span.selectBox
+                  select.selectBox__select(name="quantity")
+                    - for (var i = 1; i <= 10; i++)
+                      option(value=i) #{i}
+              a(href="").l-button--delete
+                span.l-button__label 删除
+        
+      p.l-contentsInner__buttons
+        button.l-button--submit
+          span.l-button__label 下一步 填写收件资料
+          i.l-button__icon.icon--arrow2Right
+        a(href="/").l-button--cancel
+          i.l-button__icon.icon--arrowLeft
+          span.l-button__label 继续购物
