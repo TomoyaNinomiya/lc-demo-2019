@@ -216,7 +216,7 @@ i {
 
 .is-required {
   &::after {
-    content: "\00203b";
+    content: "*";
     margin: 0 0.5em;
     color: $c_error;
   }
@@ -245,7 +245,7 @@ input {
 }
 textarea {
   width: 100%;
-  min-height: 240px;
+  min-height: 200px;
   padding: 7px 10px;
   border: none;
   border-radius: 4px;
@@ -318,9 +318,12 @@ textarea {
   }
   &--heart:before {
     content: "\e90d";
+    .is-active & {
+      content: "\e915";
+    }
   }
   &--heartActive:before {
-    content: "\e90d";
+    content: "\e915";
   }
   &--menu:before {
     content: "\e90e";

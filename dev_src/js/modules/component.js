@@ -98,6 +98,21 @@ export default () => {
           })
       }
     }
+
+    const $form__items = $('.l-form__item')
+    if ($form__items.length) {
+      $form__items.each((index, form__item) => {
+        const $form__item = $(form__item)
+        const $label = $form__item.find('.l-form__label')
+        const $input = $form__item.find('input, select, textarea')
+        $label.filter(':has(.error)').addClass('is-errored')
+        $input.on('focus', () => {
+          $label.addClass('is-focused')
+        }).on('blur', () => {
+          $label.removeClass('is-focused')
+        })
+      })
+    }
     
     
   })

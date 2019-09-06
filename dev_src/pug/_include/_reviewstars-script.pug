@@ -8,6 +8,7 @@ script.
     $reviewStars.each(function () {
       var $reviewStar = $(this);
       var $reviewStarsNumber = $reviewStar.next('.js-lc--reviewStarsNumber');
+      var $reviewStarsInput = $reviewStar.prev('.js-lc--reviewStarsInput');
       var currentReviewGrade = $reviewStar.data('grade');
       $reviewStar
         .on('mouseenter', function (e) {
@@ -35,6 +36,7 @@ script.
           $reviewStar.attr('data-grade', reviewGrade);
           currentReviewGrade = reviewGrade;
           $reviewStarsNumber.text(currentReviewGrade / 2);
+          $reviewStarsInput.val(currentReviewGrade);
         });
     });
   });

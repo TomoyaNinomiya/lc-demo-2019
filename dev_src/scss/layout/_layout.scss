@@ -40,6 +40,9 @@
     opacity: 0;
     transition: 0.5s;
     transform: translate(-50%, 0);
+    &--wide {
+      width: 640px;
+    }
   }
   &__title {
     margin-bottom: 1em;
@@ -1680,6 +1683,9 @@
   }
   &--large {
     font-size: 2.1rem;
+    + .reviewStars__number {
+      font-size: 2rem;
+    }
   }
   > span {
     display: block;
@@ -1712,9 +1718,203 @@
       }
     }
   }
+  &__number {
+    margin-left: 10px;
+    font-weight: bold;
+  }
   @include media(tab) {
     &--large {
       font-size: 1.9rem;
+      + .reviewStars__number {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.l-form {
+  max-width: 640px;
+  margin: auto 0;
+  &__item {
+    margin-bottom: 30px;
+  }
+  &__label {
+    display: block;
+    position: relative;
+    &--half {
+      width: 50%;
+    }
+    &--select {
+      display: inline-block;
+      @extend .c-icon;
+      @extend .icon--arrow2Down;
+      &::before {
+        font-size: 1.6rem;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        z-index: 1;
+        transform: translate(0, -50%);
+      }
+    }
+    &--checkbox {
+      .l-form {
+        &__title {
+          padding: 0;
+          margin-bottom: 0.5em;
+          position: static;
+          transform: none;
+        }
+      }
+      .horizontal-item {
+        display: inline-block;
+        margin: 5px 10px 5px 0 !important;
+      }
+    }
+    &.is-focused {
+      .l-form {
+        &__title {
+          color: $c_accent;
+        }
+      }
+      input {
+        &[type="text"],
+        &[type="password"],
+        &[type="email"],
+        &[type="tel"],
+        &[type="date"] {
+          border-color: $c_accent;
+        }
+      }
+      select,
+      textarea {
+        border-color: $c_accent;
+      }
+      &.is-errored {
+        input {
+          &[type="text"],
+          &[type="password"],
+          &[type="email"],
+          &[type="tel"],
+          &[type="date"] {
+            border-color: $c_error;
+          }
+        }
+        select,
+        textarea {
+          border-color: $c_error;
+        }
+      }
+    }
+    &.is-errored {
+      .l-form{
+        &__title {
+          color: $c_error;
+        }
+      }
+      input {
+        &[type="text"],
+        &[type="password"],
+        &[type="email"],
+        &[type="tel"],
+        &[type="date"] {
+          border-color: $c_error;
+        }
+      }
+      select,
+      textarea {
+        border-color: $c_error;
+      }
+    }
+  }
+  &__title {
+    padding: 0 5px;
+    background: $c_base;
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1.2;
+    white-space: nowrap;
+    position: absolute;
+    left: 10px;
+    top: 0.2em;
+    z-index: 1;
+    transform: translate(0, -100%);
+    transition: 0.3s;
+    &.is-required {
+      &::after {
+        margin-right: 0;
+      }
+    }
+  }
+  &__detail {
+    position: relative;
+    z-index: 0;
+    input {
+      &[type="text"],
+      &[type="password"],
+      &[type="email"],
+      &[type="tel"],
+      &[type="date"] {
+        width: 100%;
+        height: 44px;
+        padding: 0 15px;
+        border: solid 1px $c_text_gray;
+        border-radius: 4px;
+        vertical-align: top;
+        outline: none;
+        transition: 0.3s;
+      }
+    }
+    select {
+      display: flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 30px 0 15px;
+      border: solid 1px $c_text_gray;
+      border-radius: 4px;
+      background: $c_base;
+      vertical-align: top;
+      outline: none;
+      transition: 0.3s;
+      appearance: none;
+    }
+    textarea {
+      width: 100%;
+      padding: 15px;
+      border: solid 1px $c_text_gray;
+      border-radius: 4px;
+      vertical-align: top;
+      outline: none;
+      transition: 0.3s;
+    }
+    > .error {
+      display: block;
+      padding: 5px 13px;
+      color: $c_error !important;
+      font-size: 1.4rem !important;
+    }
+    &--stars {
+      display: flex;
+      align-items: center;
+      line-height: 1;
+    }
+  }
+  @include media(sp) {
+    margin-top: 40px;
+    &__label {
+      &--select {
+        &::before {
+          font-size: 1.4rem;
+        }
+      }
+    }
+    &__title {
+      font-size: 1.2rem;
+    }
+    &__detail {
+      > .error {
+        font-size: 1.2rem !important;
+      }
     }
   }
 }

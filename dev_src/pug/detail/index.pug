@@ -335,22 +335,35 @@ block content
 
       .l-modal#modalLangAddReview
         .l-modal__bg.js-closeModal
-        .l-modal__body
+        .l-modal__body.l-modal__body--wide
           h3.l-modal__title 写评论
           form(action="")
-            dl.selectModalSettings
-              .selectModalSettings__item
-                dt.selectModalSettings__label 语言
-                dd.selectModalSettings__detail
-                  .selectBox
-                    select.selectBox__select.js-lc--selectLanguage
-                      option(value="1") 簡体中文
-              .selectModalSettings__item
-                dt.selectModalSettings__label 币种
-                dd.selectModalSettings__detail
-                  .selectBox
-                    select.selectBox__select.js-lc--selectCurrency
-                      option(value="1") CNY
+            ul.l-form
+              li.l-form__item
+                label.l-form__label.l-form__label--half
+                  h4.l-form__title.is-required 昵称
+                  p.l-form__detail
+                    input(type="text")
+              li.l-form__item
+                label.l-form__label.l-form__label--checkbox
+                  h4.l-form__title.is-required 汇率
+                  div.l-form__detail.l-form__detail--stars
+                    input.js-lc--reviewStarsInput(type="hidden")
+                    p.reviewStars.reviewStars--large.js-lc--changeReviewStars(data-grade="10")
+                      - for (var i = 0; i < 5; i++)
+                        span
+                    p.reviewStars__number.js-lc--reviewStarsNumber 5
+              li.l-form__item
+                label.l-form__label
+                  h4.l-form__title.is-required 题目
+                  p.l-form__detail
+                    input(type="text")
+              li.l-form__item
+                label.l-form__label
+                  h4.l-form__title.is-required 内容
+                  p.l-form__detail
+                    textarea(rows="5")
+                    
             p.l-modal__buttons
               button(type="submit").l-button--submit
                 span.l-button__label 登入

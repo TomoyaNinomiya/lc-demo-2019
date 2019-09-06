@@ -94,14 +94,14 @@ script.
 
         if ((hasSku1 && $form.sku1.filter(':checked').length === 0) || (hasSku2 && $form.sku2.filter(':checked').length === 0)) {
           $form.cartin.addClass('is-disabled');
-          $displayPrice.basePrice.text(price_format(curRatio * productSkus[0].basePrice));
+          $displayPrice.price.text(price_format(curRatio * productSkus[0].basePrice));
           $displayPrice.basePrice.text(number_format(productSkus[0].basePrice));
           $form.quantity.find('option')
             .show()
             .prop('disabled', false);
         } else {
           $form.cartin.removeClass('is-disabled');
-          $displayPrice.basePrice.text(price_format(curRatio * selectedSku.basePrice));
+          $displayPrice.price.text(price_format(curRatio * selectedSku.basePrice));
           $displayPrice.basePrice.text(number_format(selectedSku.basePrice));
           $form.quantity.find('option')
             .show()
