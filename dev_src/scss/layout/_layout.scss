@@ -255,7 +255,12 @@
 
 .snsLinks {
   display: flex;
+  align-items: center;
   line-height: 1;
+  &__title {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
   &__item {
     margin-left: 20px;
     &:first-child {
@@ -1583,7 +1588,7 @@
       tbody {
         th,
         td {
-          padding: 3px 15px 3px 0;
+          padding: 5px 15px 5px 0;
           &:first-child {
             padding-left: 7px;
           }
@@ -2114,6 +2119,319 @@
     }
     + .l-contentsInner__buttons {
       margin-bottom: 20px;
+    }
+  }
+}
+
+.pageArticle {
+  margin-bottom: 60px;
+  &__title {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px $c_border;
+    font-size: 3.2rem;
+    line-height: 1.25;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  &__status {
+    display: flex;
+    align-items: center;
+    > .pageCategory {
+      margin-right: 30px;
+    }
+  }
+  &__eyecatch {
+    margin-bottom: 30px;
+  }
+  &__content {
+    padding-bottom: 60px;
+    line-height: 2;
+    p,
+    ul,
+    ol,
+    blockquote,
+    table {
+      margin-bottom: 1em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    h2,
+    h3,
+    h4 {
+      margin: 2em 0 1em;
+      font-weight: bold;
+    }
+    h2 {
+      padding: 13px 0;
+      border-top: solid 1px $c_main;
+      border-bottom: solid 1px $c_main;
+      font-size: 3.2rem;
+      line-height: 1.125;
+    }
+    h3 {
+      padding-left: 10px;
+      border-left: solid 4px $c_main;
+      font-size: 2.4rem;
+      line-height: 1.33;
+    }
+    h4 {
+      padding-bottom: 8px;
+      font-size: 1.8rem;
+      line-height: 1.5;
+      position: relative;
+      &::after {
+        content: "";
+        display: block;
+        width: 42px;
+        height: 2px;
+        background: $c_accent;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+    }
+    h5 {
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    ul, ol {
+      padding: 25px 30px;
+      margin-bottom: 1em;
+      background: $c_base_gray;
+      ul, ol {
+        padding: 0;
+        border: none;
+      }
+    }
+    li {
+      padding-left: 1.5em;
+      margin-bottom: 0.5em;
+      line-height: 1.5;
+      position: relative;
+    }
+    ul {
+      > li {
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: $c_text_gray;
+          position: absolute;
+          left: 0;
+          top: 0.5em;
+        }
+      }
+    }
+    ol {
+      > li {
+        &::before {
+          display: inline-block;
+          color: $c_text_gray;
+          font-weight: bold;
+          line-height: 1;
+          position: absolute;
+          left: 0;
+          top: 0.33em;
+        }
+        @for $i from 1 through 20 {
+          &:nth-of-type(#{$i}) {
+            &::before {
+              content: "#{$i}.";
+            }
+          }
+        }
+      }
+    }
+    blockquote {
+      padding: 30px;
+      margin: 30px 0;
+      background: $c_base_gray;
+      position: relative;
+      p {
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+      }
+      &::before,
+      &::after {
+        display: block;
+        font-family: serif;
+        font-size: 7.2rem;
+        line-height: 1;
+        position: absolute;
+        z-index: 0;
+        opacity: 0.5;
+      }
+      &::before {
+        content: "\00201c";
+        padding-right: 0.4em;
+        left: 30px;
+        top: -0.15em;
+      }
+      &::after {
+        content: "\00201d";
+        padding-left: 0.5em;
+        right: 30px;
+        bottom: -0.75em;
+      }
+    }
+    table {
+      font-size: 1.4rem;
+      &.is-align--center {
+        margin: 0 auto;
+      }
+      thead {
+        border-bottom: solid 1px $c_border;
+        line-height: 1.25;
+        th,
+        td {
+          padding: 0 30px 10px 0;
+          vertical-align: bottom;
+          &:first-child {
+            padding-left: 10px;
+          }
+          &:last-child {
+            padding-right: 10px;
+          }
+        }
+        th {
+          font-weight: bold;
+        }
+      }
+      tbody {
+        &:first-child {
+          border-top: solid 1px $c_border;
+        }
+        tr {
+          &:nth-child(even) {
+            background: $c_base_gray;
+          }
+          &:last-child {
+            border-bottom: solid 1px $c_border;
+          }
+        }
+        th,
+        td {
+          padding: 5px 30px 5px 0;
+          &:first-child {
+            padding-left: 10px;
+          }
+          &:last-child {
+            padding-right: 10px;
+          }
+        }
+        th {
+          font-weight: bold;
+          line-height: 1.25;
+          white-space: nowrap;
+        }
+        td {
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 30px;
+    border-top: solid 1px $c_border;
+  }
+  @include media(tab) {
+    padding: 0 15px;
+    margin-bottom: 30px;
+    &__title {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+      line-height: 1.25;
+    }
+    &__info {
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    &__status {
+      display: flex;
+      justify-content: space-between;
+      > .pageCategory {
+        margin-right: 15px;
+      }
+    }
+    &__content {
+      padding-bottom: 45px;
+      line-height: 1.75;
+      h2 {
+        font-size: 2.4rem;
+      }
+      h3 {
+        font-size: 1.8rem;
+      }
+      h4 {
+        font-size: 1.6rem;
+      }
+      ol, ul {
+        padding: 0 20px;
+      }
+      table {
+        font-size: 1.2rem;
+      }
+      th, td {
+        padding: 7px 10px;
+      }
+      th {
+        min-width: 100px;
+      }
+      blockquote {
+        padding: 15px;
+        &::before {
+          left: 15px;
+        }
+        &::after {
+          right: 15px;
+        }
+      }
+      table {
+        thead {
+          th,
+          td {
+            padding: 0  15px 7px 0;
+            &:first-child {
+              padding-left: 7px;
+            }
+            &:last-child {
+              padding-right: 7px;
+            }
+          }
+        }
+        tbody {
+          th,
+          td {
+            padding: 5px 15px 5px 0;
+            &:first-child {
+              padding-left: 7px;
+            }
+            &:last-child {
+              padding-right: 7px;
+            }
+          }
+          td {
+            line-height: 1.33;
+          }
+        }
+      }
+    }
+    &__footer {
+      padding-top: 20px;
     }
   }
 }
