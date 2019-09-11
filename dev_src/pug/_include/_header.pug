@@ -40,11 +40,11 @@ header.l-header
           i.l-navi__icon.icon--globe
           span.l-navi__label 简体中文 / CNY
       li.l-navi__item
-        a.l-navi__button(href="/login/")
+        a.l-navi__button(href="/auth/login/")
           i.l-navi__icon.icon--user
           span.l-navi__label 登入
       li.l-navi__item
-        a.l-navi__button(href="/cart/")
+        a.l-navi__button(href="/ec/cart/list/")
           i.l-navi__icon.icon--cart
           span.l-navi__label 购物车
           span.l-navi__badge 1
@@ -88,12 +88,12 @@ header.l-header
       ]
     each item in menuList
       dd.l-header__menu__item
-        a(href="/archive/") #{ item.parent }
+        a(href="/ec/product/category/1/") #{ item.parent }
         if item.children
           ul.l-header__subMenu
             each child in item.children
               li.l-header__subMenu__item
-                a(href="/archive/") #{ child }
+                a(href="/ec/product/category/1/") #{ child }
 
 .l-modal#modalLangCurrency
   .l-modal__bg.js-closeModal

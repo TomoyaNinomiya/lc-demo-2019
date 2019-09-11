@@ -1,4 +1,4 @@
-extends ../_include/_layout.pug
+extends ../../../_include/_layout.pug
 
 block title
   title 购物车 | LC E-SHOP
@@ -12,23 +12,31 @@ block content
       },
       {
         name: '购物车',
-        href: '/cart/'
+        href: '/ec/cart/list/'
       }
     ]
-  include ../_include/_breadcrumblist.pug
+  include ../../../_include/_breadcrumblist.pug
 
 
   section.contentSection
     h1.contentSection__title.contentSection__title--center 购物车
+
+    - var step = 1;
+    include ../../../_include/_steplist.pug
+
     div.l-contentsInner
+      p.contentSection__note.contentSection__note--large
+        | 商品金额总计: 
+        strong 318.00CNY 
+          small (4,786JPY)
       ul
         li.productInfo
           figure.productInfo__figure
-            a.productInfo__figure__inner(href="/detail/")
+            a.productInfo__figure__inner(href="/product/1/")
               img(src="/assets/img/img_product_01.jpg", alt="product name")
           .productInfo__text
             h2.productInfo__name
-              a(href="/detail/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
+              a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
             .productInfo__detail
               dl.productInfo__detail__list
                 .productInfo__detail__item
@@ -66,11 +74,11 @@ block content
                   span.l-button__label 删除
         li.productInfo
           figure.productInfo__figure
-            a.productInfo__figure__inner(href="/detail/")
+            a.productInfo__figure__inner(href="/product/1/")
               img(src="/assets/img/img_product_02.jpg", alt="product name")
           .productInfo__text
             h2.productInfo__name
-              a(href="/detail/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
+              a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
             .productInfo__detail
               dl.productInfo__detail__list
                 .productInfo__detail__item
@@ -90,11 +98,12 @@ block content
                       option(value=i) #{i}
               a(href="").l-button--delete
                 span.l-button__label 删除
-        
-      p.l-contentsInner__buttons
-        button.l-button--submit
-          span.l-button__label 下一步 填写收件资料
-          i.l-button__icon.icon--arrow2Right
-        a(href="/").l-button--cancel
-          i.l-button__icon.icon--arrowLeft
-          span.l-button__label 继续购物
+      
+      form(action="/ec/cart/list/")
+        p.l-contentsInner__buttons
+          button.l-button--submit
+            span.l-button__label 下一步 填写收件资料
+            i.l-button__icon.icon--arrow2Right
+          a(href="/").l-button--cancel
+            i.l-button__icon.icon--arrowLeft
+            span.l-button__label 继续购物

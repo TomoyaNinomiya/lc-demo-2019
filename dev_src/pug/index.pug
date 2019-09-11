@@ -30,7 +30,7 @@ block content
     ul.productArchive
       - for (var i = 1; i <= 4; i++)
         li.productArchive__item
-          a(href="/detail/")
+          a(href="/product/1/")
             figure.productArchive__figure
               img(src=`/assets/img/img_product_0${i}.jpg`, alt="product title")
             h3.productArchive__name 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
@@ -38,7 +38,7 @@ block content
               span.productArchive__price__main 159.00CNY
               small.productArchive__price__sub (2,393JPY)
     p.contentSection__more
-      a(href="/archive/").l-button--submit
+      a(href="/ec/product/category/1/").l-button--submit
         span.l-button__label More
         i.l-button__icon.icon--arrowRight
   section.contentSection.contentSection--strong
@@ -46,7 +46,7 @@ block content
     ul.productArchive.productArchive--ranking
       - for (var i = 1; i <= 5; i++)
         li.productArchive__item
-          a(href="/detail/")
+          a(href="/product/1/")
             figure.productArchive__figure
               span.productArchive__rank #{i}
               img(src=`/assets/img/img_product_${('0' + (i + 5)).slice(-2)}.jpg`, alt="product title")
@@ -59,14 +59,14 @@ block content
     ul.newsArchive.newsArchive--top
       - for (var i = 1; i <= 5; i++)
         li.newsArchive__item
-          a(href="/page/detail/")
+          a(href="/page/1/")
             .newsArchive__status
               p.pageCategory お知らせ
               p.pageDate
                 time(datetime="2019-08-30T18:16:34+09:00") 2018.06.11
             .newsArchive__title 仅限6天通知199分仅限6天通知199分仅限6天通知199分仅很棒的购物车！
     p.contentSection__more
-      a(href="/news/").l-button--submit
+      a(href="/page/category/1/").l-button--submit
         span.l-button__label More
         i.l-button__icon.icon--arrowRight
   section.contentSection.contentSection--gray
@@ -74,7 +74,7 @@ block content
     ul.blogArchive
       - for (var i = 1; i <= 4; i++)
         li.blogArchive__item
-          a(href="/page/detail/")
+          a(href="/page/1/")
             figure.blogArchive__figure
               img(src=`/assets/img/img_product_${('0' + (i + 4)).slice(-2)}.jpg`, alt="blog title")
             .blogArchive__status
@@ -83,6 +83,6 @@ block content
                 time(datetime="2019-08-30T18:16:34+09:00") 2018.06.11
             .blogArchive__title ベストコスメ2018上半期！注目を浴びたコスメ
     p.contentSection__more
-      a(href="/blog/").l-button--submit
+      a(href="/page/category/2/").l-button--submit
         span.l-button__label More
         i.l-button__icon.icon--arrowRight

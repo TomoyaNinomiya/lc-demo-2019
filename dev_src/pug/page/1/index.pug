@@ -12,11 +12,11 @@ block content
       },
       {
         name: '最新消息',
-        href: '/news/'
+        href: '/page/category/1/'
       },
       {
         name: 'ベストコスメ2018上半期！注目を浴びたコスメ',
-        href: '/page/detail/'
+        href: '/page/1/'
       }
     ]
   include ../../_include/_breadcrumblist.pug
@@ -91,7 +91,7 @@ block content
     ul.productArchive
       - for (var i = 1; i <= 4; i++)
         li.productArchive__item
-          a(href="/detail/")
+          a(href="/product/1/")
             figure.productArchive__figure
               img(src=`/assets/img/img_product_0${i}.jpg`, alt="product title")
             h3.productArchive__name 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖

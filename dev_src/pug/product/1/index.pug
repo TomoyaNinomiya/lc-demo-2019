@@ -1,4 +1,4 @@
-extends ../_include/_layout.pug
+extends ../../_include/_layout.pug
 
 block title
   title 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖 | LC E-SHOP
@@ -12,18 +12,18 @@ block content
       },
       {
         name: '女士们',
-        href: '/archive/'
+        href: '/ec/product/category/1/'
       },
       {
         name: '棉麻T恤',
-        href: '/archive/'
+        href: '/ec/product/category/1/'
       },
       {
         name: '小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖',
-        href: '/detail/'
+        href: '/product/1/'
       }
     ]
-  include ../_include/_breadcrumblist.pug
+  include ../../_include/_breadcrumblist.pug
 
   article.l-article
     .productMainSection
@@ -234,9 +234,9 @@ block content
             sku2: '尺寸'
           }
 
-        include ../_include/_productsku-script.pug
+        include ../../_include/_productsku-script.pug
         
-        form(action="/cart/", method="post")
+        form(action="/ec/cart/list/", method="post")
           input(type="hidden" name="product_sku_id")
           dl.skuList
             .skuList__item
@@ -319,7 +319,7 @@ block content
             | 宝贝已收到比我想象的好，真心不错还会回购！
           p.reviewsArchive__nickname fuga
       p.l-contentsInner__buttons.l-contentsInner__buttons--horizontal
-        a.l-button--submit(href="/reviews/")
+        a.l-button--submit(href="/ec/product/1/")
           span.l-button__label More
           i.l-button__icon.icon--arrowRight
         button.l-button--submit.js-openModal(
@@ -342,7 +342,7 @@ block content
                   p.l-form__detail
                     input(type="text")
               li.l-form__item
-                label.l-form__label.l-form__label--checkbox
+                label.l-form__label.l-form__label--plain
                   h4.l-form__title.is-required 汇率
                   div.l-form__detail.l-form__detail--stars
                     input.js-lc--reviewStarsInput(type="hidden")
@@ -369,7 +369,7 @@ block content
                 i.l-button__icon.icon--close
                 span.l-button__label 取消
 
-      include ../_include/_reviewstars-script.pug
+      include ../../_include/_reviewstars-script.pug
     
     section.l-contentsInner.productDetail
       h2 邮费
@@ -403,7 +403,7 @@ block content
       ul.productArchive
         - for (var i = 1; i <= 4; i++)
           li.productArchive__item
-            a(href="/detail/")
+            a(href="/product/1/")
               figure.productArchive__figure
                 img(src=`/assets/img/img_product_0${i}.jpg`, alt="product title")
               h3.productArchive__name 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖

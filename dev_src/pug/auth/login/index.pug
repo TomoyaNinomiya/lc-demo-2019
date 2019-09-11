@@ -1,0 +1,167 @@
+extends ../../_include/_layout.pug
+
+block title
+  title 购物车 | LC E-SHOP
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '登入',
+        href: '/auth/login/'
+      }
+    ]
+  include ../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 登入
+
+    .l-tab.l-tab--form(role="application")
+      .l-tab__list(role="tablist")
+        .l-tab__tab.is-active(aria-controls="tabPanel_1", role="tab") 登入
+        .l-tab__tab(aria-controls="tabPanel_2", role="tab") 新会员注册
+      .l-tab__panel#tabPanel_1.is-active(role="tabpanel")
+        form(action="")
+          ul.l-form
+            li.l-form__item
+              label.l-form__label
+                h4.l-form__title.is-required 電子信箱
+                p.l-form__detail
+                  input(type="text")
+            li.l-form__item
+              label.l-form__label
+                h4.l-form__title.is-required 密码
+                p.l-form__detail
+                  input(type="text")
+                  
+          p.l-contentsInner__buttons
+            button(type="submit").l-button--submit
+              span.l-button__label 登入
+              i.l-button__icon.icon--arrowRight
+            a(hre="").l-button--cancel.js-closeModal
+              span.l-button__label 忘记密码
+              i.l-button__icon.icon--arrowRight
+      .l-tab__panel#tabPanel_2(role="tabpanel")
+        p.contentSection__note.contentSection__note--center 请输入下列所有项目（<i class="is-required"></i>必填）
+        form(action="")
+          ul.l-form
+            li.l-form__item
+              .l-form__columns
+                .l-form__column
+                  label.l-form__label
+                    h4.l-form__title.is-required 姓
+                    p.l-form__detail
+                      input(type="text")
+                .l-form__column
+                  label.l-form__label
+                    h4.l-form__title.is-required 名
+                    p.l-form__detail
+                      input(type="text")
+            li.l-form__item
+              label.l-form__label.l-form__label--half
+                h4.l-form__title.is-required 出生日期
+                p.l-form__detail
+                  input(type="date")
+            li.l-form__item
+              label.l-form__label.l-form__label--half
+                h4.l-form__title.is-required 手机号码
+                p.l-form__detail
+                  input(type="text")
+            li.l-form__item
+              label.l-form__label
+                h4.l-form__title.is-required 電子信箱
+                p.l-form__detail
+                  input(type="text")
+            li.l-form__item
+              .l-form__label.l-form__label--plain
+                h4.l-form__title.is-required 送信方法
+                p.l-form__detail
+                  input#radio_1_1(type="radio", name="radio1", checked)
+                  label(for="radio_1_1") 电子邮件
+                  input#radio_1_2(type="radio", name="radio1")
+                  label(for="radio_1_2") SMS
+                  input#radio_1_3(type="radio", name="radio1")
+                  label(for="radio_1_3") MMS
+            li.l-form__item
+              label.l-form__label.l-form__label--select
+                h4.l-form__title.is-required 国家
+                p.l-form__detail
+                  select
+                    option 请选择国家或地区
+                    option china
+            li.l-form__item
+              label.l-form__label.l-form__label--half
+                h4.l-form__title.is-required 邮编号码
+                p.l-form__detail
+                  input(type="text")
+            li.l-form__item
+              label.l-form__label
+                h4.l-form__title.is-required 省市县乡镇村
+                p.l-form__detail
+                  input(type="text")
+            li.l-form__item
+              label.l-form__label
+                h4.l-form__title.is-required 详细地址
+                p.l-form__detail
+                  input(type="text")
+            li.l-form__item
+              .l-form__columns
+                .l-form__column
+                  label.l-form__label
+                    h4.l-form__title.is-required 密码
+                    p.l-form__detail
+                      input(type="text")
+                .l-form__column
+                  label.l-form__label
+                    h4.l-form__title.is-required 确认密码
+                    p.l-form__detail
+                      input(type="text")
+            li.l-form__item
+              .l-form__label.l-form__label--plain
+                h4.l-form__title.is-required 会员限定服务
+                p.l-form__detail
+                  input#radio_2_1(type="radio", name="radio2", checked)
+                  label(for="radio_2_1") 希望
+                  input#radio_2_2(type="radio", name="radio2")
+                  label(for="radio_2_2") 不希望
+          p.contentSection__note.contentSection__note--center 
+            input#checkbox_1.js-confirmConsent(type="checkbox")
+            label(for="checkbox_1") 同意隐私政策
+
+            a(hre="").l-button--cancel.js-closeModal
+              span.l-button__label 隐私政策
+              i.l-button__icon.icon--arrowRight
+                  
+          p.l-contentsInner__buttons
+            button(type="submit").l-button--submit
+              span.l-button__label 确认
+              i.l-button__icon.icon--arrowRight
+          
+          script.
+            $(function () {
+              if ($('.js-confirmConsent').length) {
+                var $confirmConcent = $('.js-confirmConsent');
+                var $form = $confirmConcent.closest('form');
+                var $submit = $form.find(':submit');
+                confirmConcent();
+                $confirmConcent.on('change', function () {
+                  confirmConcent();
+                })
+                function confirmConcent () {
+                  $submit.prop('disabled', !$confirmConcent.prop('checked'));
+                }
+              }
+            });
+
+    p.contentSection__note.contentSection__note--center 不注册会员，开始结帐请这里
+    p.l-contentsInner__buttons
+      a(href="").l-button--submit
+        span.l-button__label 购买程序
+        i.l-button__icon.icon--arrowRight
+    
+

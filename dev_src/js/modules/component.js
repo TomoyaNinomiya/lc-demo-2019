@@ -113,6 +113,21 @@ export default () => {
         })
       })
     }
+
+    if ($('.l-tab').length) {
+      $('.l-tab').each(function () {
+        const $wrapper = $(this)
+        const $tab = $wrapper.find('.l-tab__tab')
+        const $tabPanel = $wrapper.find('.l-tab__panel')
+        $tab.on('click', function () {
+          const $currentTab = $(this)
+          $tab.removeClass('is-active')
+          $tabPanel.removeClass('is-active')
+          $currentTab.addClass('is-active')
+          $('#' + $currentTab.attr('aria-controls')).addClass('is-active')
+        })
+      })
+    }
     
     
   })
