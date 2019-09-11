@@ -1,0 +1,71 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 选择付款方式 | LC E-SHOP
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '选择付款方式',
+        href: '/ec/cart/payment/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 选择付款方式
+
+    - var step = 4;
+    include ../../../_include/_steplist.pug
+
+    div.l-contentsInner.l-contentsInner--form
+      form(action="/ec/cart/confirm/", method="POST")
+        
+        h2.c-heading--2 关于产品
+
+        dl
+          dt.c-heading--3 商品金额总计
+            small （不包含邮费，手续费）
+          dd.contentSection__note
+            strong 318.00CNY 
+              small (4,786JPY)
+
+        ul.l-form
+          li.l-form__item
+            label.l-form__label.l-form__label--select
+              h4.l-form__title.is-required 付款方式
+              p.l-form__detail
+                select
+                  option 请选择付款方式
+                  option card
+          li.l-form__item
+            label.l-form__label.l-form__label--half
+              h4.l-form__title 请输入积分号码
+              p.l-form__detail
+                input(type="text", value="0")
+              p.c-align--right
+                small / 剩余积分: 0分
+          li.l-form__item
+            label.l-form__label.l-form__label--half
+              h4.l-form__title 请输入优惠券号码
+              p.l-form__detail
+                input(type="text")
+          li.l-form__item
+            label.l-form__label
+              h4.l-form__title 其他咨询
+              p.l-form__detail
+                textarea
+            
+        p.l-contentsInner__buttons
+          button.l-button--submit
+            span.l-button__label 下一步
+            i.l-button__icon.icon--arrow2Right
+          button(type="button", onclick="history.back();").l-button--cancel
+            i.l-button__icon.icon--arrowLeft
+            span.l-button__label 返回

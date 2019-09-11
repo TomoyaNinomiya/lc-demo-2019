@@ -1,0 +1,99 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 确认购物清单 | LC E-SHOP
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '确认购物清单',
+        href: '/ec/cart/confirm/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 确认购物清单
+
+    - var step = 5;
+    include ../../../_include/_steplist.pug
+
+    div.l-contentsInner
+      form(action="/ec/cart/complete/", method="POST")
+
+        p.l-contentsInner__buttons
+          button.l-button--submit.l-button--action
+            span.l-button__label 提交订单
+            i.l-button__icon.icon--check
+        
+        table.c-table.c-table--numbers
+          tbody
+            tr
+              th 商品金额总计
+              td
+                em 318.00CNY
+              td (4,780JPY)
+            tr
+              th 附加商品总计
+              td
+                em 0.00 CNY
+              td (0JPY)
+            tr
+              th 邮费
+              td
+                em 0.00 CNY
+              td (0JPY)
+            tr
+              th 手续费
+              td
+                em 0.00 CNY
+              td (0JPY)
+            tr
+              th 积分优惠
+              td
+                em -0.00 CNY
+              td (0JPY)
+            tr
+              th 优惠券优惠
+              td
+                em -0.00 CNY
+              td (0JPY)
+        p.contentSection__note.contentSection__note--large.c-align--right
+          | 总计: 
+          strong 318.00CNY 
+            small (4,786JPY)
+        
+        h2.c-heading--3 积分
+        table.c-table.c-table--numbers
+          tbody
+            tr
+              th 目前积分本次
+              td
+                em 0 分
+            tr
+              th 使用积分本次
+              td
+                em -0分
+            tr
+              th 预计获得积分
+              td
+                em + 40 分
+            tr
+              th 共计积分
+              td
+                em 0 分
+
+            
+        p.l-contentsInner__buttons
+          button.l-button--submit.l-button--action
+            span.l-button__label 提交订单
+            i.l-button__icon.icon--check
+          button(type="button", onclick="history.back();").l-button--cancel
+            i.l-button__icon.icon--arrowLeft
+            span.l-button__label 返回

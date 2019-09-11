@@ -246,7 +246,8 @@ input {
   &[type="radio"] {
     position: absolute;
     opacity: 0.01;
-    + label {
+    + label,
+    + * .c-inputUI {
       display: inline-block;
       margin: 5px 15px 5px 0;
       position: relative;
@@ -260,8 +261,16 @@ input {
         transform: translate(0, -50%);
       }
     }
+    + * .c-inputUI {
+      display: inline;
+      margin: 0;
+      &::before {
+        display: inline-block;
+      }
+    }
     &:checked {
-      + label {
+      + label,
+      + * .c-inputUI {
         &::before {
           border-color: $c_main;
         }
@@ -300,6 +309,47 @@ input {
     }
     &:checked {
       + label {
+        &::before {
+          box-shadow: inset 0 0 0 2px $c_base;
+          background: $c_main;
+        }
+      }
+    }
+  }
+  &[type="checkbox"],
+  &[type="radio"] {
+    + * .c-inputUI--checkbox {
+      padding-left: 1.5em;
+      @extend .c-icon;
+      @extend .icon--check;
+      &::before {
+        border: solid 1px $c_text_gray;
+        color: transparent;
+      }
+    }
+    &:checked {
+      + * .c-inputUI--checkbox {
+        &::before {
+          color: $c_main;
+        }
+      }
+    }
+  }
+  &[type="checkbox"],
+  &[type="radio"] {
+    + * .c-inputUI--radio {
+      padding-left: 1.25em;
+      &::before {
+        content: "";
+        width: 1em;
+        height: 1em;
+        border: solid 1px $c_text_gray;
+        border-radius: 50%;
+        background: $c_base;
+      }
+    }
+    &:checked {
+      + * .c-inputUI--radio {
         &::before {
           box-shadow: inset 0 0 0 2px $c_base;
           background: $c_main;
@@ -411,5 +461,161 @@ textarea {
   }
   &--user:before {
     content: "\e914";
+  }
+}
+
+.c-table {
+  font-size: 1.4rem;
+  &.is-align--center {
+    margin: 0 auto;
+  }
+  thead {
+    border-bottom: solid 1px $c_border;
+    line-height: 1.25;
+    th,
+    td {
+      padding: 0 30px 10px 0;
+      vertical-align: bottom;
+      &:first-child {
+        padding-left: 10px;
+      }
+      &:last-child {
+        padding-right: 10px;
+      }
+    }
+    th {
+      font-weight: bold;
+    }
+  }
+  tbody {
+    &:first-child {
+      border-top: solid 1px $c_border;
+    }
+    tr {
+      &:nth-child(even) {
+        background: $c_base_gray;
+      }
+      &:last-child {
+        border-bottom: solid 1px $c_border;
+      }
+    }
+    th,
+    td {
+      padding: 5px 30px 5px 0;
+      &:first-child {
+        padding-left: 10px;
+      }
+      &:last-child {
+        padding-right: 10px;
+      }
+    }
+    th {
+      font-weight: bold;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    td {
+      line-height: 1.5;
+    }
+  }
+  &--wide {
+    width: 100%;
+    tbody {
+      th,
+      td {
+        padding: 10px 30px 10px 0;
+      }
+    }
+  }
+  &--numbers {
+    width: 100%;
+    margin: 30px auto 15px;
+    tbody {
+      th {
+        width: 100%;
+        font-weight: normal;
+      }
+      td {
+        padding-right: 15px;
+        text-align: right;
+        white-space: nowrap;
+        > em {
+          font-weight: bold;
+        }
+      }
+    }
+    .c-heading--3 + & {
+      margin: 0 0 45px;
+    }
+  }
+
+  @include media(tab) {
+    thead {
+      th,
+      td {
+        padding: 0  15px 7px 0;
+        &:first-child {
+          padding-left: 7px;
+        }
+        &:last-child {
+          padding-right: 7px;
+        }
+      }
+    }
+    tbody {
+      th,
+      td {
+        padding: 5px 15px 5px 0;
+        &:first-child {
+          padding-left: 7px;
+        }
+        &:last-child {
+          padding-right: 7px;
+        }
+      }
+      td {
+        line-height: 1.33;
+      }
+    }
+    &--wide {
+      tbody {
+        th,
+        td {
+          padding: 10px 15px 10px 0;
+        }
+      }
+    }
+  }
+}
+
+.c-heading {
+  &--2 {
+    margin-bottom: 1.5em;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.33;
+    @include media(tab) {
+      margin-bottom: 0.75em;
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+  }
+  &--3 {
+    margin-bottom: .75em;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.25;
+    @include media(tab) {
+      margin-bottom: 0.5em;
+      font-size: 1.6rem;
+    }
+  }
+}
+.c-align {
+  &--right {
+    text-align: right;
+  }
+  &--center {
+    text-align: center;
   }
 }

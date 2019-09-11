@@ -1,0 +1,62 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 新会员注册 | LC E-SHOP
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '新会员注册',
+        href: '/auth/regist/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 新会员注册
+
+    div.l-contentsInner.l-contentsInner--form
+
+      form(action="/auth/regist/complete/", method="POST")
+
+        table.c-table.c-table--wide
+          tr
+            th 姓名
+            td 星野 翔太
+          tr
+            th 出生日期
+            td 1985-04-10
+          tr
+            th 手机号码
+            td 02160206756
+          tr
+            th 電子信箱
+            td info@sterfield.co.jp
+          tr
+            th 送信方法
+            td 电子邮件
+          tr
+            th 地址
+            td 上海市黄浦区淮海中路222号力宝广场26楼
+          tr
+            th 密码
+            td ********
+          tr
+            th 会员限定服务
+            td 希望
+          
+        p.l-contentsInner__buttons
+          button(type="submit").l-button--submit
+            span.l-button__label 登入
+            i.l-button__icon.icon--check
+          button(type="button", onclick="history.back();").l-button--cancel
+            i.l-button__icon.icon--arrowLeft
+            span.l-button__label 修改
+    
+

@@ -1,0 +1,33 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 新会员注册 - 成功 | LC E-SHOP
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '新会员注册 - 成功',
+        href: '/auth/regist/complete/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 新会员注册 - 成功
+
+    div.l-contentsInner.l-contentsInner--form
+
+      p.contentSection__note.contentSection__note--center.contentSection__note--large 会员注册已完成，感谢您加入购物网站会员！
+        
+      p.l-contentsInner__buttons
+        a(href="/").l-button--cancel
+          i.l-button__icon.icon--arrowLeft
+          span.l-button__label 返回首页
+    
+
