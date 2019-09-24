@@ -1,7 +1,10 @@
-extends ../../../_include/_layout.pug
+extends ../../../../_include/_layout.pug
 
 block title
-  title 指定收货地址 | LC E-SHOP
+  title 定期订购记录 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../../_include/_header.pug
 block content
 
   -
@@ -11,24 +14,31 @@ block content
         href: '/'
       },
       {
-        name: '指定收货地址',
-        href: '/ec/cart/ship/'
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '定期订购记录',
+        href: '/ec/consumer/regular_list/'
+      },
+      {
+        name: '详细信息',
+        href: '/ec/consumer/regular_detail/1/'
+      },
+      {
+        name: '送货地址变更',
+        href: '/ec/consumer/regualr_address_edit/1/'
       }
     ]
-  include ../../../_include/_breadcrumblist.pug
+  include ../../../../_include/_breadcrumblist.pug
 
 
   section.contentSection
-    h1.contentSection__title.contentSection__title--center 指定收货地址
-
-    - var step = 2;
-    include ../../../_include/_steplist.pug
+    h1.contentSection__title.contentSection__title--center 定期订购记录 - 送货地址变更
 
     div.l-contentsInner
-      form(action="/ec/cart/addition/", method="POST")
 
-        p.contentSection__note 请选择收货地址，然后继续下一步。
-        
+      form(action="/ec/consumer/regular_detail/1/", method="POST")
         section.shipList
           h2.shipList__title 收货地址一览
           ul.shipList__list
@@ -47,7 +57,7 @@ block content
                     | 171-0033
                     | 東京都豊島区高田3ー9−7 ダイワビル
                 p.shipList__controls
-                  a(href="/ec/consumer/edit/").l-button--edit
+                  a(href="").l-button--edit
                     span.l-button__label 更改
             li.shipList__item
               input#shipRadio2(type="radio", name="radio1")
@@ -64,24 +74,18 @@ block content
                 p.shipList__controls
                   a(href="").l-button--edit
                     span.l-button__label 更改
-                  a(href="/ec/consumer/address/add/").l-button--delete
+                  a(href="").l-button--delete
                     span.l-button__label 删除
             li.shipList__item
-              a(href="/ec/consumer/address/add/").shipList__box.shipList__box--button
+              a(href="").shipList__box.shipList__box--button
                 i.icon--plus
                 | 追加新收货地址
-            li.shipList__item
-              input#shipRadio3(type="radio", name="radio1")
-              .shipList__box
-                label(for="shipRadio3").shipList__main
-                  h3.shipList__name
-                    i.c-inputUI.c-inputUI--checkbox
-                    | 指定多个收货地址
-            
+
         p.l-contentsInner__buttons
-          button.l-button--submit
-            span.l-button__label 下一步
-            i.l-button__icon.icon--arrow2Right
-          button(type="button", onclick="history.back();").l-button--cancel
+          button(type="submit").l-button--submit
+            span.l-button__label 登入
+          a(href="/ec/consumer/regular_detail/1/").l-button--cancel
             i.l-button__icon.icon--arrowLeft
             span.l-button__label 返回
+
+    include ../../../../_include/_mypage-navi.pug

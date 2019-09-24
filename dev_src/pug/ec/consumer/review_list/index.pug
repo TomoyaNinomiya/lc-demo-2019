@@ -1,0 +1,80 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 评价一览 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '评价一览',
+        href: '/ec/consumer/review_list/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+
+    h1.contentSection__title.contentSection__title--center 评价一览
+
+    div.l-contentsInner
+
+      p.pagingNavi.c-align--left 已有 <em>0</em> 件评价<br><br>
+
+      ul.reviewsArchive__list
+        - for (var i = 0; i < 20; i++)
+          header.productInfo
+            figure.productInfo__figure
+              a.productInfo__figure__inner(href="/product/1/")
+                img(src=`/assets/img/img_product_0${ i % 8 + 1 }.jpg`, alt="product title")
+            .productInfo__text
+              h2.productInfo__name
+                a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
+              .productInfo__detail
+                div.productInfo__review
+                  .reviewsArchive__reviewHeader
+                    p.reviewStars(data-grade="10")
+                      - for (var ii = 0; ii < 5; ii++)
+                        span
+                    p.reviewsArchive__reviewTitle 手感很好啊
+                p.reviewsArchive__nickname hogehoge
+              p.productInfo__controls
+                a(href="/ec/consumer/review_edit/1/").l-button--edit
+                  span.l-button__label 更改
+                a(href="").l-button--delete
+                  span.l-button__label 删除
+
+
+      .archiveGuide
+        p.pagingNavi <em>24</em> 件中 的 <em>1 - 20</em>件
+        .pagination_nav
+          a(href="/ec/consumer/favorite_list/")
+            span.icon-laquo.ir &laquo;
+          strong.current 1
+          a(href="/ec/consumer/favorite_list/") 2
+          a(href="/ec/consumer/favorite_list/") 3
+          a(href="/ec/consumer/favorite_list/")
+            span.icon-gt.ir &gt;
+          a(href="/ec/consumer/favorite_list/")
+            span.icon-raquo.ir &raquo;
+
+      p.l-contentsInner__buttons
+        a(href="/ec/consumer/history/").l-button--cancel
+          i.l-button__icon.icon--arrowLeft
+          span.l-button__label 返回
+
+    include ../../../_include/_mypage-navi.pug
+    
+

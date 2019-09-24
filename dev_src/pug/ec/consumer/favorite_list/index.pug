@@ -1,0 +1,78 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 我的最爱一览 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '我的最爱一览',
+        href: '/ec/consumer/favorite_list/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+
+    h1.contentSection__title.contentSection__title--center 我的最爱一览
+
+    div.l-contentsInner
+
+      p.pagingNavi.c-align--left 目前已注册 <em>24</em> 件<br><br>
+
+
+      ul
+        - for (var i = 1; i <= 20; i++)
+          li.productInfo
+            figure.productInfo__figure
+              a.productInfo__figure__inner(href="/product/1/")
+                img(src=`/assets/img/img_product_0${ i % 8 + 1 }.jpg`, alt="product title")
+            .productInfo__text
+              h2.productInfo__name
+                a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
+              .productInfo__detail
+                dl.productInfo__detail__list
+                  .productInfo__detail__item
+                    dt.productInfo__detail__label 价格
+                    dd.productInfo__detail__detail
+                      | 159.00CNY
+                      small (2,393JPY)
+              p.productInfo__controls
+                a(href="").l-button--delete
+                  span.l-button__label 删除
+
+
+      .archiveGuide
+        p.pagingNavi <em>24</em> 件中 的 <em>1 - 20</em>件
+        .pagination_nav
+          a(href="/ec/consumer/favorite_list/")
+            span.icon-laquo.ir &laquo;
+          strong.current 1
+          a(href="/ec/consumer/favorite_list/") 2
+          a(href="/ec/consumer/favorite_list/") 3
+          a(href="/ec/consumer/favorite_list/")
+            span.icon-gt.ir &gt;
+          a(href="/ec/consumer/favorite_list/")
+            span.icon-raquo.ir &raquo;
+
+      p.l-contentsInner__buttons
+        a(href="/ec/consumer/history/").l-button--cancel
+          i.l-button__icon.icon--arrowLeft
+          span.l-button__label 返回
+
+    include ../../../_include/_mypage-navi.pug
+    
+

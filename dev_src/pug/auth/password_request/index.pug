@@ -1,0 +1,39 @@
+extends ../../_include/_layout.pug
+
+block title
+  title 忘记密码 | LC E-SHOP
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '忘记密码',
+        href: '/auth/password_request/'
+      }
+    ]
+  include ../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+    h1.contentSection__title.contentSection__title--center 忘记密码
+
+    div.l-contentsInner.l-contentsInner--form
+      p.contentSection__note.contentSection__note--center 忘记密码的会员请在下框中输入Email后，点击「下一步」
+      form(action="/auth/password_request_result/", method="POST")
+        ul.l-form
+          li.l-form__item
+            label.l-form__label
+              h4.l-form__title.is-required 電子信箱
+              p.l-form__detail
+                input(type="text")
+                
+        p.l-contentsInner__buttons
+          button(type="submit").l-button--submit
+            span.l-button__label 确认
+            i.l-button__icon.icon--arrowRight
+    
+

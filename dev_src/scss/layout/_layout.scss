@@ -24,7 +24,9 @@
     visibility: hidden;
     opacity: 0;
     transition: 0.5s;
-    cursor: pointer;
+    &.js-closeModal {
+      cursor: pointer;
+    }
   }
   &__body {
     width: 480px;
@@ -90,6 +92,7 @@
     margin-top: 30px;
     &--horizontal {
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: center;
       > .l-button--submit {
         margin-right: 30px;
@@ -97,6 +100,9 @@
         &:last-child {
           margin-right: 0;
         }
+      }
+      > .l-button--cancel {
+        margin-top: 15spx;
       }
     }
   }
@@ -426,6 +432,9 @@
     &--center {
       text-align: center;
       + .blogArchive {
+        margin-top: 60px;
+      }
+      + .l-tab {
         margin-top: 60px;
       }
     }
@@ -1709,12 +1718,16 @@
   }
   &__columns {
     display: flex;
+    align-items: center;
   }
   &__column {
     flex-grow: 1;
     margin-right: 15px;
     &:last-child {
       margin-right: 0;
+    }
+    &--natural {
+      flex-grow: 0;
     }
   }
   &__label {
@@ -1734,6 +1747,13 @@
         top: 50%;
         z-index: 0;
         transform: translate(0, -50%);
+      }
+      select[data-size] {
+        @for $i from 6 through 24 {
+          &[data-size="#{ $i * 10 }"] {
+            width: #{ $i * 10 }px;
+          }
+        }
       }
     }
     &--plain {
@@ -1879,6 +1899,17 @@
       line-height: 1;
     }
   }
+  &__note {
+    margin-top: 5px;
+    a,
+    button {
+      color: $c_main;
+      font-weight: bold;
+    }
+  }
+  small {
+    display: inline-block;
+  }
   @include media(sp) {
     margin-top: 40px;
     &__label {
@@ -1939,6 +1970,7 @@
   &__text {
     display: flex;
     align-items: flex-end;
+    flex-grow: 1;
     flex-wrap: wrap;
     justify-content: space-between;
     width: calc(100% - 150px);
@@ -2440,6 +2472,13 @@
     &.is-active {
       display: block;
     }
+    .productInfo {
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
   }
   @include media(tab) {
     margin: 0 auto 30px;
@@ -2572,6 +2611,30 @@
       }
     }
   }
+  &__info {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: dotted 1px $c_border;
+    &__item {
+      display: flex;
+      margin-top: 0.5em;
+      line-height: 1;
+    }
+    &__label {
+      margin-right: 0.5em;
+      &::after {
+        content: ":";
+      }
+    }
+    &__detail {
+      font-weight: bold;
+      > small {
+        display: inline-block;
+        margin-left: 0.5em;
+        font-weight: normal;
+      }
+    }
+  }
   &__controls {
     display: flex;
     flex-direction: column;
@@ -2600,6 +2663,50 @@
           width: calc(100% - 75px);
           margin-left: 75px;
         }
+      }
+    }
+  }
+}
+
+.mypageNavi {
+  max-width: 840px;
+  margin: 0 auto;
+  &__title {
+    margin-bottom: 1em;
+    @extend .c-heading--3;
+  }
+  &__subTitle {
+    font-weight: bold;
+    margin-bottom: 0.75em;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    width: calc(33.33% - 20px);
+    margin-right: 30px;
+    margin-bottom: 15px;
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    > a {
+      width: 100%;
+    }
+  }
+  @include media(tab) {
+    &__item {
+      width: calc(50% - 7px);
+      margin-right: 14px;
+      margin-bottom: 0;
+      &:nth-child(3n) {
+        margin-right: 14px;
+      }
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+      > a {
+        font-size: 1.4rem;
       }
     }
   }

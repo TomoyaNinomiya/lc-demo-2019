@@ -1,7 +1,10 @@
-extends ../../../_include/_layout.pug
+extends ../../../../_include/_layout.pug
 
 block title
-  title 确认购物清单 | LC E-SHOP
+  title 买记录 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../../_include/_header.pug
 block content
 
   -
@@ -11,26 +14,25 @@ block content
         href: '/'
       },
       {
-        name: '确认购物清单',
-        href: '/ec/cart/confirm/'
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '买记录',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '详细信息',
+        href: '/ec/consumer/history_detail/1/'
       }
     ]
-  include ../../../_include/_breadcrumblist.pug
+  include ../../../../_include/_breadcrumblist.pug
 
 
   section.contentSection
-    h1.contentSection__title.contentSection__title--center 确认购物清单
-
-    - var step = 5;
-    include ../../../_include/_steplist.pug
+    h1.contentSection__title.contentSection__title--center 买记录
 
     div.l-contentsInner
-      form(action="/ec/cart/card/", method="POST")
-
-        p.l-contentsInner__buttons
-          button.l-button--submit.l-button--action
-            span.l-button__label 提交订单
-            i.l-button__icon.icon--check
         
         table.c-table.c-table--numbers
           tbody
@@ -136,9 +138,8 @@ block content
 
             
         p.l-contentsInner__buttons
-          button.l-button--submit.l-button--action
-            span.l-button__label 提交订单
-            i.l-button__icon.icon--check
-          button(type="button", onclick="history.back();").l-button--cancel
+          a(href="/ec/consumer/history/").l-button--cancel
             i.l-button__icon.icon--arrowLeft
             span.l-button__label 返回
+
+    include ../../../../_include/_mypage-navi.pug

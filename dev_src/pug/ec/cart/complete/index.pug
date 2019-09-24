@@ -1,10 +1,7 @@
 extends ../../../_include/_layout.pug
 
 block title
-  title 新会员注册 - 成功 | LC E-SHOP
-block header
-  - var isAuthorized = true;
-  include ../../../_include/_header.pug
+  title 购买成功 | LC E-SHOP
 block content
 
   -
@@ -14,7 +11,7 @@ block content
         href: '/'
       },
       {
-        name: '新会员注册 - 成功',
+        name: '购买成功',
         href: '/auth/regist/complete/'
       }
     ]
@@ -22,14 +19,17 @@ block content
 
 
   section.contentSection
-    h1.contentSection__title.contentSection__title--center 新会员注册 - 成功
+    h1.contentSection__title.contentSection__title--center 购买成功
+
+    - var step = 7;
+    include ../../../_include/_steplist.pug
 
     div.l-contentsInner.l-contentsInner--form
 
-      p.contentSection__note.contentSection__note--center.contentSection__note--large 会员注册已完成，感谢您加入购物网站会员！
+      p.contentSection__note.contentSection__note--center.contentSection__note--large 感谢您的购物
         
       p.l-contentsInner__buttons
-        a(href="/").l-button--cancel
+        a(href="/").l-button--submit
           i.l-button__icon.icon--arrowLeft
           span.l-button__label 返回首页
     

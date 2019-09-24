@@ -1,0 +1,120 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 积分纪录 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '积分纪录',
+        href: '/ec/consumer/point_history/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+
+    h1.contentSection__title.contentSection__title--center 积分纪录
+
+    div.l-contentsInner
+
+      p.contentSection__note.contentSection__note--large
+        | 当前积分: 
+        strong 290
+
+      p.pagingNavi.c-align--left <em>2</em> 件<br><br>
+
+      table.c-table.c-table--points
+        thead
+          tr
+            th 订货日期
+            th 积分
+            th 有效日期
+        tbody
+          tr
+            th 2019/10/20
+            td
+              em + 4 (暂定)
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4 (暂定)
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4 (暂定)
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em - 100
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4
+            td 2019/10/20
+          tr
+            th 2019/10/20
+            td
+              em + 4
+            td 2019/10/20
+
+      .archiveGuide
+        p.pagingNavi <em>24</em> 件中 的 <em>1 - 20</em>件
+        .pagination_nav
+          a(href="/ec/consumer/point_history/")
+            span.icon-laquo.ir &laquo;
+          strong.current 1
+          a(href="/ec/consumer/point_history/") 2
+          a(href="/ec/consumer/point_history/") 3
+          a(href="/ec/consumer/point_history/") 4
+          a(href="/ec/consumer/point_history/") 5
+          a(href="/ec/consumer/point_history/")
+            span.icon-gt.ir &gt;
+          a(href="/ec/consumer/point_history/")
+            span.icon-raquo.ir &raquo;
+
+      p.l-contentsInner__buttons
+        a(href="/ec/consumer/history/").l-button--cancel
+          i.l-button__icon.icon--arrowLeft
+          span.l-button__label 返回
+
+    include ../../../_include/_mypage-navi.pug
+    
+

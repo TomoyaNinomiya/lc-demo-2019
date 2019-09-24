@@ -40,9 +40,14 @@ header.l-header
           i.l-navi__icon.icon--globe
           span.l-navi__label 简体中文 / CNY
       li.l-navi__item
-        a.l-navi__button(href="/auth/login/")
-          i.l-navi__icon.icon--user
-          span.l-navi__label 登入
+        - if (isAuthorized)
+          a.l-navi__button(href="/ec/consumer/history/")
+            i.l-navi__icon.icon--user
+            span.l-navi__label 我的帳戶
+        - else
+          a.l-navi__button(href="/auth/login/")
+            i.l-navi__icon.icon--user
+            span.l-navi__label 登入
       li.l-navi__item
         a.l-navi__button(href="/ec/cart/list/")
           i.l-navi__icon.icon--cart

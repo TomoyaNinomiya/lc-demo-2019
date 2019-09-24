@@ -1,7 +1,10 @@
-extends ../../../_include/_layout.pug
+extends ../../../../_include/_layout.pug
 
 block title
-  title 确认购物清单 | LC E-SHOP
+  title 定期订购记录 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../../_include/_header.pug
 block content
 
   -
@@ -11,84 +14,52 @@ block content
         href: '/'
       },
       {
-        name: '确认购物清单',
-        href: '/ec/cart/confirm/'
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '定期订购记录',
+        href: '/ec/consumer/regular_list/'
+      },
+      {
+        name: '详细信息',
+        href: '/ec/consumer/regular_detail/1/'
       }
     ]
-  include ../../../_include/_breadcrumblist.pug
+  include ../../../../_include/_breadcrumblist.pug
 
 
   section.contentSection
-    h1.contentSection__title.contentSection__title--center 确认购物清单
-
-    - var step = 5;
-    include ../../../_include/_steplist.pug
+    h1.contentSection__title.contentSection__title--center 定期订购记录
 
     div.l-contentsInner
-      form(action="/ec/cart/card/", method="POST")
-
-        p.l-contentsInner__buttons
-          button.l-button--submit.l-button--action
-            span.l-button__label 提交订单
-            i.l-button__icon.icon--check
         
         table.c-table.c-table--numbers
           tbody
             tr
-              th 商品金额总计
+              th 日期
               td
-                em 318.00CNY
-              td (4,780JPY)
+                em 2019/10/2
             tr
-              th 附加商品总计
+              th 订单编号
               td
-                em 0.00CNY
-              td (0JPY)
+                em 124
             tr
-              th 邮费
+              th 发货次数
               td
-                em 0.00CNY
-              td (0JPY)
+                em 2
             tr
-              th 手续费
+              th 自动下单的状态
               td
-                em 0.00CNY
-              td (0JPY)
+                em 继续
             tr
-              th 积分优惠
+              th 送货时间间隔
               td
-                em -0.00CNY
-              td (0JPY)
+                em 1月次
             tr
-              th 优惠券优惠
+              th 下次预定到达的日期
               td
-                em -0.00CNY
-              td (0JPY)
-        p.contentSection__note.contentSection__note--large.c-align--right
-          | 总计: 
-          strong 318.00CNY 
-            small (4,786JPY)
-        
-        h2.c-heading--3 积分
-        table.c-table.c-table--numbers
-          tbody
-            tr
-              th 目前积分本次
-              td
-                em 0分
-            tr
-              th 使用积分本次
-              td
-                em -0分
-            tr
-              th 预计获得积分
-              td
-                em +40分
-            tr
-              th 共计积分
-              td
-                em 0分
-        
+                em 2019/11/19
 
         section.shipList
           h2.shipList__title 收货地址一览
@@ -120,6 +91,9 @@ block content
                             .productInfo__detail__item
                               dt.productInfo__detail__label 数量
                               dd.productInfo__detail__detail 1
+                        p.shipList__controls
+                          a(href="/ec/consumer/regular_address_edit/1/").l-button--edit
+                            span.l-button__label 更改
                   dl.shipList__info
                     .shipList__info__item
                       dt.shipList__info__label 送货方式
@@ -134,11 +108,29 @@ block content
         h2.c-heading--3 其他咨询
         p 不指定
 
-            
-        p.l-contentsInner__buttons
-          button.l-button--submit.l-button--action
-            span.l-button__label 提交订单
-            i.l-button__icon.icon--check
-          button(type="button", onclick="history.back();").l-button--cancel
+        p.l-contentsInner__buttons.l-contentsInner__buttons--horizontal
+          a(href="/ec/consumer/regular_edit/1/").l-button--submit
+            span.l-button__label 更改定期订购
+          a(
+            href="", 
+            aria-controls="modalCancelRegular"
+            aria-haspopup="true"
+          ).l-button--submit.js-openModal
+            span.l-button__label 取消
+          a(href="/ec/consumer/regular_list/").l-button--cancel
             i.l-button__icon.icon--arrowLeft
             span.l-button__label 返回
+
+    include ../../../../_include/_mypage-navi.pug
+
+  .l-modal#modalCancelRegular
+    .l-modal__bg.js-closeModal
+    .l-modal__body
+      h3.l-modal__title 要取消吗？
+      p.l-modal__buttons
+        a(href="").l-button--submit.js-lc--changeLangCurrency
+          span.l-button__label OK
+          i.l-button__icon.icon--check
+        button(type="button").l-button--cancel.js-closeModal
+          i.l-button__icon.icon--arrowLeft
+          span.l-button__label 返回

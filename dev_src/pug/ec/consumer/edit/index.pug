@@ -1,0 +1,145 @@
+extends ../../../_include/_layout.pug
+
+block title
+  title 管理收货地址 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include ../../../_include/_header.pug
+block content
+
+  -
+    var breadcrumbList = [
+      {
+        name: '首页',
+        href: '/'
+      },
+      {
+        name: '我的帳戶',
+        href: '/ec/consumer/history/'
+      },
+      {
+        name: '管理收货地址',
+        href: '/ec/consumer/edit/'
+      }
+    ]
+  include ../../../_include/_breadcrumblist.pug
+
+
+  section.contentSection
+
+    h1.contentSection__title.contentSection__title--center 管理收货地址
+
+    div.l-contentsInner.l-contentsInner--form
+      p.contentSection__note.contentSection__note--center 请输入下列所有项目（<i class="is-required"></i>必填）
+      form(action="/auth/regist/confirm/", method="POST")
+        ul.l-form
+          li.l-form__item
+            .l-form__columns
+              .l-form__column
+                label.l-form__label
+                  h4.l-form__title.is-required 姓
+                  p.l-form__detail
+                    input(type="text", value="星野")
+              .l-form__column
+                label.l-form__label
+                  h4.l-form__title.is-required 名
+                  p.l-form__detail
+                    input(type="text", value="翔太")
+          li.l-form__item
+            label.l-form__label.l-form__label--half
+              h4.l-form__title.is-required 出生日期
+              p.l-form__detail
+                input(type="date", value="1985-04-15")
+          li.l-form__item
+            .l-form__columns
+              .l-form__column.l-form__column--natural
+                label.l-form__label
+                  h4.l-form__title.is-required 手机号码
+                  p.l-form__detail
+                    input(type="text", value="090")
+              .l-form__column.l-form__column--natural -
+              .l-form__column.l-form__column--natural
+                label.l-form__label
+                  p.l-form__detail
+                    input(type="text", value="1234")
+              .l-form__column.l-form__column--natural -
+              .l-form__column.l-form__column--natural
+                label.l-form__label
+                  p.l-form__detail
+                    input(type="text", value="5678")
+          li.l-form__item
+            label.l-form__label
+              h4.l-form__title.is-required 電子信箱
+              p.l-form__detail
+                input(type="text", value="info@sterfield.co.jp")
+          li.l-form__item
+            .l-form__label.l-form__label--plain
+              h4.l-form__title.is-required 送信方法
+              p.l-form__detail
+                input#radio_1_1(type="radio", name="radio1", checked)
+                label(for="radio_1_1") 电子邮件
+                input#radio_1_2(type="radio", name="radio1")
+                label(for="radio_1_2") SMS
+                input#radio_1_3(type="radio", name="radio1")
+                label(for="radio_1_3") MMS
+          li.l-form__item
+            label.l-form__label.l-form__label--select
+              h4.l-form__title.is-required 国家
+              p.l-form__detail
+                select
+                  option 请选择国家或地区
+                  option(selected) china
+          li.l-form__item
+            .l-form__columns
+              .l-form__column.l-form__column--natural
+                label.l-form__label
+                  h4.l-form__title.is-required 邮编号码
+                  p.l-form__detail
+                    input(type="text", value="171")
+              .l-form__column.l-form__column--natural -
+              .l-form__column.l-form__column--natural
+                label.l-form__label
+                  p.l-form__detail
+                    input(type="text", value="0033")
+          li.l-form__item
+            label.l-form__label
+              h4.l-form__title.is-required 省市县乡镇村
+              p.l-form__detail
+                input(type="text", value="豊島区")
+          li.l-form__item
+            label.l-form__label
+              h4.l-form__title.is-required 详细地址
+              p.l-form__detail
+                input(type="text", value="高田3ー9−7 ダイワビル")
+          li.l-form__item
+            .l-form__columns
+              .l-form__column
+                label.l-form__label
+                  h4.l-form__title.is-required 密码
+                  p.l-form__detail
+                    input(type="text")
+              .l-form__column
+                label.l-form__label
+                  h4.l-form__title.is-required 确认密码
+                  p.l-form__detail
+                    input(type="text")
+          li.l-form__item
+            .l-form__label.l-form__label--plain
+              h4.l-form__title.is-required 会员限定服务
+              p.l-form__detail
+                input#radio_2_1(type="radio", name="radio2", checked)
+                label(for="radio_2_1") 希望
+                input#radio_2_2(type="radio", name="radio2")
+                label(for="radio_2_2") 不希望
+                
+        p.l-contentsInner__buttons
+          button(type="submit").l-button--submit
+            span.l-button__label 确认
+            i.l-button__icon.icon--arrowRight
+          button(type="button", onclick="history.back();").l-button--cancel
+            i.l-button__icon.icon--arrowLeft
+            span.l-button__label 返回
+
+    include ../../../_include/_mypage-navi.pug
+    
+

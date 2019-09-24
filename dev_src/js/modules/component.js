@@ -19,10 +19,12 @@ export default () => {
     const $window = $(window)
 
     $('.js-openModal').on('click', function() {
-      $('#' + $(this).attr('aria-controls')).addClass('is-active')
-      $('#' + $(this).attr('aria-controls')).find('.l-modal__body').css({
+      const $trigger = $(this)
+      $('#' + $trigger.attr('aria-controls')).addClass('is-active')
+      $('#' + $trigger.attr('aria-controls')).find('.l-modal__body').css({
         top: ($window.scrollTop() + 60) + 'px'
       });
+      return false
     })
     $('.js-closeModal').on('click', () => {
       $('.l-modal').removeClass('is-active')
@@ -114,8 +116,8 @@ export default () => {
       })
     }
 
-    if ($('.l-tab').length) {
-      $('.l-tab').each(function () {
+    if ($('.l-tab[role="application"]').length) {
+      $('.l-tab[role="application"]').each(function () {
         const $wrapper = $(this)
         const $tab = $wrapper.find('.l-tab__tab')
         const $tabPanel = $wrapper.find('.l-tab__panel')
