@@ -1,4 +1,4 @@
-extends ../../../_include/_layout.pug
+extends /_include/_layout.pug
 
 block title
   title 购物车 | LC E-SHOP
@@ -15,14 +15,14 @@ block content
         href: '/ec/cart/list/'
       }
     ]
-  include ../../../_include/_breadcrumblist.pug
+  include /_include/_breadcrumblist.pug
 
 
   section.contentSection
     h1.contentSection__title.contentSection__title--center 购物车
 
     - var step = 1;
-    include ../../../_include/_steplist.pug
+    include /_include/_steplist.pug
 
     div.l-contentsInner
       p.contentSection__note.contentSection__note--large

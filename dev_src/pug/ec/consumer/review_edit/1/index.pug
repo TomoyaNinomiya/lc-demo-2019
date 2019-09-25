@@ -1,10 +1,10 @@
-extends ../../../../_include/_layout.pug
+extends /_include/_layout.pug
 
 block title
   title 编辑评价 | LC E-SHOP
 block header
   - var isAuthorized = true;
-  include ../../../../_include/_header.pug
+  include /_include/_header.pug
 block content
 
   -
@@ -26,7 +26,7 @@ block content
         href: '/ec/consumer/review_edit/1/'
       }
     ]
-  include ../../../../_include/_breadcrumblist.pug
+  include /_include/_breadcrumblist.pug
 
 
   section.contentSection
@@ -85,8 +85,8 @@ block content
             i.l-button__icon.icon--arrowLeft
             span.l-button__label 返回
 
-    include ../../../../_include/_mypage-navi.pug
+    include /_include/_mypage-navi.pug
 
-    include ../../../../_include/_reviewstars-script.pug
+    include /_include/_reviewstars-script.pug
     
 

@@ -38,7 +38,7 @@ gulp.task('pug', function () {
         title: "Template compilation"
       })}))
     .pipe(pug({
-      basedir: '.',
+      basedir: paths.srcPug,
       pretty: true
     }))
     .pipe(gulp.dest(paths.dist))

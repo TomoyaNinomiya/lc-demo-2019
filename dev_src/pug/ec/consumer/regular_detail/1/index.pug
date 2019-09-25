@@ -1,10 +1,10 @@
-extends ../../../../_include/_layout.pug
+extends /_include/_layout.pug
 
 block title
   title 定期订购记录 | LC E-SHOP
 block header
   - var isAuthorized = true;
-  include ../../../../_include/_header.pug
+  include /_include/_header.pug
 block content
 
   -
@@ -26,7 +26,7 @@ block content
         href: '/ec/consumer/regular_detail/1/'
       }
     ]
-  include ../../../../_include/_breadcrumblist.pug
+  include /_include/_breadcrumblist.pug
 
 
   section.contentSection
@@ -121,7 +121,7 @@ block content
             i.l-button__icon.icon--arrowLeft
             span.l-button__label 返回
 
-    include ../../../../_include/_mypage-navi.pug
+    include /_include/_mypage-navi.pug
 
   .l-modal#modalCancelRegular
     .l-modal__bg.js-closeModal

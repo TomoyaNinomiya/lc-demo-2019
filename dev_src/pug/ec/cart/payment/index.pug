@@ -1,4 +1,4 @@
-extends ../../../_include/_layout.pug
+extends /_include/_layout.pug
 
 block title
   title 选择付款方式 | LC E-SHOP
@@ -15,14 +15,14 @@ block content
         href: '/ec/cart/payment/'
       }
     ]
-  include ../../../_include/_breadcrumblist.pug
+  include /_include/_breadcrumblist.pug
 
 
   section.contentSection
     h1.contentSection__title.contentSection__title--center 选择付款方式
 
     - var step = 4;
-    include ../../../_include/_steplist.pug
+    include /_include/_steplist.pug
 
     div.l-contentsInner.l-contentsInner--form
       form(action="/ec/cart/confirm/", method="POST")
