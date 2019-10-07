@@ -2,6 +2,9 @@ extends /_include/_layout.pug
 
 block title
   title 指定收货地址 | LC E-SHOP
+block header
+  - var isAuthorized = true;
+  include /_include/_header.pug
 block content
 
   -
@@ -18,60 +21,60 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
+  section.lc-contentSection
 
-    h1.contentSection__title.contentSection__title--center 追加新地址
+    h1.lc-contentSection__title.lc-contentSection__title--center 追加新地址
 
-    div.l-contentsInner.l-contentsInner--form
-      p.contentSection__note.contentSection__note--center 请输入下列所有项目（<i class="is-required"></i>必填）
+    div.lc-contentsInner.lc-contentsInner--form
+      p.lc-contentSection__note.lc-contentSection__note--center 请输入下列所有项目（<i class="is-required"></i>必填）
       form(action="/ec/consumer/address/list/", method="POST")
-        ul.l-form
-          li.l-form__item
-            .l-form__columns
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 姓
-                  p.l-form__detail
+        ul.lc-form
+          li.lc-form__item
+            .lc-form__columns
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 姓
+                  p.lc-form__detail
                     input(type="text")
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 名
-                  p.l-form__detail
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 名
+                  p.lc-form__detail
                     input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 手机号码
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 手机号码
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label.l-form__label--select
-              h4.l-form__title.is-required 国家
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--select
+              h4.lc-form__title.is-required 国家
+              p.lc-form__detail
                 select
                   option 请选择国家或地区
                   option china
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 邮编号码
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 邮编号码
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 省市县乡镇村
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 省市县乡镇村
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 详细地址
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 详细地址
+              p.lc-form__detail
                 input(type="text")
                 
-        p.l-contentsInner__buttons
-          button(type="submit").l-button--submit
-            span.l-button__label 登入
-            i.l-button__icon.icon--arrowRight
-          button(type="button", onclick="history.back();").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+        p.lc-contentsInner__buttons
+          button(type="submit").lc-button--submit
+            span.lc-button__label 登入
+            i.lc-button__icon.lc-icon--arrowRight
+          button(type="button", onclick="history.back();").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回
 
     include /_include/_mypage-navi.pug

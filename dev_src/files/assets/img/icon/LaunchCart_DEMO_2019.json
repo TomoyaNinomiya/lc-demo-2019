@@ -388,7 +388,7 @@
       "useClassSelector": true,
       "color": 0,
       "bgColor": 16777215,
-      "classSelector": ".icon"
+      "classSelector": ".lc-icon"
     },
     "historySize": 50,
     "showCodes": true,

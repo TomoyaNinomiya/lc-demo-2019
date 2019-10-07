@@ -18,95 +18,95 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 输入信用卡资讯
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 输入信用卡资讯
 
     - var step = 6;
     include /_include/_steplist.pug
 
-    div.l-contentsInner.l-contentsInner--form
+    div.lc-contentsInner.lc-contentsInner--form
       form(action="/ec/cart/complete/", method="POST")
 
         dl
-          dt.c-heading--3 消费金额
-          dd.contentSection__note
+          dt.lc-heading--3 消费金额
+          dd.lc-contentSection__note
             strong 318.00CNY 
               small (4,786JPY)
 
-        ul.l-form
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title 信用卡卡号
-              p.l-form__detail
+        ul.lc-form
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title 信用卡卡号
+              p.lc-form__detail
                 input(type="text", placeholder="例如：1234567890123456")
               p
                 small 请用半角数字输入
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title 安全码
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title 安全码
+              p.lc-form__detail
                 input(type="text")
-            p.l-form__note
+            p.lc-form__note
               small
                 | * 
-                button.js-openModal(
+                button.js-lc--openModal(
                   type="button"
                   aria-controls="modalCSC"
                   aria-haspopup="true"
                 )
                   | 安全码位置
-                  i.icon--arrow2Right
-          li.l-form__item
-            label.l-form__label.l-form__label--select
-              h4.l-form__title.is-required 信用卡有效日期
-              p.l-form__detail
+                  i.lc-icon--arrow2Right
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--select
+              h4.lc-form__title.is-required 信用卡有效日期
+              p.lc-form__detail
                 select(data-size="140")
                   option 请选择
                   - for (var i = 1; i <= 12; i++)
                     option #{i}
-            label.l-form__label.l-form__label--select
-              h4.l-form__title
-              p.l-form__detail
+            label.lc-form__label.lc-form__label--select
+              h4.lc-form__title
+              p.lc-form__detail
                 select(data-size="140")
                   option 请选择
                   - for (var i = 2019; i <= 2039; i++)
                     option #{i}
-            p.l-form__note
+            p.lc-form__note
               small * 请注意，通常有效日期为月／年的顺序表示
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title 持卡人姓名
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title 持卡人姓名
+              p.lc-form__detail
                 input(type="text", placeholder="例如： Jun Ma")
               p
                 small 可使用半角英文及半格
-          li.l-form__item
-            label.l-form__label.l-form__label--select
-              h4.l-form__title.is-required 付款方式
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--select
+              h4.lc-form__title.is-required 付款方式
+              p.lc-form__detail
                 select
                   option 请选择
                   option 一次性还款
             
-        p.l-contentsInner__buttons
-          button.l-button--submit.js-openModal.js-lc--submit(
+        p.lc-contentsInner__buttons
+          button.lc-button--submit.js-lc--openModal.js-lc--submit(
             type="button"
             aria-controls="modalPayment"
             aria-haspopup="true"
           )
-            span.l-button__label 提交订单
-            i.l-button__icon.icon--arrow2Right
-          button(type="button", onclick="history.back();").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+            span.lc-button__label 提交订单
+            i.lc-button__icon.lc-icon--arrow2Right
+          button(type="button", onclick="history.back();").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回
 
-      .l-modal#modalCSC
-        .l-modal__bg.js-closeModal
-        .l-modal__body
-          h3.l-modal__title 安全码位置
-          ul.l-form
-            li.l-form__item
-              p.l-form__note
+      .lc-modal#modalCSC
+        .lc-modal__bg.js-lc--closeModal
+        .lc-modal__body
+          h3.lc-modal__title 安全码位置
+          ul.lc-form
+            li.lc-form__item
+              p.lc-form__note
                 small
                   | ・如使用VISA，MasterCard，JCB，Diners时，（请参照下图A）<br>
                   | 　卡片背面签名栏末三码数字<br>
@@ -114,16 +114,16 @@ block content
                   | 　卡片正面右上（或者左上）的四码数字
                 img(src="/assets/img/img_securitycode.gif", alt="安全码", width="240")
                     
-            p.l-modal__buttons
-              button(type="button").l-button--cancel.js-closeModal
-                i.l-button__icon.icon--close
-                span.l-button__label 取消
+            p.lc-modal__buttons
+              button(type="button").lc-button--cancel.js-lc--closeModal
+                i.lc-button__icon.lc-icon--close
+                span.lc-button__label 取消
 
-      .l-modal#modalPayment
-        .l-modal__bg
-        .l-modal__body
-          h3.l-modal__title 数据发送！
-          p.l-form__note.c-align--center 一段时间，请耐心等待...
+      .lc-modal#modalPayment
+        .lc-modal__bg
+        .lc-modal__body
+          h3.lc-modal__title 数据发送！
+          p.lc-form__note.lc-align--center 一段时间，请耐心等待...
         
   script.
     $(function () {

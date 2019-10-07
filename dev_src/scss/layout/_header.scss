@@ -18,14 +18,16 @@
     order: 1;
   }
   &__menu {
-    display: flex;
     order: 3;
     width: 100%;
     height: 44px;
-    justify-content: center;
     border-top: solid 1px $c_border;
     font-size: 1.4rem;
     transition: 0.5s;
+    &__list {
+      display: flex;
+      justify-content: center;
+    }
     &__label {
       display: flex;
       align-items: center;
@@ -109,8 +111,8 @@
         padding-right: 24px;
         min-height: 32px;
         position: relative;
-        @extend .c-icon;
-        @extend .icon--arrow2Right;
+        @extend .lc-icon;
+        @extend .lc-icon--arrow2Right;
         &::before {
           color: $c_text_gray;
           position: absolute;
@@ -138,20 +140,25 @@
     }
     &__menu {
       height: 100%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 50px;
+      padding: 50px 15px;
       background: $c_base;
       position: fixed;
       left: 0;
       top: 0;
       z-index: 10;
-      overflow: hidden;
+      overflow: auto;
       transition: 0.5s;
       opacity: 0;
       visibility: hidden;
+      -webkit-overflow-scrolling: touch;
+      &__list {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0 35px;
+      }
       &__label {
+        margin-bottom: 1em;
         position: relative;
         z-index: 1;
       }
@@ -188,6 +195,15 @@
         &__item {
           opacity: 1;
           transform: scale(1);
+        }
+      }
+      .lc-mypageNavi {
+        transform: translate(0, 15%);
+        opacity: 0;
+        transition: 0.75s ease 0.5s;
+        .is-menuActive & {
+          opacity: 1;
+          transform: translate(0, 0);
         }
       }
     }

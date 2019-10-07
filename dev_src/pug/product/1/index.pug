@@ -242,19 +242,19 @@ block content
             .skuList__item
               dt.skuList__label 数量
               dd.skuList__detail
-                .selectBox
-                  select.selectBox__select(name="quantity")
+                .lc-selectBox
+                  select.lc-selectBox__select(name="quantity")
                     - for (var i = 1; i <= 10; i++)
                       option(value=i) #{i}
           p.cartInArea__actions
-            button.l-button--submit.l-button--action.js-lc--cartin(type="submit")
-              span.l-button__label 加入购物车
-              i.l-button__icon.icon--cart
-            button.l-button--submit.l-button--onlyIcon.js-lc--favorite(type="button", title="我的最爱")
-              span.l-button__label 我的最爱
-              i.l-button__icon.icon--heart
+            button.lc-button--submit.lc-button--action.js-lc--cartin(type="submit")
+              span.lc-button__label 加入购物车
+              i.lc-button__icon.lc-icon--cart
+            button.lc-button--submit.lc-button--onlyIcon.js-lc--favorite(type="button", title="我的最爱")
+              span.lc-button__label 我的最爱
+              i.lc-button__icon.lc-icon--heart
           dl.additionsForm
-            dt.additionsForm__title.icon--plus OPTIONS
+            dt.additionsForm__title.lc-icon--plus OPTIONS
             dd.additionsForm__item
               label.additionsForm__label
                 input.additionsForm__input(type="checkbox", name="addition_quantity[1]", value="1")
@@ -278,7 +278,7 @@ block content
                     small (15JPY)
                   p.additionsForm__detail 船舶的优先级高于平时
     
-    section.l-contentsInner.productDetail
+    section.lc-contentsInner.productDetail
       h2 关于产品
       section
         h3 说明
@@ -291,89 +291,89 @@ block content
           | 产品参数：<br>
           | 品牌: 裂帛 适用年龄: 25-29周岁 尺码: S M L XL XXL 图案: 植物花卉 风格: 通勤 通勤: 淑女 领型: 圆领流行元素: 绣花 主要颜色: 深蓝 深蓝A 深蓝B 白色 袖型: 常规 货号: 51151485 图案文化: 经典 年份季节: 2019年夏季 袖长: 短袖衣长: 常规款 服装版型: 修身 材质成分: 棉100%
 
-    section.l-contentsInner.reviewsArchive
-      header.reviewsArchive__header
-        h2.reviewsArchive__title 商品评价
-        p.reviewsArchive__total 24件
-        p.reviewStars.reviewStars--large(data-grade="10")
+    section.lc-contentsInner.lc-reviewsArchive
+      header.lc-reviewsArchive__header
+        h2.lc-reviewsArchive__title 商品评价
+        p.lc-reviewsArchive__total 24件
+        p.lc-reviewStars.lc-reviewStars--large(data-grade="10")
           - for (var i = 0; i < 5; i++)
             span
-        p.reviewsArchive__number 4.8
-      ul.reviewsArchive__list
-        li.reviewsArchive__item
-          .reviewsArchive__reviewHeader
-            p.reviewStars(data-grade="10")
+        p.lc-reviewsArchive__number 4.8
+      ul.lc-reviewsArchive__list
+        li.lc-reviewsArchive__item
+          .lc-reviewsArchive__reviewHeader
+            p.lc-reviewStars(data-grade="10")
               - for (var i = 0; i < 5; i++)
                 span
-            h3.reviewsArchive__reviewTitle 手感很好啊
-          p.reviewsArchive__detail
+            h3.lc-reviewsArchive__reviewTitle 手感很好啊
+          p.lc-reviewsArchive__detail
             | 手感很好啊，触感柔软、凉快，透气。15年买了一套，因为洗很勤，床单磨坏了，所以再买一套。
-          p.reviewsArchive__nickname hogehoge
-        li.reviewsArchive__item
-          .reviewsArchive__reviewHeader
-            p.reviewStars(data-grade="8")
+          p.lc-reviewsArchive__nickname hogehoge
+        li.lc-reviewsArchive__item
+          .lc-reviewsArchive__reviewHeader
+            p.lc-reviewStars(data-grade="8")
               - for (var i = 0; i < 5; i++)
                 span
-            h3.reviewsArchive__reviewTitle 宝贝已收到比我想象的好
-          p.reviewsArchive__detail
+            h3.lc-reviewsArchive__reviewTitle 宝贝已收到比我想象的好
+          p.lc-reviewsArchive__detail
             | 宝贝已收到比我想象的好，真心不错还会回购！
-          p.reviewsArchive__nickname fuga
-      p.l-contentsInner__buttons.l-contentsInner__buttons--horizontal
-        a.l-button--submit(href="/ec/product/1/")
-          span.l-button__label More
-          i.l-button__icon.icon--arrowRight
-        button.l-button--submit.js-openModal(
+          p.lc-reviewsArchive__nickname fuga
+      p.lc-contentsInner__buttons.lc-contentsInner__buttons--horizontal
+        a.lc-button--submit(href="/ec/product/1/")
+          span.lc-button__label More
+          i.lc-button__icon.lc-icon--arrowRight
+        button.lc-button--submit.js-lc--openModal(
             type="button"
             aria-controls="modalLangAddReview"
             aria-haspopup="true"
           )
-          span.l-button__label 我要评价
-          i.l-button__icon.icon--star
+          span.lc-button__label 我要评价
+          i.lc-button__icon.lc-icon--star
 
-      .l-modal#modalLangAddReview
-        .l-modal__bg.js-closeModal
-        .l-modal__body.l-modal__body--wide
-          h3.l-modal__title 写评论
+      .lc-modal#modalLangAddReview
+        .lc-modal__bg.js-lc--closeModal
+        .lc-modal__body.lc-modal__body--wide
+          h3.lc-modal__title 写评论
           form(action="")
-            ul.l-form
-              li.l-form__item
-                label.l-form__label.l-form__label--half
-                  h4.l-form__title.is-required 昵称
-                  p.l-form__detail
+            ul.lc-form
+              li.lc-form__item
+                label.lc-form__label.lc-form__label--half
+                  h4.lc-form__title.is-required 昵称
+                  p.lc-form__detail
                     input(type="text")
-              li.l-form__item
-                label.l-form__label.l-form__label--plain
-                  h4.l-form__title.is-required 汇率
-                  div.l-form__detail.l-form__detail--stars
+              li.lc-form__item
+                label.lc-form__label.lc-form__label--plain
+                  h4.lc-form__title.is-required 汇率
+                  div.lc-form__detail.lc-form__detail--stars
                     input.js-lc--reviewStarsInput(type="hidden")
-                    p.reviewStars.reviewStars--large.js-lc--changeReviewStars(data-grade="10")
+                    p.lc-reviewStars.lc-reviewStars--large.js-lc--changeReviewStars(data-grade="10")
                       - for (var i = 0; i < 5; i++)
                         span
-                    p.reviewStars__number.js-lc--reviewStarsNumber 5
-              li.l-form__item
-                label.l-form__label
-                  h4.l-form__title.is-required 题目
-                  p.l-form__detail
+                    p.lc-reviewStars__number.js-lc--reviewStarsNumber 5
+              li.lc-form__item
+                label.lc-form__label
+                  h4.lc-form__title.is-required 题目
+                  p.lc-form__detail
                     input(type="text")
-              li.l-form__item
-                label.l-form__label
-                  h4.l-form__title.is-required 内容
-                  p.l-form__detail
+              li.lc-form__item
+                label.lc-form__label
+                  h4.lc-form__title.is-required 内容
+                  p.lc-form__detail
                     textarea(rows="5")
                     
-            p.l-modal__buttons
-              button(type="submit").l-button--submit
-                span.l-button__label 登入
-                i.l-button__icon.icon--check
-              button(type="button").l-button--cancel.js-closeModal
-                i.l-button__icon.icon--close
-                span.l-button__label 取消
+            p.lc-modal__buttons
+              button(type="submit").lc-button--submit
+                span.lc-button__label 登入
+                i.lc-button__icon.lc-icon--check
+              button(type="button").lc-button--cancel.js-lc--closeModal
+                i.lc-button__icon.lc-icon--close
+                span.lc-button__label 取消
 
       include /_include/_reviewstars-script.pug
     
-    section.l-contentsInner.productDetail
+    section.lc-contentsInner.productDetail
       h2 邮费
-      .l-tableWrapper
+      .lc-tableWrapper 
         table.is-align--center
           thead
             tr
@@ -398,8 +398,8 @@ block content
               td.is-align--right 20.00CNY
               td.is-align--right 20.00CNY
   
-    aside.contentSection
-      h2.contentSection__title 相关产品
+    aside.lc-contentSection
+      h2.lc-contentSection__title 相关产品
       ul.productArchive
         - for (var i = 1; i <= 4; i++)
           li.productArchive__item

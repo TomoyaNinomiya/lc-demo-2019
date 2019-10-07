@@ -11,7 +11,7 @@ html.is-archiveFigureCovered(lang="zh-cn")
       link(rel="stylesheet", href="/assets/css/style.css")
     block title
       title LC E-SHOP
-  body
+  body.lc-root
     a#top
     block header
       include _header.pug
@@ -20,3 +20,5 @@ html.is-archiveFigureCovered(lang="zh-cn")
         p default
     block footer
       include _footer.pug
+    block lc-common-scripts
+      include _lc-common-scripts.pug

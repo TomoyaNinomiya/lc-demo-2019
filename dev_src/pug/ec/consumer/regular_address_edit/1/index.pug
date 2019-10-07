@@ -33,59 +33,59 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 定期订购记录 - 送货地址变更
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 定期订购记录 - 送货地址变更
 
-    div.l-contentsInner
+    div.lc-contentsInner
 
       form(action="/ec/consumer/regular_detail/1/", method="POST")
-        section.shipList
-          h2.shipList__title 收货地址一览
-          ul.shipList__list
-            li.shipList__item
+        section.lc-shipList
+          h2.lc-shipList__title 收货地址一览
+          ul.lc-shipList__list
+            li.lc-shipList__item
               input#shipRadio1(type="radio", name="radio1", checked)
-              .shipList__box
-                label(for="shipRadio1").shipList__main
-                  header.shipList__header
-                    h3.shipList__name
+              .lc-shipList__box
+                label(for="shipRadio1").lc-shipList__main
+                  header.lc-shipList__header
+                    h3.lc-shipList__name
                       i.c-inputUI.c-inputUI--checkbox
                       | 星野 翔太
                       small (会员注册住址)
-                    p.shipList__tel
+                    p.lc-shipList__tel
                       | 09012345678
-                  p.shipList__address
+                  p.lc-shipList__address
                     | 171-0033
                     | 東京都豊島区高田3ー9−7 ダイワビル
-                p.shipList__controls
-                  a(href="").l-button--edit
-                    span.l-button__label 更改
-            li.shipList__item
+                p.lc-shipList__controls
+                  a(href="").lc-button--edit
+                    span.lc-button__label 更改
+            li.lc-shipList__item
               input#shipRadio2(type="radio", name="radio1")
-              .shipList__box
-                label(for="shipRadio2").shipList__main
-                  header.shipList__header
-                    h3.shipList__name
+              .lc-shipList__box
+                label(for="shipRadio2").lc-shipList__main
+                  header.lc-shipList__header
+                    h3.lc-shipList__name
                       i.c-inputUI.c-inputUI--checkbox
                       | 星野 翔太
-                    p.shipList__tel
+                    p.lc-shipList__tel
                       | 02160206756
-                  p.shipList__address
+                  p.lc-shipList__address
                     | 上海市黄浦区淮海中路222号力宝广场26楼
-                p.shipList__controls
-                  a(href="").l-button--edit
-                    span.l-button__label 更改
-                  a(href="").l-button--delete
-                    span.l-button__label 删除
-            li.shipList__item
-              a(href="").shipList__box.shipList__box--button
-                i.icon--plus
+                p.lc-shipList__controls
+                  a(href="").lc-button--edit
+                    span.lc-button__label 更改
+                  a(href="").lc-button--delete
+                    span.lc-button__label 删除
+            li.lc-shipList__item
+              a(href="").lc-shipList__box.lc-shipList__box--button
+                i.lc-icon--plus
                 | 追加新收货地址
 
-        p.l-contentsInner__buttons
-          button(type="submit").l-button--submit
-            span.l-button__label 登入
-          a(href="/ec/consumer/regular_detail/1/").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+        p.lc-contentsInner__buttons
+          button(type="submit").lc-button--submit
+            span.lc-button__label 登入
+          a(href="/ec/consumer/regular_detail/1/").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回
 
     include /_include/_mypage-navi.pug

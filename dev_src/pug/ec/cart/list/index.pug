@@ -18,92 +18,92 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 购物车
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 购物车
 
     - var step = 1;
     include /_include/_steplist.pug
 
-    div.l-contentsInner
-      p.contentSection__note.contentSection__note--large
+    div.lc-contentsInner
+      p.lc-contentSection__note.lc-contentSection__note--large
         | 商品金额总计: 
         strong 318.00CNY 
           small (4,786JPY)
-      ul
-        li.productInfo
-          figure.productInfo__figure
-            a.productInfo__figure__inner(href="/product/1/")
+      ul.lc-list
+        li.lc-productInfo
+          figure.lc-productInfo__figure
+            a.lc-productInfo__figure__inner(href="/product/1/")
               img(src="/assets/img/img_product_01.jpg", alt="product name")
-          .productInfo__text
-            h2.productInfo__name
+          .lc-productInfo__text
+            h2.lc-productInfo__name
               a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
-            .productInfo__detail
-              dl.productInfo__detail__list
-                .productInfo__detail__item
-                  dt.productInfo__detail__label 价格
-                  dd.productInfo__detail__detail
+            .lc-productInfo__detail
+              dl.lc-productInfo__detail__list
+                .lc-productInfo__detail__item
+                  dt.lc-productInfo__detail__label 价格
+                  dd.lc-productInfo__detail__detail
                     | 159.00CNY
                     small (2,393JPY)
-                .productInfo__detail__item
-                  dt.productInfo__detail__label 重量
-                  dd.productInfo__detail__detail 0g
-            p.productInfo__controls
+                .lc-productInfo__detail__item
+                  dt.lc-productInfo__detail__label 重量
+                  dd.lc-productInfo__detail__detail 0g
+            p.lc-productInfo__controls
               span
                 | 数量&nbsp;&nbsp;
-                span.selectBox
-                  select.selectBox__select(name="quantity")
+                span.lc-selectBox
+                  select.lc-selectBox__select(name="quantity")
                     - for (var i = 1; i <= 10; i++)
                       option(value=i) #{i}
-              a(href="").l-button--delete
-                span.l-button__label 删除
-          dl.productInfo__additions
-            .productInfo__additions__item
-              dt.productInfo__additions__name 礼品包装
-              dd.productInfo__additions__detail
-                dl.productInfo__detail__list
-                  .productInfo__detail__item
-                    dt.productInfo__detail__label 价格
-                    dd.productInfo__detail__detail
+              a(href="").lc-button--delete
+                span.lc-button__label 删除
+          dl.lc-productInfo__additions
+            .lc-productInfo__additions__item
+              dt.lc-productInfo__additions__name 礼品包装
+              dd.lc-productInfo__additions__detail
+                dl.lc-productInfo__detail__list
+                  .lc-productInfo__detail__item
+                    dt.lc-productInfo__detail__label 价格
+                    dd.lc-productInfo__detail__detail
                       | 0.00CNY
                       small (0JPY)
-                  .productInfo__detail__item
-                    dt.productInfo__detail__label 重量
-                    dd.productInfo__detail__detail 0g
-              dd.productInfo__controls
-                a(href="").l-button--delete
-                  span.l-button__label 删除
-        li.productInfo
-          figure.productInfo__figure
-            a.productInfo__figure__inner(href="/product/1/")
+                  .lc-productInfo__detail__item
+                    dt.lc-productInfo__detail__label 重量
+                    dd.lc-productInfo__detail__detail 0g
+              dd.lc-productInfo__controls
+                a(href="").lc-button--delete
+                  span.lc-button__label 删除
+        li.lc-productInfo
+          figure.lc-productInfo__figure
+            a.lc-productInfo__figure__inner(href="/product/1/")
               img(src="/assets/img/img_product_02.jpg", alt="product name")
-          .productInfo__text
-            h2.productInfo__name
+          .lc-productInfo__text
+            h2.lc-productInfo__name
               a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
-            .productInfo__detail
-              dl.productInfo__detail__list
-                .productInfo__detail__item
-                  dt.productInfo__detail__label 价格
-                  dd.productInfo__detail__detail
+            .lc-productInfo__detail
+              dl.lc-productInfo__detail__list
+                .lc-productInfo__detail__item
+                  dt.lc-productInfo__detail__label 价格
+                  dd.lc-productInfo__detail__detail
                     | 159.00CNY
                     small (2,393JPY)
-                .productInfo__detail__item
-                  dt.productInfo__detail__label 重量
-                  dd.productInfo__detail__detail 0g
-            p.productInfo__controls
+                .lc-productInfo__detail__item
+                  dt.lc-productInfo__detail__label 重量
+                  dd.lc-productInfo__detail__detail 0g
+            p.lc-productInfo__controls
               span
                 | 数量&nbsp;&nbsp;
-                span.selectBox
-                  select.selectBox__select(name="quantity")
+                span.lc-selectBox
+                  select.lc-selectBox__select(name="quantity")
                     - for (var i = 1; i <= 10; i++)
                       option(value=i) #{i}
-              a(href="").l-button--delete
-                span.l-button__label 删除
+              a(href="").lc-button--delete
+                span.lc-button__label 删除
       
       form(action="/ec/cart/ship/", method="POST")
-        p.l-contentsInner__buttons
-          button.l-button--submit
-            span.l-button__label 下一步 填写收件资料
-            i.l-button__icon.icon--arrow2Right
-          a(href="/").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 继续购物
+        p.lc-contentsInner__buttons
+          button.lc-button--submit
+            span.lc-button__label 下一步 填写收件资料
+            i.lc-button__icon.lc-icon--arrow2Right
+          a(href="/").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 继续购物

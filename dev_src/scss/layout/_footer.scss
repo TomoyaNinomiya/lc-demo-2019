@@ -20,8 +20,8 @@
       border-radius: 8px;
       background: rgba(29, 29, 29, 0.5);
       position: relative;
-      @extend .c-icon;
-      @extend .icon--arrowUp;
+      @extend .lc-icon;
+      @extend .lc-icon--arrowUp;
       &::before {
         color: $c_base;
         font-size: 3.2rem;

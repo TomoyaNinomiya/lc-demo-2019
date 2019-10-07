@@ -1,0 +1,891 @@
+{% set product_name = product.name %}
+{% if product.attribute('商品名_' ~ language) %}
+{%   set product_name = product.attribute('商品名_' ~ language) %}
+{% endif %}
+{% set title = product_name %}
+{% if (product.categories|length > 0) %}
+{%   if product.categories[0].getTransAttribute(lang_id) %}
+{%     set title = title ~ ' | ' ~ product.categories[0].getTransAttribute(lang_id) %}
+{%   else %}
+{%     set title = title ~ ' | ' ~ product.categories[0].name %}
+{%   endif %}
+{%   set wraped_category = product_api.wrapProductCategory(product.categories[0]) %}
+{%   for ancestor in wraped_category.getAncestors|reverse %}
+{%     if ancestor.node.getTransAttribute(lang_id) %}
+{%       set title = title ~ ' | ' ~ ancestor.node.getTransAttribute(lang_id) %}
+{%     else %}
+{%       set title = title ~ ' | ' ~ ancestor.node.name %}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+
+{% set isRegular = false %}
+{% if product.productType == 'regular' %}
+{%   set isRegular = true %}
+{% endif %}
+
+
+{% set productskus = product.productSku %}
+
+{% TemplateInclude "header" %}
+
+  <div class="content-inner">
+{% if (product.categories|length > 0) %}
+{%   for category in product.categories %}
+{%     set is_exclude_category = false %}
+{%     for exclude_category in exclude_categories %}
+{%       if category.name == exclude_category %}
+{%         set is_exclude_category = true %}
+{%       endif %}
+{%     endfor %}
+{%     set wraped_category = product_api.wrapProductCategory(category) %}
+{%     if (wraped_category.getAncestors|length > 0) %}
+{%       for ancestor in wraped_category.getAncestors %}
+{%         for exclude_category in exclude_categories %}
+{%           if ancestor.node.name == exclude_category %}
+{%             set is_exclude_category = true %}
+{%           endif %}
+{%         endfor %}
+{%       endfor %}
+{%       if is_exclude_category == false %}
+    <p class="pankuzu notranslate" translate="no"><a href="{{ path("homepage") }}">HOME</a>{% for ancestor in wraped_category.getAncestors %}　>　<a href="{{ path("ec_product_category", {"id":ancestor.node.id}) }}">{% if ancestor.node.getTransAttribute(lang_id) %}{{ ancestor.node.getTransAttribute(lang_id) }}{% else %}{{ ancestor.node.name }}{%endif%}</a>{% endfor %}　>　<a href="{{ path("ec_product_category", {"id":category.id}) }}">{% if category.getTransAttribute(lang_id) %}{{ category.getTransAttribute(lang_id) }}{% else %}{{ category.name }}{% endif %}</a>　>　{{ product_name }}</p>
+{%       endif %}
+{%     else %}
+{%       for exclude_category in exclude_categories %}
+{%         if category.name == exclude_category %}
+{%           set is_exclude_category = true %}
+{%         endif %}
+{%       endfor %}
+{%       if is_exclude_category == false %}
+    <p class="pankuzu notranslate" translate="no"><a href="{{ path("homepage") }}">HOME</a>　>　<a href="{{ path("ec_product_category", {"id":category.id}) }}">{% if category.getTransAttribute(lang_id) %}{{ category.getTransAttribute(lang_id) }}{% else %}{{ category.name }}{% endif %}</a>　>　{{ product_name }}</p>
+{%       endif %}
+{%     endif %}
+{%   endfor %}
+{% else %}
+    <p class="pankuzu notranslate" translate="no"><a href="{{ path("homepage") }}">HOME</a>　>　{{ product_name }}</p>
+{% endif %}
+
+    <article class="sec-product-article">
+      <div class="area-product-figures notranslate" translate="no">
+        <ul class="list-product-figures">
+{% if product.attribute('商品画像') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像')).path) }}" alt="{{ product_name }}"></a></li>
+{% else %}
+          <li><img src="{{ asset("images/no-image.png") }}" alt="NO IMAGE"></li>
+{% endif %}
+{% if product.attribute('商品画像2') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像2')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像2')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+{% if product.attribute('商品画像3') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像3')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像3')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+{% if product.attribute('商品画像4') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像4')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像4')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+{% if product.attribute('商品画像5') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像5')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像5')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+{% if product.attribute('商品画像6') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像6')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像6')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+{% if product.attribute('商品画像7') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像7')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像7')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+{% if product.attribute('商品画像8') %}
+          <li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像8')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像8')).path) }}" alt="{{ product_name }}"></a></li>
+{% endif %}
+        </ul>
+        <ul class="list-product-figure-thumbnails"><!--
+{% if product.attribute('商品画像') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% else %}
+          --><li><img src="{{ asset("images/no-image.png") }}" alt="NO IMAGE"></li><!--
+{% endif %}
+{% if product.attribute('商品画像2') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像2')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像2')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+{% if product.attribute('商品画像3') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像3')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像3')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+{% if product.attribute('商品画像4') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像4')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像4')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+{% if product.attribute('商品画像5') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像5')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像5')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+{% if product.attribute('商品画像6') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像6')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像6')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+{% if product.attribute('商品画像7') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像7')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像7')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+{% if product.attribute('商品画像8') %}
+          --><li><a href="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像8')).path) }}"><img src="{{ ('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像8')).path) }}" alt="{{ product_name }}"></a></li><!--
+{% endif %}
+        --></ul>
+      </div><!-- /.area-product-figures -->
+
+      <div class="area-product-detail notranslate" translate="no">
+        <h2 class="ttl-product">{{ product_name }}</h2>
+        <dl class="mod-product-price">
+          <dt>{% if language == "zh-hk" %}價格{% elseif language == "zh-cn" %}价格{% elseif language == "en" %}Price{% elseif language == "ja" %}価格{% endif %}</dt>
+          <dd>{{ unitFront }} <span class="txt-product-price">{{ (curRatio * productskus[0].price)|price_format(decimalPoint) }}</span> {{ unitBack }}</dd>
+        </dl>
+{% if product.attribute('定価') %}
+        <dl class="mod-product-price mod-product-price_established">
+          <dt>{% if language == "zh-hk" %}定價{% elseif language == "zh-cn" %}定价{% elseif language == "en" %}Catalog Price{% elseif language == "ja" %}定価{% endif %}</dt>
+          <dd><s>{{ unitFront }} {{ (curRatio * product.attribute('定価'))|price_format(decimalPoint) }} {{ unitBack }}</s></dd>
+        </dl>
+{% endif %}
+        <div class="mod-cart-in">
+{% set totalStock = 0 %}
+{% set defaultSkuNum = 0 %}
+{% for productsku in productskus %}
+{%   if productsku.stockUnlimited %}
+{%     set totalStock = 1000 %}
+{%   else %}
+{%     set totalStock = totalStock + productsku.stock %}
+{%   endif %}
+{%   if not (productsku.stockUnlimited or (productsku.stock > 0)) %}
+{%     if loop.index0 == defaultSkuNum %}
+{%       set defaultSkuNum = defaultSkuNum + 1 %}
+{%     endif %}
+{%   endif %}
+{% endfor %}
+{% if (totalStock > 0) %}
+          <form action="{{ path("ec_client_cart_add", {"product_id":product.id})}}" method="post">
+
+{%   if productskus[0].skuDetail1 %}
+            <div class="mod-select-sku">
+              <dl>
+                  <dt>{% if productskus[defaultSkuNum].skuDetail1.sku.getTransAttribute(lang_id) %}{{ productskus[defaultSkuNum].skuDetail1.sku.getTransAttribute(lang_id) }}{% else %}{{ productskus[defaultSkuNum].skuDetail1.sku.name }}{% endif %}: <span class="ttl-sku1">{% if productskus[defaultSkuNum].skuDetail1.getTransAttribute(lang_id) %}{{ productskus[defaultSkuNum].skuDetail1.getTransAttribute(lang_id) }}{% else %}{{ productskus[defaultSkuNum].skuDetail1.title }}{% endif %}</span></dt>
+                <dd>
+                  <ul class="list-sku1">
+{%     set ownsSkuDetail1s = [''] %}
+{%     set cnt = 0 %}
+{%     for productsku in productskus %}
+{%       set skuDetail1Name = productsku.skuDetail1.title %}
+{%       if productsku.skuDetail1.getTransAttribute(lang_id) %}
+{%         set skuDetail1Name = productsku.skuDetail1.getTransAttribute(lang_id) %}
+{%       endif %}
+{%       if productskus[0].skuDetail2 %}
+{%         set hasSkuDetails1 = false %}
+{%         for ownsSkuDetail1 in ownsSkuDetail1s %}
+{%           if productsku.skuDetail1.title == ownsSkuDetail1 %}
+{%             set hasSkuDetails1 = true %}
+{%           endif %}
+{%         endfor %}
+{%         if hasSkuDetails1 == false %}
+{%           set ownsSkuDetail1s = ownsSkuDetail1s|merge([productsku.skuDetail1.title]) %}
+                    <li{% if not (productsku.stockUnlimited or (productsku.stock > 0)) %} class="disabled"{% endif %}><label><input type="radio" name="sku1" data-title="{{ productsku.skuDetail1.title }}" data-skudetail-second="[{% for productsku2 in productskus %}{% if productsku2.skuDetail1.title == productsku.skuDetail1.title %}{'sku2':'{{ productsku2.skuDetail2.title }}','stock':{% if productsku2.stockUnlimited %}9999{% else %}{{ productsku2.stock }}{% endif %}, 'price':'{{ (curRatio * productsku2.price)|price_format(decimalPoint) }}','product_sku_id':{{productsku2.id}}},{% endif %}{% endfor %}]"{% if not (productsku.stockUnlimited or (productsku.stock > 0)) %} disabled="disabled"{% endif %}{% set cnt = cnt + 1 %}{% if (cnt == defaultSkuNum + 1) %}  checked="checked"{% endif %}><span class="title">{{ skuDetail1Name }}</span></label></li>
+{%         endif %}
+{%       else %}
+                    <li{% if not (productsku.stockUnlimited or (productsku.stock > 0)) %} class="disabled"{% endif %}><label><input type="radio" name="sku1" value="{{ productsku.id }}" data-title="{{ productsku.skuDetail1.title }}" data-price="{{ (curRatio * productsku.price)|price_format(decimalPoint) }}" data-stock="{% if productsku.stockUnlimited %}9999{% else %}{{ productsku.stock }}{% endif %}"{% if not (productsku.stockUnlimited or (productsku.stock > 0)) %} disabled="disabled"{% endif %}{% set cnt = cnt + 1 %}{% if (cnt == defaultSkuNum + 1) %}  checked="checked"{% endif %}><span class="title">{{ skuDetail1Name }}</span></label></li>
+{%       endif %}
+{%     endfor %}
+                  </ul>
+                </dd>
+              </dl>
+{%     if productskus[0].skuDetail2 %}
+              <dl>
+                  <dt>{% if productskus[defaultSkuNum].skuDetail2.sku.getTransAttribute(lang_id) %}{{ productskus[defaultSkuNum].skuDetail2.sku.getTransAttribute(lang_id) }}{% else %}{{ productskus[defaultSkuNum].skuDetail2.sku.name }}{% endif %}: <span class="ttl-sku2">{% if productskus[defaultSkuNum].skuDetail2.getTransAttribute(lang_id) %}{{ productskus[defaultSkuNum].skuDetail2.getTransAttribute(lang_id) }}{% else %}{{ productskus[defaultSkuNum].skuDetail2.title }}{% endif %}</span></dt>
+                <dd>
+                  <ul class="list-sku2">
+{%       set ownsSkuDetail2s = [''] %}
+{%       set cnt = 0 %}
+{%       for productsku in productskus %}
+{%         set skuDetail2Name = productsku.skuDetail2.title %}
+{%         if productsku.skuDetail2.getTransAttribute(lang_id) %}
+{%           set skuDetail2Name = productsku.skuDetail2.getTransAttribute(lang_id) %}
+{%         endif %}
+{%         set hasSkuDetails2 = false %}
+{%         for ownsSkuDetail2 in ownsSkuDetail2s %}
+{%           if productsku.skuDetail2.title == ownsSkuDetail2 %}
+{%             set hasSkuDetails2 = true %}
+{%           endif %}
+{%         endfor %}
+{%         if hasSkuDetails2 == false %}
+{%           set ownsSkuDetail2s = ownsSkuDetail2s|merge([productsku.skuDetail2.title]) %}
+                    <li><label><input type="radio" name="sku2" data-title="{{ productsku.skuDetail2.title }}" data-sku-stock="{% if productsku.stockUnlimited %}9999{% else %}{{ productsku.stock }}{% endif %}" data-price="{{ (curRatio * productsku.price)|price_format(decimalPoint) }}" data-skudetail-first="[{% for productsku2 in productskus %}{% if (productsku2.skuDetail2.title == productsku.skuDetail2.title) and (productsku2.stockUnlimited or (productsku2.stock > 0)) %}'{{ productsku2.skuDetail1.title }}',{% endif %}{% endfor %}]" data-skuid="{{ productsku.id }}"{% if not (productsku.stockUnlimited or (productsku.stock > 0)) %} disabled="disabled"{% endif %}{% set cnt = cnt + 1 %}{% if (cnt == defaultSkuNum + 1) %}  checked="checked"{% endif %}><span class="title">{{ skuDetail2Name}}</span></label></li>
+{%         endif %}
+{%       endfor %}
+                  </ul>
+                </dd>
+              </dl>
+{%     endif %}
+            <!-- /.mod-select-sku --></div>
+{%   endif %}
+
+{%   if (product.additions|length > 0) and (not isRegular) %}
+            <section class="sec-option">
+              <h3 class="ttl-sec-option"><i class="fa fa-plus-circle"></i>{% if language == "zh-hk" %}附加商品{% elseif language == "zh-cn" %}附加商品{% elseif language == "en" %}Add-ons{% elseif language == "ja" %}オプション{% endif %}</h3>
+              <ul class="list-sec-option">
+{%     for addition in product.additions %}
+                <li>
+                  <label>
+                      <h4 class="ttl-sec-option-name"><input type="checkbox" name="addition_quantity[{{ addition.id }}]" value="1"><i></i>{% if addition.getTitleTransAttribute(lang_id) %}{{ addition.getTitleTransAttribute(lang_id) }}{% else %}{{ addition.title }}{% endif %}<span class="price">{{ unitFront }} <span class="txt-option-price">{{ (curRatio * addition.price)|price_format(decimalPoint) }}</span> {{ unitBack }}</span></h4>
+{%       if addition.description or addition.getDescriptionTransAttribute(lang_id) %}
+                      <div class="description">
+                          {% autoescape false %}{% if addition.getDescriptionTransAttribute(lang_id) %}{{ addition.getDescriptionTransAttribute(lang_id) }}{% else %}{{ addition.description }}{% endif %}{% endautoescape %}
+                      </div>
+{%       endif %}
+                  </label>
+                </li>
+{%     endfor %}
+              </ul>
+            </section>
+{%   endif %}
+
+            <dl class="mod-quantity">
+              <dt>{% if language == "zh-hk" %}數量{% elseif language == "zh-cn" %}数量{% elseif language == "en" %}Quantity{% elseif language == "ja" %}個数{% endif %}</dt><dd><select name="quantity">
+                    {% for i in 1..5 %}
+                    {% if productskus[defaultSkuNum].stockUnlimited or (i <= productskus[defaultSkuNum].stock) %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% else %}
+                    <option value="{{ i }}" disabled="disabled">{{ i }}</option>
+                    {% endif %}
+                    {% endfor %}
+                  </select></dd>
+            </dl>
+
+              {% if product.isRegular %}
+          <dl class="mod-quantity">
+          <dt>{% if language == "zh-hk" %}頻度{% elseif language == "zh-cn" %}頻度{% elseif language == "en" %}頻度{% elseif language == "ja" %}頻度{% endif %}</dt>
+          <dd>
+          <select name="regular_int">
+            {% for int in product.getRegularIntervals %}
+              <option value="{{ int.id }}">{{ int.value }}{{ ('entity.units.regular_interval.'~int.unit)|trans }}</option>
+            {% endfor %}
+          </select>
+          </dd>
+          </dl>
+        {% endif %}
+            <input type="hidden" name="product_sku_id" value="{{ productskus[defaultSkuNum].id }}">
+            <p class="btn-cart-in"><button type="submit" class="btn-cart-in-submit">{% if language == "zh-hk" %}加入購物車{% elseif language == "zh-cn" %}加入购物车{% elseif language == "en" %}Add to Cart{% elseif language == "ja" %}カートに入れる{% endif %}</button></p>
+{%   if is_authorized() %}
+            <p class="btn-cart-in btn-cart-in__favorite"><a href="{{ path("ec_client_consumer_favorite_add", {"product_id":product.id}) }}" class="btn-favorite"><i class="fa fa-2x fa-heart"></i>{% if language == "zh-hk" %}我的最愛{% elseif language == "zh-cn" %}我的最爱{% elseif language == "en" %}Favorited Products{% elseif language == "ja" %}お気に入りに追加{% endif %}</a></p>
+{%   endif %}
+          </form>
+{% else %}
+          <p class="txt-no-stock">{% if language == "zh-hk" %}商品已售完{% elseif language == "zh-cn" %}商品已售完{% elseif language == "en" %}Sold Out{% elseif language == "ja" %}在庫なし{% endif %}</p>
+{% endif %}
+        </div><!-- /.mod-cart-in -->
+      </div><!-- /.area-product-detail -->
+
+      <section class="sec-product-info">
+          <h3 class="ttl-sec-product-info notranslate" translate="no"><small class="right">some translation by bing</small>{% if language == "zh-hk" %}產品介紹{% elseif language == "zh-cn" %}产品介绍{% elseif language == "en" %}Desc.{% elseif language == "ja" %}商品紹介{% endif %}</h3>
+{% if product.attribute('商品紹介_' ~ language) %}
+        <div class="area-product-description notranslate" translate="no">
+          {{ product.attribute('商品紹介_' ~ language) | raw }}
+        </div>
+{% elseif product.description %}
+        <div class="area-product-description">
+          {{ product.description | raw }}
+        </div>
+{% endif %}
+        <table class="table-basic">
+{% for i in 1..8 %}
+{%   if (product.attribute('項目' ~ i ~'タイトル_' ~ language) or product.attribute('項目' ~ i ~ 'タイトル')) and (product.attribute('項目' ~ i ~ '内容_' ~ language) or product.attribute('項目' ~ i ~ '内容')) %}
+          <tr>
+{%     if product.attribute('項目' ~ i ~ 'タイトル_' ~ language) %}
+            <th class="notranslate" translate="no"><span>{{ product.attribute('項目' ~ i ~ 'タイトル_' ~ language) }}</span></th>
+{%     else %}
+            <th><span>{{ product.attribute('項目' ~ i ~ 'タイトル') }}</span></th>
+{%     endif %}
+{%     if product.attribute('項目'~ i ~'内容_' ~ language) %}
+            <td class="notranslate" translate="no"><span>{{ product.attribute('項目'~ i ~'内容_' ~ language) }}</span></td>
+{%     else %}
+            <td>{{ product.attribute('項目'~ i ~'内容') | raw }}</td>
+{%     endif %}
+          </tr>
+{%   endif %}
+{% endfor %}
+        </table>
+      </section>
+
+      <section class="sec-review notranslate" translate="no">
+        {% set totalReviews = 0 %}
+        <h3 class="ttl-sec-product-info">{% if (reviews | length > 5) %}<a href="{{ path("ec_client_product_review_list", {"id":product.id}) }}">{% if language == "zh-hk" %}全部{% elseif language == "zh-cn" %}全部{% elseif language == "en" %}All{% elseif language == "ja" %}もっと見る{% endif %}</a>{% endif %}{% if language == "zh-hk" %}商品評價{% elseif language == "zh-cn" %}商品评价{% elseif language == "en" %}Customer Reviews{% elseif language == "ja" %}カスタマーレビュー{% endif %}</h3>
+        {% if (reviews | length > 0) %}
+          <p class="total">{% if language == "zh-hk" %}已有{% elseif language == "zh-cn" %}已有{% elseif language == "en" %}There are{% endif %}{{ reviews | length }}{% if language == "zh-hk" %}商品評價{% elseif language == "zh-cn" %} customer reviews.{% elseif language == "en" %}Customer Reviews{% elseif language == "ja" %}件のカスタマーレビュー{% endif %}</p>
+          {% for review in reviews %}
+            {% set totalReviews = totalReviews + review.grade %}
+          {% endfor %}
+          {% set averageReviews = totalReviews / (reviews | length) %}
+          <dl class="avarage">
+            <dt>{% if language == "zh-hk" %}平均評價{% elseif language == "zh-cn" %}平均评价{% elseif language == "en" %}Average Rating{% elseif language == "ja" %}平均評価{% endif %}</dt>
+            <dd>
+            <div class="starbox unchangeable" data-start-value="{{ averageReviews / 10 }}" data-star-count="5" data-button-count="10"></div>
+            <p class="num">{{ averageReviews / 2 }}</p>
+            </dd>
+          </dl>
+          <ul>
+            {% for review in reviews %}
+              {% if (loop.index < 4) %}
+                <li>
+                  <div class="starbox small unchangeable" data-start-value="{{ review.grade / 10 }}" data-star-count="5" data-button-count="10"></div>
+                  <h4>{{ review.title }}</h4>
+                  <div class="description">
+                    <p>{{ review.description|raw|nl2br}}</p>
+                    <p class="more"><a href="#">{% if language == "zh-hk" %}顯示更多{% elseif language == "zh-cn" %}显示更多{% elseif language == "en" %}More{% elseif language == "ja" %}続きを読む{% endif %}</a></p>
+                  </div>
+                  <p class="author">{% if language == "zh-hk" %}評價人：{% elseif language == "zh-cn" %}评价人：{% elseif language == "en" %}Submitted by: {% elseif language == "ja" %}投稿者：{% endif %}<span class="name">{{ review.nickname}}</span></p>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <p class="button"><a href="{{ path("ec_client_product_review_list", {"id":product.id}) }}">{% if language == "zh-hk" %}全部{% elseif language == "zh-cn" %}全部{% elseif language == "en" %}All{% elseif language == "ja" %}すべてのレビューを表示{% endif %}</a></p>
+        {% else %}
+          <p class="total">{% if language == "zh-hk" %}當前此商品還沒有評價{% elseif language == "zh-cn" %}当前此商品还没有评价{% elseif language == "en" %}There are no reviews for this product.{% elseif language == "ja" %}この商品にはまだレビューが存在しません。{% endif %}</p>
+        {% endif %}
+        {% if is_authorized() %}
+        <p class="btn-open-review button"><a href="#">{% if language == "zh-hk" %}我要評價{% elseif language == "zh-cn" %}我要评价{% elseif language == "en" %}Write a Customer Review for This Product.{% elseif language == "ja" %}レビューを書く{% endif %}</a></p>
+        {% else %}
+        <p class="button"><a href="{{ path("application_frontend_auth_login") }}" target="_blank">{% if language == "zh-hk" %}要登錄發表評論{% elseif language == "zh-cn" %}要登录发表评论{% elseif language == "en" %}To Login to Write a Customer Review for This Product.{% elseif language == "ja" %}ログインしてレビューを書く{% endif %}</a></p>
+        {% endif %}
+        <form action="" method="" name="form1" id="review_submit" novalidate="novalidate">
+          <input type="hidden" id="review_product_id" name="product_id" value="{{ product.id }}"/>
+          {{ form_widget(form._token) }}
+          <div class="bg-review-form"></div>
+          <section class="sec-review-form">
+            <header class="header-sec-review-form">
+            <figure class="fig-sec-review-form">{% if product.attribute('商品画像') and product.attribute('商品画像') is defined %}<img src="{{ asset('/uploads/media/'~em.find("MediaCoreBundle:Media", product.attribute('商品画像')).path) }}" alt="">{% else %}<img src="{{ asset("images/no-image.png") }}" alt="イメージ">{% endif %}</figure>
+            <h4 class="ttl-sec-review-form"><span>{% if language == "en" %}Customer Reviews for {% endif %}「{{ product_name }}」</span><span>{% if language == "zh-hk" %}的商品評價{% elseif language == "zh-cn" %}的商品评价{% elseif language == "en" %}{% elseif language == "ja" %}のレビュー{% endif %}</span></h4>
+            </header>
+            <dl>
+              <dt>{% if language == "zh-hk" %}評價（5檔次）{% elseif language == "zh-cn" %}评价（5档次）{% elseif language == "en" %}Rating (Out of 5){% elseif language == "ja" %}評価{% endif %}</dt>
+              <dd class="txt-review-grade"><div class="starbox autoupdate" data-start-value="0" data-star-count="5" data-button-count="10"></div>
+              <p class="txt-star-value">0</p>
+              {{ form_widget(form.grade) }}
+              </dd>
+              <dt>{% if language == "zh-hk" %}暱稱{% elseif language == "zh-cn" %}昵称{% elseif language == "en" %}Pen Name / Username{% elseif language == "ja" %}ニックネーム{% endif %}</dt>
+              <dd class="txt-review-name">{{ form_widget(form.nickname) }}</dd>
+              <dt>{% if language == "zh-hk" %}題目{% elseif language == "zh-cn" %}题目{% elseif language == "en" %}Title{% elseif language == "ja" %}タイトル{% endif %}</dt>
+              <dd class="txt-review-title">{{ form_widget(form.title) }}</dd>
+              <dt>{% if language == "zh-hk" %}內容{% elseif language == "zh-cn" %}内容{% elseif language == "en" %}Enter Text Here{% elseif language == "ja" %}本文{% endif %}</dt>
+              <dd class="txt-review-description">{{ form_widget(form.description) }}</dd>
+              <dt></dt>
+              <dd class="submit"><input class="btn-review-submit" type="submit" value="送信" name="review_btn"></dd>
+            </dl>
+            <div class="loading"></div>
+            <p class="close"><a href="#"></a></p>
+          </section>
+        </form>
+      </section>
+
+      <section class="sec-delivery-fees notranslate" translate="no">
+        <h3 class="ttl-sec-product-info">{% if language == "zh-hk" %}郵費{% elseif language == "zh-cn" %}邮费{% elseif language == "en" %}Shipping Fee{% elseif language == "ja" %}配送料{% endif %}</h3>
+{% set delivery_fees = product.delivery.fees  %}
+{% if (delivery_fees|length > 0)%}
+        <ul class="list-delivery-fees-japan">
+          <li>
+            <h4>{% if language == "en" %}Hokkaido and Tohoku{% else %}北海道・東北{% endif %}</h4>
+{%   for i in 0..6 %}
+            <dl class="list-delivery-fees">
+              <dt>{% if language == "en" %}{{ delivery_fees[i].pref }}{% else %}{{ delivery_fees[i].prefTitle }}{% endif %}</dt>
+              <dd>{{ unitFront }} {{ (curRatio * delivery_fees[i].fee)|price_format(decimalPoint) }} {{ unitBack }}</dd>
+            </dl>
+{%   endfor %}
+          </li>
+
+          <li>
+            <h4>{% if language == "en" %}Kanto and Shinetsu{% else %}関東・信越{% endif %}</h4>
+{%   for i in 7..16 %}
+            <dl class="list-delivery-fees">
+              <dt>{% if language == "en" %}{{ delivery_fees[i].pref }}{% else %}{{ delivery_fees[i].prefTitle }}{% endif %}</dt>
+              <dd>{{ unitFront }} {{ (curRatio * delivery_fees[i].fee)|price_format(decimalPoint) }} {{ unitBack }}</dd>
+            </dl>
+{%   endfor %}
+          </li>
+
+          <li>
+            <h4>{% if language == "en" %}Chubu and Hokuriku{% else %}中部・北陸{% endif %}</h4>
+{%   for i in 17..23 %}
+            <dl class="list-delivery-fees">
+              <dt>{% if language == "en" %}{{ delivery_fees[i].pref }}{% else %}{{ delivery_fees[i].prefTitle }}{% endif %}</dt>
+              <dd>{{ unitFront }} {{ (curRatio * delivery_fees[i].fee)|price_format(decimalPoint) }} {{ unitBack }}</dd>
+            </dl>
+{%   endfor %}
+          </li>
+
+          <li>
+            <h4>{% if language == "en" %}Kansai{% else %}関西{% endif %}</h4>
+{%   for i in 24..29 %}
+            <dl class="list-delivery-fees">
+              <dt>{% if language == "en" %}{{ delivery_fees[i].pref }}{% else %}{{ delivery_fees[i].prefTitle }}{% endif %}</dt>
+              <dd>{{ unitFront }} {{ (curRatio * delivery_fees[i].fee)|price_format(decimalPoint) }} {{ unitBack }}</dd>
+            </dl>
+{%   endfor %}
+          </li>
+
+          <li>
+            <h4>{% if language == "en" %}Chugoku and Shikoku{% else %}中国・四国{% endif %}</h4>
+{%   for i in 30..38 %}
+            <dl class="list-delivery-fees">
+              <dt>{% if language == "en" %}{{ delivery_fees[i].pref }}{% else %}{{ delivery_fees[i].prefTitle }}{% endif %}</dt>
+              <dd>{{ unitFront }} {{ (curRatio * delivery_fees[i].fee)|price_format(decimalPoint) }} {{ unitBack }}</dd>
+            </dl>
+{%   endfor %}
+          </li>
+
+          <li>
+            <h4>{% if language == "en" %}Kyushu and Okinawa{% else %}九州・沖縄{% endif %}</h4>
+{%   for i in 39..46 %}
+            <dl class="list-delivery-fees">
+              <dt>{% if language == "en" %}{{ delivery_fees[i].pref }}{% else %}{{ delivery_fees[i].prefTitle }}{% endif %}</dt>
+              <dd>{{ unitFront }} {{ (curRatio * delivery_fees[i].fee)|price_format(decimalPoint) }} {{ unitBack }}</dd>
+            </dl>
+{%   endfor %}
+          </li>
+        </ul>
+{% endif %}
+{% set delivery_abroads = product.delivery.abroads %}
+{% for delivery_abroad in delivery_abroads %}
+{%   if delivery_abroad.isValid and delivery_abroad.isEnabled %}
+{%     set zones = delivery_abroad.zones %}
+{%     set weights = delivery_abroad.weights %}
+{%     set fees = delivery_abroad.feesArray %}
+        <section class="sec-delivery-fees-abroad">
+          <h4>{{ delivery_abroad.name }}</h4>
+{%     if delivery_abroad.freeShipmentPrice != 0 %}
+          <p class="note">{% if language == "zh-hk" %}超過購買 {% elseif language == "zh-cn" %}超过购买 {% elseif language == "en" %}Free shipping on purchases over {% endif %}{{ unitFront }} {{ (curRatio * delivery_abroad.freeShipmentPrice)|price_format(decimalPoint) }} {{ unitBack }}{% if language == "zh-hk" %} 免費送貨{% elseif language == "zh-cn" %} 免费送货{% elseif language == "en" %}.{% elseif language == "ja" %}以上購入で送料無料{% endif %}</p>
+{%     endif %}
+          <dl class="list-delivery-fees">
+            <dt>{% if language == "zh-hk" %}重量{% elseif language == "zh-cn" %}重量{% elseif language == "en" %}Weight{% elseif language == "ja" %}重量{% endif %}</dt>
+{%     for w in weights %}
+{%       if (w.weight) < 1000 %}
+            <dd>{% if language == "zh-hk" %}截至{% elseif language == "zh-cn" %}截至{% elseif language == "en" %}Up to {% endif %} {{ w.weight }}g {% if language == "ja" %}まで{% endif %}</dd>
+{%       else %}
+            <dd>Up to {{ w.weight * 0.001 }}kg</dd>
+{%       endif %}
+{%     endfor %}
+          </dl>
+{%     for zone in zones %}
+          <dl class="list-delivery-fees">
+            <dt>{{ zone.name }}</dt>
+{%       for w in weights %}
+            <dd>{{ unitFront }} {{ (curRatio * fees[w.id][zone.id])|price_format(decimalPoint) }} {{ unitBack }}</dd>
+{%       endfor %}
+          </dl>
+{%     endfor %}
+{%   endif %}
+        </section>
+{% endfor %}
+      </section>
+    </article>
+
+{% if product.attribute('関連商品ID') %}
+    <section class="sec-basic sec-archive notranslate" translate="no">
+      <h2 class="ttl-sec-basic ttl-sec-basic_sanin"><span class="ttl-sec-basic-base"><span class="large">{% if language == "zh-hk" %}相關產品{% elseif language == "zh-cn" %}相关产品{% elseif language == "en" %}Related Products{% elseif language == "ja" %}関連商品{% endif %}</span>{% if (language == "zh-hk") or (language == "zh-cn") or (language == "ja") %}<span class="small">
+          related products</span>{% endif %}</span></h2>
+      <ul class="list-products-archive">
+{%   set relations = product.attribute('関連商品ID') %}
+{%   set relationsIds = relations | php_explode("/") %}
+{%   set relationProducts = get_entity_manager().getRepository("EcCoreBundle:Product").createQueryBuilder('p').where("p.id in (:ids)").setParameter("ids", relationsIds).getQuery().getResult() %}
+{%   for relationProduct in relationProducts %}
+{%     set relationProductSkus = get_entity_manager().getRepository('EcCoreBundle:ProductSku').createQueryBuilder('ps').innerJoin('ps.product', 'p').where('p.id = :id').setParameter('id', relationProduct.id).getQuery().getResult() %}
+        <li>
+          <a href="{{ path("ec_product_detail", {"id":relationProduct.id}) }}">
+            <figure class="fig-archive"><span><img src="{% if relationProduct.attribute('商品画像') %}{{ ('/uploads/media/'~get_entity_manager().find("MediaCoreBundle:Media", relationProduct.attribute('商品画像')).path) }}{% else %}{{ asset("images/no-image.png") }}{% endif %}" alt=""></span></figure>
+            <h3 class="ttl-archive">{% if relationProduct.attribute('商品名_' ~ language) %}{{ relationProduct.attribute('商品名_' ~ language) }}{% else %}{{ relationProduct.name }}{% endif %}</h3>
+            <p class="txt-price">{{ unitFront }} {{ (curRatio * relationProductSkus[0].getPrice)|price_format(decimalPoint) }} {{ unitBack }}</p>
+          </a>
+        </li>
+{%   endfor %}
+      </ul>
+    </section><!-- /.sec-basic.sec-archive -->
+{% endif %}
+  </div><!-- /.content-inner -->
+
+{% TemplateInclude "footer" %}
+
+
+<!-- ▼▼ 商品画像ビューア ▼▼ -->
+<script src="{{ asset("js/jquery.swipebox.min.js") }}"></script>
+<script>
+$(function() {
+  $(".list-product-figures a").swipebox();
+
+  /* image slider */
+  var $mvSlider = $('.list-product-figures').slick({
+    slidesToShow: 1,
+    focusOnSelect: true,
+    arrows: false,
+    speed: 700,
+    useCss: true,
+    useTransform: true
+  });
+  $(".list-product-figure-thumbnails a").click(function() {
+    var index = $(".list-product-figure-thumbnails li").index($(this).parent("li").get(0));
+    $($mvSlider).slick("slickGoTo", index);
+    return false;
+  });
+  $($mvSlider).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    var $thumbnail = $(".list-product-figure-thumbnails li");
+    $thumbnail.eq(currentSlide).removeClass("active");
+    $thumbnail.eq(nextSlide).addClass("active");
+  });
+});
+</script>
+<!-- ▲▲ 商品画像ビューア ▼▼ -->
+
+<!-- ▼▼ SKU、個数、価格の制御 ▼▼ -->
+<script>
+{% if productskus[0].skuDetail1 %}
+$(function() {
+
+    if($(".list-sku1").length > 0 && $(".list-sku2").length > 0) {
+        changeSkuConditions();
+
+        $(":radio[name='sku1']").click(function() {
+            var skuDetail2 = $(this).attr("data-skudetail-second");
+            skuDetail2 = skuDetail2.replace(",]", "]");
+            skuDetail2 = skuDetail2.replace(/\'/g, '\"');
+            skuDetail2 = JSON.parse(skuDetail2);
+            $(".list-sku2 label").each(function(index) {
+                var $thisElm = $(this),
+                    $thisRadio = $thisElm.find(":radio"),
+                    thisSku2 = $thisElm.find(".title").text();
+                for(var i = 0; i < skuDetail2.length; i++) {
+                    if(skuDetail2[i].sku2 == thisSku2) {
+                        $thisRadio.attr("data-sku-stock", skuDetail2[i].stock);
+                        $thisRadio.attr("data-price", skuDetail2[i].price);
+                        $thisRadio.attr("data-skuid", skuDetail2[i].product_sku_id);
+                        if(skuDetail2[i].stock == 0) {
+                            $thisRadio.prop("disabled", true);
+                            $thisElm.closest("li").addClass("disabled");
+                        } else {
+                            $thisRadio.prop("disabled", false);
+                            $thisElm.closest("li").removeClass("disabled");
+                        }
+                    }
+                }
+            });
+            changeSkuConditions();
+        });
+        $(":radio[name='sku2']").click(function() {
+            var skuDetail1 = $(this).attr("data-skudetail-first");
+            skuDetail1 = skuDetail1.replace(",]", "]");
+            skuDetail1 = skuDetail1.replace(/\'/g, '\"');
+            skuDetail1 = JSON.parse(skuDetail1);
+            $(".list-sku1 label").each(function(index) {
+                var $thisElm = $(this),
+                    $thisRadio = $thisElm.find(":radio"),
+                    thisTitle = $thisElm.children('input').data("title");
+                $thisRadio.prop("disabled", true);
+                $thisElm.closest("li").addClass("disabled");
+                for(var i = 0; i < skuDetail1.length; i++) {
+                    if(skuDetail1[i] == thisTitle) {
+                        $thisRadio.prop("disabled", false);
+                        $thisElm.closest("li").removeClass("disabled");
+                    }
+                }
+            });
+            changeSkuConditions();
+        });
+        $(".optionsSection :checkbox").change(function() {
+            changeSkuConditions();
+        });
+
+        function changeSkuConditions() {
+            var $checkedSku = $(".list-sku2 :radio:checked"),
+                checkedSkuPrice = $checkedSku.attr("data-price"),
+                checkedSku2Title = $checkedSku.next(".title").text(),
+                checkedSku1Title = $(".list-sku1 :radio:checked").next(".title").text();
+            checkedSkuPrice = Number(checkedSkuPrice.replace(/\,/g, ""));
+            $(":hidden[name='product_sku_id']").val($checkedSku.attr("data-skuid"));
+            $(".txt-product-price").text(commafy(checkedSkuPrice + optionsTotalPrice()));
+            if($checkedSku.prop("disabled") == true) {
+                $(".txt-product-price").before("<span class='noStock'>在庫なし</span>");
+                $(".btnCartIn").prop("disabled", true);
+            } else {
+                $(".noStock").remove();
+                $(".btnCartIn").prop("disabled", false);
+            }
+            $("select[name='quantity'] option").each(function() {
+                $thisOption = $(this);
+                if($thisOption.val() <= Number($checkedSku.attr("data-sku-stock")))
+                    $thisOption.show();
+                else {
+                    $thisOption.hide();
+                    if($thisOption.prop("selected") == true)
+                        $thisOption.parent().val(1);
+                }
+            });
+            $(".ttl-sku1").text(checkedSku1Title);
+            $(".ttl-sku2").text(checkedSku2Title);
+        }
+    } else {
+        changePrice();
+        $(":radio[name='sku1'], :radio[name='sku2']").click(function() {
+            var $thisRadio = $(this),
+                skuName = $thisRadio.parent().find(".title").text(),
+                skuStock = Number($thisRadio.attr("data-stock")),
+                skuId = $thisRadio.val();
+            $(":hidden[name='product_sku_id']").val(skuId);
+            $("select[name='quantity'] option").each(function() {
+                $thisOption = $(this);
+                if($thisOption.val() <= skuStock)
+                    $thisOption.prop("disabled", false);
+                else {
+                    $thisOption.prop("disabled", true);
+                    if($thisOption.prop("selected") == true)
+                        $thisOption.parent().val(1);
+                }
+            });
+            $(".ttl-sku1, .ttl-sku2").text(skuName);
+            changePrice();
+        });
+
+        $(".sec-option :checkbox").change(function() {
+            changePrice();
+        });
+
+        function changePrice() {
+            var $checkedSku = $(":radio[name='sku1']:checked, :radio[name='sku2']:checked"),
+                checkedSkuPrice = $checkedSku.attr("data-price");
+            checkedSkuPrice = Number(checkedSkuPrice.replace(/\,/g, ""));
+            $(".txt-product-price").text(commafy(checkedSkuPrice + optionsTotalPrice()));
+            if($checkedSku.prop("disabled") == true) {
+                $(".mod-cart-in").append('<p class="txt-no-stock">{% if language == "zh-hk" %}商品已售完{% elseif language == "zh-cn" %}商品已售完{% elseif language == "en" %}Sold Out{% endif %}</p>');
+                $(".btn-cart-in-submit").prop("disabled", true);
+            } else {
+                $(".txt-no-stock").remove();
+                $(".btn-cart-in-submit").prop("disabled", false);
+            }
+        }
+    }
+
+    function  optionsTotalPrice() {
+        var optionsTotal = 0,
+            $checkedOption = $("input[name^='addition_quantity[']:checked");
+        $checkedOption.parent("h4").find(".txt-option-price").each(function() {
+            var optionPrice = $(this).text();
+            optionsTotal = optionsTotal + Number(optionPrice.replace(/\,/g, ""));
+        });
+        return optionsTotal;
+    }
+});
+
+{% else %}
+$(function() {
+    $(".sec-option input[type='checkbox']").change(function() {
+        var productPrice = $("#productBasePrice").val();
+        productPrice = Number(productPrice.replace(/\,/g, ""));
+        $(".txt-product-price").text(commafy(productPrice + optionsTotalPrice()));
+    });
+
+    function  optionsTotalPrice() {
+        var optionsTotal = 0,
+            $checkedOption = $("input[name^='addition_quantity[']:checked");
+        $checkedOption.parent("h4").find(".txt-option-price").each(function() {
+            var optionPrice = $(this).text();
+            optionsTotal = optionsTotal + Number(optionPrice.replace(/\,/g, ""));
+        });
+        return optionsTotal;
+    }
+});
+{% endif %}
+
+function commafy(n) {
+  n = floatFormat(n, {{ decimalPoint }});
+  var parts = String(n).split('.');
+  parts[0] = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+  return parts.join('.');
+}
+function floatFormat(number, n) {
+	var _pow = Math.pow(10, n);
+  number = String(Math.round(number * _pow) / _pow);
+  var parts = String(number).split('.');
+  if(parts.length > 1) {
+    for(var i = parts[1].length; i < n; i++)
+      parts[1] += "0";
+  }
+	return parts.join('.');
+}
+</script>
+<!-- ▲▲ SKU、個数、価格の制御 ▲▲ -->
+
+<!-- ▼▼ レビューの制御 ▼▼ -->
+<script>
+$(function() {
+  $('.starbox').each(function() {
+    var starbox = $(this);
+    starbox.starbox({
+      average: starbox.attr('data-start-value'),
+      changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+      ghosting: starbox.hasClass('ghosting'),
+      autoUpdateAverage: starbox.hasClass('autoupdate'),
+      buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+      stars: starbox.attr('data-star-count') || 5
+    }).on('starbox-value-changed', function(event, value) {
+      if(starbox.hasClass('random')) {
+        var val = Math.random();
+        starbox.next().text('Random: '+val);
+        return val;
+      } else {
+        starbox.next(".txt-star-value").text(value * 5);
+        $("#ec_client_product_review_type_grade").val(value*10);
+      }
+    }).on('starbox-value-moved', function(event, value) {
+      if(starbox.hasClass('random')) {
+        var val = Math.random();
+        starbox.next().text('Random: '+val);
+        return val;
+      } else {
+        starbox.next(".txt-star-value").text(value * 5);
+        $("#ec_client_product_review_type_grade").val(value*10);
+      }
+      starbox.starbox("setOption", "average", value);
+    });
+  });
+
+  $(".sec-review .description").each(function() {
+    var $thisElm = $(this);
+    if($thisElm.outerHeight() < 150) {
+      $thisElm.addClass("active");
+    }
+  });
+  $(".sec-review .description .more a").click(function() {
+    $(this).closest(".description").addClass("active");
+    return false;
+  });
+
+  if($(".sec-review li").size() > 4)
+    $(".sec-review li:nth-child(n+4)").addClass("hidden");
+  else
+    $(".sec-review .openAllReview").remove();
+  $(".sec-review .openAllReview a").click(function() {
+    $(".sec-review li").removeClass("hidden");
+    $(this).parent().remove();
+    return false;
+  });
+  $(".btn-open-review a").click(function() {
+    $("body").addClass("is-active-reivew-form");
+    return false;
+  });
+  $(".sec-review-form .close a, .bg-review-form").click(function() {
+    $("body").removeClass("is-active-reivew-form");
+    return false;
+  });
+  $(".sec-review .avarage .num").each(function() {
+    var $thisElm = $(this),
+    num = Number($thisElm.text());
+    $thisElm.text(num.toFixed(2));
+  });
+// review form submit
+$('#review_submit').submit(function(event) {
+  // HTMLでの送信をキャンセル
+  $(".sec-review-form").addClass("is-loading");
+  $('#submit_image').show();
+  event.preventDefault();
+  var product_id = $('#review_product_id').val();
+  var title = $('#ec_client_product_review_type_title').val();
+  var description = $('#ec_client_product_review_type_description').val();
+  var nickname = $('#ec_client_product_review_type_nickname').val();
+  var grade = $('#ec_client_product_review_type_grade').val();
+  $.ajax({
+    type: "POST",
+    url: "{{ path('ec_client_product_review_add') }}",
+    data: {
+      "product_id": product_id,
+      "title": title,
+      "description": description,
+      "nickname": nickname,
+      "grade": grade,
+    },
+  }).done(function(data, status, xhr) {
+    $(".sec-review-form .error").remove();
+    if (data.responseCode == '400') {
+      $('.sec-review-form dl .success').remove();
+      // エラーメッセージを表示
+      var msg = '';
+      for (var i=0;i<data.error_msg.length;i++) {
+        msg = msg+data.error_msg[i];
+        if(String(data.error_msg[i]).indexOf('ニックネーム') != -1)
+          $('.txt-review-name').append("<span class='error' style='color:red'><br>" + data.error_msg[i] + "</span>");
+        if(String(data.error_msg[i]).indexOf('タイトル') != -1)
+          $('.txt-review-title').append("<span class='error' style='color:red'><br>" + data.error_msg[i] + "</span>");
+        if(String(data.error_msg[i]).indexOf('本文') != -1)
+          $('.txt-review-description').append("<span class='error' style='color:red'><br>" + data.error_msg[i] + "</span>");
+        if(String(data.error_msg[i]).indexOf('評価') != -1)
+          $('.txt-review-grade').append("<span class='error' style='color:red'><br>" + data.error_msg[i] + "</span>");
+      }
+      // imgの隠す
+      $('#submit_image').hide();
+      $(".sec-review-form").removeClass("is-loading");
+    } else {
+      // Title
+      $('#ec_client_product_review_type_title').val('');
+      // Description
+      $('#ec_client_product_review_type_description').val('');
+      // Nickname
+      $('#ec_client_product_review_type_nickname').val('');
+      // Grade
+      $('#ec_client_product_review_type_grade').val('');
+      // imgの隠す
+      $('#submit_image').hide();
+      $('.sec-review-form').find(".error").remove();
+      $('.sec-review-form dl').prepend('<dt class="success" style="float:none;"><span style="color:green">'+data.success_msg+'</span></dt>').show();
+      $( '#review_submit_btn' ).attr('disabled', true);
+      $timer = setTimeout(function() {
+        clearTimeout($timer);
+        $("body").removeClass("is-active-reivew-form");
+      }, 2000);
+    }
+  }).fail(function(xhr, status) {
+    // imgの隠す
+    $('#submit_image').hide();
+    $(".sec-review-form").removeClass("is-loading");
+  });
+}); // end
+{% if is_authorized() %}{% else %}
+  $(".sec-review a[href$='login']").click(function() {
+    $(window).on("focus", function() {
+      location.reload();
+    });
+  });
+{% endif %}
+});
+</script>
+<!-- ▲▲ レビューの制御 ▲▲ -->
+
+<!-- ▼▼ Bing翻訳 ▼▼ -->
+<script src="https://www.microsoftTranslator.com/ajax/v3/WidgetV3.ashx" type="text/javascript"></script>
+<script>
+// zh-CHS 中国本土
+// zh-CHT 台湾・香港
+// en English
+$(function() {
+  var lang = $("select[name='lang']").val();
+  if(lang == "zh-hk" || lang == "zh-hk")
+    lang = "zh-CHT";
+  if(lang == "zh-cn")
+   lang = "zh-CHS";
+  Microsoft.Translator.Widget.Translate("ja", lang, onProgress, onError, onComplete, onRestoreOriginal, 2000);
+
+  $("select[name='lang']").change(function() {
+    var lang = $(this).val();
+    if(lang == "zh-hk" || lang == "zh-hk")
+      lang = "zh-CHT";
+    if(lang == "zh-cn")
+     lang = "zh-CHS";
+    Microsoft.Translator.Widget.Translate("ja", lang, onProgress, onError, onComplete, onRestoreOriginal, 2000);
+  });
+});
+
+    function onProgress(value) {}
+
+function onError(error) {
+    console.error("Translation Error: " + error);
+}
+
+function onComplete() {}
+//fires when the user clicks on the exit box of the floating widget
+function onRestoreOriginal() {
+    alert("The page was reverted to the original language. This message is not part of the widget.");
+}
+</script>
+<!-- ▲▲ Bing翻訳 ▲▲ -->
+</body>
+</html>

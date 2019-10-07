@@ -18,104 +18,104 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 新会员注册
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 新会员注册
 
-    div.l-contentsInner.l-contentsInner--form
-      p.contentSection__note.contentSection__note--center 请输入下列所有项目（<i class="is-required"></i>必填）
+    div.lc-contentsInner.lc-contentsInner--form
+      p.lc-contentSection__note.lc-contentSection__note--center 请输入下列所有项目（<i class="is-required"></i>必填）
       form(action="/auth/regist/confirm/", method="POST")
-        ul.l-form
-          li.l-form__item
-            .l-form__columns
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 姓
-                  p.l-form__detail
+        ul.lc-form
+          li.lc-form__item
+            .lc-form__columns
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 姓
+                  p.lc-form__detail
                     input(type="text")
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 名
-                  p.l-form__detail
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 名
+                  p.lc-form__detail
                     input(type="text")
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title.is-required 出生日期
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title.is-required 出生日期
+              p.lc-form__detail
                 input(type="date")
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title.is-required 手机号码
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title.is-required 手机号码
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 電子信箱
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 電子信箱
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            .l-form__label.l-form__label--plain
-              h4.l-form__title.is-required 送信方法
-              p.l-form__detail
+          li.lc-form__item
+            .lc-form__label.lc-form__label--plain
+              h4.lc-form__title.is-required 送信方法
+              p.lc-form__detail
                 input#radio_1_1(type="radio", name="radio1", checked)
                 label(for="radio_1_1") 电子邮件
                 input#radio_1_2(type="radio", name="radio1")
                 label(for="radio_1_2") SMS
                 input#radio_1_3(type="radio", name="radio1")
                 label(for="radio_1_3") MMS
-          li.l-form__item
-            label.l-form__label.l-form__label--select
-              h4.l-form__title.is-required 国家
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--select
+              h4.lc-form__title.is-required 国家
+              p.lc-form__detail
                 select
                   option 请选择国家或地区
                   option china
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title.is-required 邮编号码
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title.is-required 邮编号码
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 省市县乡镇村
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 省市县乡镇村
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 详细地址
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 详细地址
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            .l-form__columns
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 密码
-                  p.l-form__detail
+          li.lc-form__item
+            .lc-form__columns
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 密码
+                  p.lc-form__detail
                     input(type="text")
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 确认密码
-                  p.l-form__detail
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 确认密码
+                  p.lc-form__detail
                     input(type="text")
-          li.l-form__item
-            .l-form__label.l-form__label--plain
-              h4.l-form__title.is-required 会员限定服务
-              p.l-form__detail
+          li.lc-form__item
+            .lc-form__label.lc-form__label--plain
+              h4.lc-form__title.is-required 会员限定服务
+              p.lc-form__detail
                 input#radio_2_1(type="radio", name="radio2", checked)
                 label(for="radio_2_1") 希望
                 input#radio_2_2(type="radio", name="radio2")
                 label(for="radio_2_2") 不希望
-        p.contentSection__note.contentSection__note--center 
+        p.lc-contentSection__note.lc-contentSection__note--center 
           input#checkbox_1.js-confirmConsent(type="checkbox")
           label(for="checkbox_1") 同意隐私政策
 
-          a(hre="").l-button--cancel.js-closeModal
-            span.l-button__label 隐私政策
-            i.l-button__icon.icon--arrowRight
+          a(hre="").lc-button--cancel.js-lc--closeModal
+            span.lc-button__label 隐私政策
+            i.lc-button__icon.lc-icon--arrowRight
                 
-        p.l-contentsInner__buttons
-          button(type="submit").l-button--submit
-            span.l-button__label 确认
-            i.l-button__icon.icon--arrowRight
+        p.lc-contentsInner__buttons
+          button(type="submit").lc-button--submit
+            span.lc-button__label 确认
+            i.lc-button__icon.lc-icon--arrowRight
         
         script.
           $(function () {

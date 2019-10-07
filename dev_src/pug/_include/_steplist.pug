@@ -9,8 +9,8 @@
     '购买<wbr>成功'
   ]
 
-ol.stepList
+ol.lc-stepList
   - for (var i = 0; i < steps.length; i++)
-    li.stepList__item(class = (step == i + 1) ? 'is-current' : '' )
-      i.stepList__icon
-      span.stepList__label !{ steps[i] }
+    li.lc-stepList__item(class = (step == i + 1) ? 'is-current' : '' )
+      i.lc-stepList__icon
+      span.lc-stepList__label !{ steps[i] }

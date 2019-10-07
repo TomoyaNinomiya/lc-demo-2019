@@ -29,12 +29,12 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 定期订购记录
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 定期订购记录
 
-    div.l-contentsInner
+    div.lc-contentsInner
         
-        table.c-table.c-table--numbers
+        table.lc-table.lc-table--numbers
           tbody
             tr
               th 日期
@@ -61,76 +61,76 @@ block content
               td
                 em 2019/11/19
 
-        section.shipList
-          h2.shipList__title 收货地址一览
-          ul.shipList__list
-            li.shipList__item
-              .shipList__box
-                .shipList__main
-                  header.shipList__header
-                    h3.shipList__name 星野 翔太
-                    p.shipList__tel 09012345678
-                  p.shipList__address
+        section.lc-shipList
+          h2.lc-shipList__title 收货地址一览
+          ul.lc-shipList__list
+            li.lc-shipList__item
+              .lc-shipList__box
+                .lc-shipList__main
+                  header.lc-shipList__header
+                    h3.lc-shipList__name 星野 翔太
+                    p.lc-shipList__tel 09012345678
+                  p.lc-shipList__address
                     | 171-0033
                     | 東京都豊島区高田3ー9−7 ダイワビル
-                  ul
-                    .productInfo
-                      figure.productInfo__figure
-                        a.productInfo__figure__inner(href="/product/1/")
+                  ul.lc-list
+                    li.lc-productInfo
+                      figure.lc-productInfo__figure
+                        a.lc-productInfo__figure__inner(href="/product/1/")
                           img(src="/assets/img/img_product_02.jpg", alt="product name")
-                      .productInfo__text
-                        h2.productInfo__name
+                      .lc-productInfo__text
+                        h2.lc-productInfo__name
                           a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
-                        .productInfo__detail
-                          dl.productInfo__detail__list
-                            .productInfo__detail__item
-                              dt.productInfo__detail__label 价格
-                              dd.productInfo__detail__detail
+                        .lc-productInfo__detail
+                          dl.lc-productInfo__detail__list
+                            .lc-productInfo__detail__item
+                              dt.lc-productInfo__detail__label 价格
+                              dd.lc-productInfo__detail__detail
                                 | 159.00CNY
                                 small (2,393JPY)
-                            .productInfo__detail__item
-                              dt.productInfo__detail__label 数量
-                              dd.productInfo__detail__detail 1
-                        p.shipList__controls
-                          a(href="/ec/consumer/regular_address_edit/1/").l-button--edit
-                            span.l-button__label 更改
-                  dl.shipList__info
-                    .shipList__info__item
-                      dt.shipList__info__label 送货方式
-                      dd.shipList__info__detail EMS
-                    .shipList__info__item
-                      dt.shipList__info__label 送货时间
-                      dd.shipList__info__detail 2019/10/10 14:00 - 16:00
+                            .lc-productInfo__detail__item
+                              dt.lc-productInfo__detail__label 数量
+                              dd.lc-productInfo__detail__detail 1
+                        p.lc-shipList__controls
+                          a(href="/ec/consumer/regular_address_edit/1/").lc-button--edit
+                            span.lc-button__label 更改
+                  dl.lc-shipList__info
+                    .lc-shipList__info__item
+                      dt.lc-shipList__info__label 送货方式
+                      dd.lc-shipList__info__detail EMS
+                    .lc-shipList__info__item
+                      dt.lc-shipList__info__label 送货时间
+                      dd.lc-shipList__info__detail 2019/10/10 14:00 - 16:00
         
-        h2.c-heading--3 付款方式
+        h2.lc-heading--3 付款方式
         p credit
 
-        h2.c-heading--3 其他咨询
+        h2.lc-heading--3 其他咨询
         p 不指定
 
-        p.l-contentsInner__buttons.l-contentsInner__buttons--horizontal
-          a(href="/ec/consumer/regular_edit/1/").l-button--submit
-            span.l-button__label 更改定期订购
+        p.lc-contentsInner__buttons.lc-contentsInner__buttons--horizontal
+          a(href="/ec/consumer/regular_edit/1/").lc-button--submit
+            span.lc-button__label 更改定期订购
           a(
             href="", 
             aria-controls="modalCancelRegular"
             aria-haspopup="true"
-          ).l-button--submit.js-openModal
-            span.l-button__label 取消
-          a(href="/ec/consumer/regular_list/").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+          ).lc-button--submit.js-lc--openModal
+            span.lc-button__label 取消
+          a(href="/ec/consumer/regular_list/").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回
 
     include /_include/_mypage-navi.pug
 
-  .l-modal#modalCancelRegular
-    .l-modal__bg.js-closeModal
-    .l-modal__body
-      h3.l-modal__title 要取消吗？
-      p.l-modal__buttons
-        a(href="").l-button--submit.js-lc--changeLangCurrency
-          span.l-button__label OK
-          i.l-button__icon.icon--check
-        button(type="button").l-button--cancel.js-closeModal
-          i.l-button__icon.icon--arrowLeft
-          span.l-button__label 返回
+  .lc-modal#modalCancelRegular
+    .lc-modal__bg.js-lc--closeModal
+    .lc-modal__body
+      h3.lc-modal__title 要取消吗？
+      p.lc-modal__buttons
+        a(href="").lc-button--submit.js-lc--changeLangCurrency
+          span.lc-button__label OK
+          i.lc-button__icon.lc-icon--check
+        button(type="button").lc-button--cancel.js-lc--closeModal
+          i.lc-button__icon.lc-icon--arrowLeft
+          span.lc-button__label 返回

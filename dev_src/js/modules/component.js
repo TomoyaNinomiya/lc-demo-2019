@@ -18,18 +18,6 @@ export default () => {
   $(() => {
     const $window = $(window)
 
-    $('.js-openModal').on('click', function() {
-      const $trigger = $(this)
-      $('#' + $trigger.attr('aria-controls')).addClass('is-active')
-      $('#' + $trigger.attr('aria-controls')).find('.l-modal__body').css({
-        top: ($window.scrollTop() + 60) + 'px'
-      });
-      return false
-    })
-    $('.js-closeModal').on('click', () => {
-      $('.l-modal').removeClass('is-active')
-    })
-
     if ($('.mainvisual').length) {
       $('.mainvisual').slick({
         infinite: false,
@@ -100,37 +88,6 @@ export default () => {
           })
       }
     }
-
-    const $form__items = $('.l-form__item')
-    if ($form__items.length) {
-      $form__items.each((index, form__item) => {
-        const $form__item = $(form__item)
-        const $label = $form__item.find('.l-form__label')
-        const $input = $form__item.find('input, select, textarea')
-        $label.filter(':has(.error)').addClass('is-errored')
-        $input.on('focus', () => {
-          $label.addClass('is-focused')
-        }).on('blur', () => {
-          $label.removeClass('is-focused')
-        })
-      })
-    }
-
-    if ($('.l-tab[role="application"]').length) {
-      $('.l-tab[role="application"]').each(function () {
-        const $wrapper = $(this)
-        const $tab = $wrapper.find('.l-tab__tab')
-        const $tabPanel = $wrapper.find('.l-tab__panel')
-        $tab.on('click', function () {
-          const $currentTab = $(this)
-          $tab.removeClass('is-active')
-          $tabPanel.removeClass('is-active')
-          $currentTab.addClass('is-active')
-          $('#' + $currentTab.attr('aria-controls')).addClass('is-active')
-        })
-      })
-    }
-    
     
   })
 

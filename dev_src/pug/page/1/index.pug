@@ -21,8 +21,8 @@ block content
     ]
   include /_include/_breadcrumblist.pug
 
-  p.contentSection__title.contentSection__title--center 最新消息
-  .l-contentsInner
+  p.lc-contentSection__title.lc-contentSection__title--center 最新消息
+  .lc-contentsInner
     article.pageArticle
       header.pageArticle__header
         h1.pageArticle__title ベストコスメ2018上半期！注目を浴びたコスメ
@@ -35,11 +35,11 @@ block content
             dt.snsLinks__title シェア
             dd.snsLinks__item
               a(href="" target="_blank")
-                i.snsLinks__icon.icon--snsTwitter
+                i.snsLinks__icon.lc-icon--snsTwitter
                 span.snsLinks__label twitter
             dd.snsLinks__item
               a(href="" target="_blank")
-                i.snsLinks__icon.icon--snsFacebook
+                i.snsLinks__icon.lc-icon--snsFacebook
                 span.snsLinks__label facebook
       .pageArticle__content
         figure.pageArticle__eyecatch
@@ -79,15 +79,15 @@ block content
           dt.snsLinks__title シェア
           dd.snsLinks__item
             a(href="" target="_blank")
-              i.snsLinks__icon.icon--snsTwitter
+              i.snsLinks__icon.lc-icon--snsTwitter
               span.snsLinks__label twitter
           dd.snsLinks__item
             a(href="" target="_blank")
-              i.snsLinks__icon.icon--snsFacebook
+              i.snsLinks__icon.lc-icon--snsFacebook
               span.snsLinks__label facebook
   
-  aside.contentSection
-    h2.contentSection__title 相关产品
+  aside.lc-contentSection
+    h2.lc-contentSection__title 相关产品
     ul.productArchive
       - for (var i = 1; i <= 4; i++)
         li.productArchive__item

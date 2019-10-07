@@ -18,14 +18,14 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 新会员注册
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 新会员注册
 
-    div.l-contentsInner.l-contentsInner--form
+    div.lc-contentsInner.lc-contentsInner--form
 
       form(action="/auth/regist/complete/", method="POST")
 
-        table.c-table.c-table--wide
+        table.lc-table.lc-table--wide
           tr
             th 姓名
             td 星野 翔太
@@ -51,12 +51,12 @@ block content
             th 会员限定服务
             td 希望
           
-        p.l-contentsInner__buttons
-          button(type="submit").l-button--submit
-            span.l-button__label 登入
-            i.l-button__icon.icon--check
-          button(type="button", onclick="history.back();").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 修改
+        p.lc-contentsInner__buttons
+          button(type="submit").lc-button--submit
+            span.lc-button__label 登入
+            i.lc-button__icon.lc-icon--check
+          button(type="button", onclick="history.back();").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 修改
     
 

@@ -25,7 +25,7 @@ const paths = {
   srcPug   : 'dev_src/pug/',
   srcJs    : 'dev_src/js/',
   srcFileDir: 'dev_src/files/',
-  srcFile  : 'dev_src/files/**/*.+(gif|svg|jpg|png|json|csv|pdf|ics|zip|eot|ttf|otf|woff|doc|woff2|mp4|json)',
+  srcFile  : 'dev_src/files/**/*.+(gif|svg|jpg|png|js|json|csv|pdf|ics|zip|eot|ttf|otf|woff|doc|woff2|mp4)',
   dist     : 'dist/' + siteDirectory,
   distCss  : 'dist/assets/' + siteDirectory + 'css/',
   distJs  : 'dist/assets/' + siteDirectory + 'js/'

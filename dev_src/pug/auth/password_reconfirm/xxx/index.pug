@@ -7,7 +7,7 @@ block content
   -
     var breadcrumbList = [
       {
-        name: '重新設定密碼',
+        name: '首页',
         href: '/'
       },
       {
@@ -18,28 +18,28 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 重新設定密碼
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 重新設定密碼
 
-    div.l-contentsInner.l-contentsInner--form
+    div.lc-contentsInner.lc-contentsInner--form
       form(action="/ec/consumer/history/", method="POST")
-        ul.l-form
-          li.l-form__item
-            .l-form__columns
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 密码
-                  p.l-form__detail
+        ul.lc-form
+          li.lc-form__item
+            .lc-form__columns
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 密码
+                  p.lc-form__detail
                     input(type="text")
-              .l-form__column
-                label.l-form__label
-                  h4.l-form__title.is-required 重新輸入
-                  p.l-form__detail
+              .lc-form__column
+                label.lc-form__label
+                  h4.lc-form__title.is-required 重新輸入
+                  p.lc-form__detail
                     input(type="text")
                 
-        p.l-contentsInner__buttons
-          button(type="submit").l-button--submit
-            span.l-button__label 登入
-            i.l-button__icon.icon--check
+        p.lc-contentsInner__buttons
+          button(type="submit").lc-button--submit
+            span.lc-button__label 登入
+            i.lc-button__icon.lc-icon--check
     
 

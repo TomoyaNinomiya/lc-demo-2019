@@ -18,51 +18,51 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 送货时间
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 送货时间
 
     - var step = 3;
     include /_include/_steplist.pug
 
-    div.l-contentsInner
+    div.lc-contentsInner
       form(action="/ec/cart/payment/", method="POST")
         
-        section.shipList
-          h2.shipList__title 收货地址一览
-          ul.shipList__list
-            li.shipList__item
-              .shipList__box
-                .shipList__main
-                  header.shipList__header
-                    h3.shipList__name 星野 翔太
-                    p.shipList__tel 09012345678
-                  p.shipList__address
+        section.lc-shipList
+          h2.lc-shipList__title 收货地址一览
+          ul.lc-shipList__list
+            li.lc-shipList__item
+              .lc-shipList__box
+                .lc-shipList__main
+                  header.lc-shipList__header
+                    h3.lc-shipList__name 星野 翔太
+                    p.lc-shipList__tel 09012345678
+                  p.lc-shipList__address
                     | 171-0033
                     | 東京都豊島区高田3ー9−7 ダイワビル
-                  dl.shipList__options
-                    .shipList__options__item.shipList__options__item--single
-                      dt.shipList__options__label 送货方式
-                      dd.shipList__options__detail
-                        span.selectBox
-                          select.selectBox__select
+                  dl.lc-shipList__options
+                    .lc-shipList__options__item.lc-shipList__options__item--single
+                      dt.lc-shipList__options__label 送货方式
+                      dd.lc-shipList__options__detail
+                        span.lc-selectBox
+                          select.lc-selectBox__select
                             option(value="1") EMS
-                    .shipList__options__item
-                      dt.shipList__options__label 送货日
-                      dd.shipList__options__detail
-                        span.selectBox
-                          select.selectBox__select
+                    .lc-shipList__options__item
+                      dt.lc-shipList__options__label 送货日
+                      dd.lc-shipList__options__detail
+                        span.lc-selectBox
+                          select.lc-selectBox__select
                             option(value="1") 不需选择送货日
-                    .shipList__options__item
-                      dt.shipList__options__label 送货时间段
-                      dd.shipList__options__detail
-                        span.selectBox
-                          select.selectBox__select
+                    .lc-shipList__options__item
+                      dt.lc-shipList__options__label 送货时间段
+                      dd.lc-shipList__options__detail
+                        span.lc-selectBox
+                          select.lc-selectBox__select
                             option(value="1") 不需选择送货时间段
             
-        p.l-contentsInner__buttons
-          button.l-button--submit
-            span.l-button__label 下一步
-            i.l-button__icon.icon--arrow2Right
-          button(type="button", onclick="history.back();").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+        p.lc-contentsInner__buttons
+          button.lc-button--submit
+            span.lc-button__label 下一步
+            i.lc-button__icon.lc-icon--arrow2Right
+          button(type="button", onclick="history.back();").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回

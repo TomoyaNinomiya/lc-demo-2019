@@ -54,19 +54,19 @@ block content
             .skuList__item
               dt.skuList__label 数量
               dd.skuList__detail
-                .selectBox
-                  select.selectBox__select(name="quantity")
+                .lc-selectBox
+                  select.lc-selectBox__select(name="quantity")
                     - for (var i = 1; i <= 10; i++)
                       option(value=i) #{i}
           p.cartInArea__actions
-            button.l-button--submit.l-button--action.js-lc--cartin(type="submit")
-              span.l-button__label 加入购物车
-              i.l-button__icon.icon--cart
-            button.l-button--submit.l-button--onlyIcon.js-lc--favorite(type="button", title="我的最爱")
-              span.l-button__label 我的最爱
-              i.l-button__icon.icon--heart
+            button.lc-button--submit.lc-button--action.js-lc--cartin(type="submit")
+              span.lc-button__label 加入购物车
+              i.lc-button__icon.lc-icon--cart
+            button.lc-button--submit.lc-button--onlyIcon.js-lc--favorite(type="button", title="我的最爱")
+              span.lc-button__label 我的最爱
+              i.lc-button__icon.lc-icon--heart
           dl.additionsForm
-            dt.additionsForm__title.icon--plus OPTIONS
+            dt.additionsForm__title.lc-icon--plus OPTIONS
             dd.additionsForm__item
               label.additionsForm__label
                 input.additionsForm__input(type="checkbox", name="addition_quantity[1]", value="1")

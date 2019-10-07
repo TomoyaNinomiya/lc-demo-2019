@@ -29,61 +29,61 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
+  section.lc-contentSection
 
-    h1.contentSection__title.contentSection__title--center 编辑评价
+    h1.lc-contentSection__title.lc-contentSection__title--center 编辑评价
 
-    div.l-contentsInner
+    div.lc-contentsInner
     
-      header.productInfo
-        figure.productInfo__figure
-          a.productInfo__figure__inner(href="/product/1/")
+      header.lc-productInfo
+        figure.lc-productInfo__figure
+          a.lc-productInfo__figure__inner(href="/product/1/")
             img(src="/assets/img/img_product_01.jpg", alt="product name")
-        .productInfo__text
-          h2.productInfo__name
+        .lc-productInfo__text
+          h2.lc-productInfo__name
             a(href="/product/1/") 小熊夏季新款女装可爱卡通短袖t恤宽松韩版半袖
-          .productInfo__detail
-            dl.productInfo__detail__list
-              .productInfo__detail__item
-                dt.productInfo__detail__label 价格
-                dd.productInfo__detail__detail
+          .lc-productInfo__detail
+            dl.lc-productInfo__detail__list
+              .lc-productInfo__detail__item
+                dt.lc-productInfo__detail__label 价格
+                dd.lc-productInfo__detail__detail
                   | 159.00CNY
                   small (2,393JPY)
 
       form(action="/ec/consumer/review_list/")
-        ul.l-form
-          li.l-form__item
-            label.l-form__label.l-form__label--half
-              h4.l-form__title.is-required 昵称
-              p.l-form__detail
+        ul.lc-form
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--half
+              h4.lc-form__title.is-required 昵称
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label.l-form__label--plain
-              h4.l-form__title.is-required 汇率
-              div.l-form__detail.l-form__detail--stars
+          li.lc-form__item
+            label.lc-form__label.lc-form__label--plain
+              h4.lc-form__title.is-required 汇率
+              div.lc-form__detail.lc-form__detail--stars
                 input.js-lc--reviewStarsInput(type="hidden")
-                p.reviewStars.reviewStars--large.js-lc--changeReviewStars(data-grade="10")
+                p.lc-reviewStars.lc-reviewStars--large.js-lc--changeReviewStars(data-grade="10")
                   - for (var i = 0; i < 5; i++)
                     span
-                p.reviewStars__number.js-lc--reviewStarsNumber 5
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 题目
-              p.l-form__detail
+                p.lc-reviewStars__number.js-lc--reviewStarsNumber 5
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 题目
+              p.lc-form__detail
                 input(type="text")
-          li.l-form__item
-            label.l-form__label
-              h4.l-form__title.is-required 内容
-              p.l-form__detail
+          li.lc-form__item
+            label.lc-form__label
+              h4.lc-form__title.is-required 内容
+              p.lc-form__detail
                 textarea(rows="5")
                 
-        p.l-modal__buttons
-          button(type="submit").l-button--submit
-            span.l-button__label 登入
-            i.l-button__icon.icon--check
-          a(href="/ec/consumer/review_list/").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+        p.lc-modal__buttons
+          button(type="submit").lc-button--submit
+            span.lc-button__label 登入
+            i.lc-button__icon.lc-icon--check
+          a(href="/ec/consumer/review_list/").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回
 
     include /_include/_mypage-navi.pug
 

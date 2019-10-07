@@ -25,54 +25,54 @@ block content
   include /_include/_breadcrumblist.pug
 
 
-  section.contentSection
-    h1.contentSection__title.contentSection__title--center 会员信息
+  section.lc-contentSection
+    h1.lc-contentSection__title.lc-contentSection__title--center 会员信息
 
-    div.l-contentsInner
+    div.lc-contentsInner
 
-        section.shipList
-          h2.shipList__title 收货地址一览
-          ul.shipList__list
-            li.shipList__item
-              .shipList__box
-                .shipList__main
-                  header.shipList__header
-                    h3.shipList__name
+        section.lc-shipList
+          h2.lc-shipList__title 收货地址一览
+          ul.lc-shipList__list
+            li.lc-shipList__item
+              .lc-shipList__box
+                .lc-shipList__main
+                  header.lc-shipList__header
+                    h3.lc-shipList__name
                       i.c-inputUI.c-inputUI--checkbox
                       | 星野 翔太
                       small (会员注册住址)
-                    p.shipList__tel
+                    p.lc-shipList__tel
                       | 09012345678
-                  p.shipList__address
+                  p.lc-shipList__address
                     | 171-0033
                     | 東京都豊島区高田3ー9−7 ダイワビル
-                p.shipList__controls
-                  a(href="/ec/consumer/edit/").l-button--edit
-                    span.l-button__label 更改
-            li.shipList__item
-              .shipList__box
-                .shipList__main
-                  header.shipList__header
-                    h3.shipList__name
+                p.lc-shipList__controls
+                  a(href="/ec/consumer/edit/").lc-button--edit
+                    span.lc-button__label 更改
+            li.lc-shipList__item
+              .lc-shipList__box
+                .lc-shipList__main
+                  header.lc-shipList__header
+                    h3.lc-shipList__name
                       i.c-inputUI.c-inputUI--checkbox
                       | 星野 翔太
-                    p.shipList__tel
+                    p.lc-shipList__tel
                       | 02160206756
-                  p.shipList__address
+                  p.lc-shipList__address
                     | 上海市黄浦区淮海中路222号力宝广场26楼
-                p.shipList__controls
-                  a(href="/ec/consumer/address/add/").l-button--edit
-                    span.l-button__label 更改
-                  a(href="").l-button--delete
-                    span.l-button__label 删除
-            li.shipList__item
-              a(href="/ec/consumer/address/add/").shipList__box.shipList__box--button
-                i.icon--plus
+                p.lc-shipList__controls
+                  a(href="/ec/consumer/address/add/").lc-button--edit
+                    span.lc-button__label 更改
+                  a(href="").lc-button--delete
+                    span.lc-button__label 删除
+            li.lc-shipList__item
+              a(href="/ec/consumer/address/add/").lc-shipList__box.lc-shipList__box--button
+                i.lc-icon--plus
                 | 追加新收货地址
 
-        p.l-contentsInner__buttons
-          button(type="button", onclick="history.back();").l-button--cancel
-            i.l-button__icon.icon--arrowLeft
-            span.l-button__label 返回
+        p.lc-contentsInner__buttons
+          button(type="button", onclick="history.back();").lc-button--cancel
+            i.lc-button__icon.lc-icon--arrowLeft
+            span.lc-button__label 返回
 
     include /_include/_mypage-navi.pug
