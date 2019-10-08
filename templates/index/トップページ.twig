@@ -169,7 +169,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
   <ul class="blogArchive">
     {%- for blogPage in blogPages -%}
       <li class="blogArchive__item">
-        <a href="/page/1/">
+        <a href="{{ path('page_view', {'id': blogPage.id}) }}">
           <figure class="blogArchive__figure"><img src="{% if blogPage.attribute('featured image') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', blogPage.attribute('featured image')).path) }}{% else %}{{ asset("assets/img/no-image.png") }}{% endif %}" alt="{{ blogPage.title|striptags }}"></figure>
           <div class="blogArchive__status">
             <p class="pageCategory">{%- if blogPage.categories[1].getTransAttribute(lang_id) -%}{{ blogPage.categories[1].getTransAttribute(lang_id) }}{%- else -%}{{ blogPage.categories[1].name }}{%- endif -%}</p>

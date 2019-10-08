@@ -10,7 +10,7 @@ lang_id: language_id()
 curRatio: cur_unit_ratio()
 unitFront: unit_front()
 unitBack: unit_back()
-decimalPoint: system_config("decimal_place")
+decimalPoint: system_config('decimal_place')
 
 ○ 検索結果
 <language>
@@ -20,7 +20,7 @@ lang_id: language_id()
 curRatio: cur_unit_ratio()
 unitFront: unit_front()
 unitBack: unit_back()
-decimalPoint: system_config("decimal_place")
+decimalPoint: system_config('decimal_place')
 http_x: app.request.server.get('HTTP_X_REQUESTED_WITH')
 
 ------------
@@ -68,6 +68,36 @@ dispNum: system_config('product_disp_num')
 currentDispNum: app.request.get('disp_number')
 currentOrderBy: app.request.get('orderby')
 
+○ ページ
+<language>
+related_products_label: 相關產品, 相关产品, Related Products, 関連商品
+<common>
+language: language()
+lang_id: language_id()
+curRatio: cur_unit_ratio()
+unitFront: unit_front()
+unitBack: unit_back()
+decimalPoint: system_config('decimal_place')
+
+○ ページ-カテゴリアーカイブ
+<language>
+<common>
+language: language()
+lang_id: language_id()
+
+○ 商品レビュー
+<language>
+pagingnavi_prev: , , In Reviews of all ,
+pagingnavi_middle:  件中 的 ,  件中 的 ,,  件中 
+pagingnavi_next: 件, 件, , 件
+<common>
+language: language()
+lang_id: language_id()
+curRatio: cur_unit_ratio()
+unitFront: unit_front()
+unitBack: unit_back()
+decimalPoint: system_config('decimal_place')
+
 ------------
 
 ■ モジュールテンプレート
@@ -110,6 +140,28 @@ navCategories: '1,2,3,4,5'
 ------------
 
 ■ システムテンプレート
+○ カート
+<language>
+cart_label: 購物車, 购物车, Shopping Cart, カート
+deleted_because_no_stock: 以下商品已售完，無法加入購物車, 以下商品已售完，無法加入購物車, The following item is for out of stock, has been removed from the cart., 以下の商品は在庫がなくなりましたので、カートから削除されました。
+cart_is_empty: 有沒有的產品，在購物車中。, 有没有的产品，在购物车中。, Your Shopping Cart is empty, 現在カートに入っている商品はございません。
+total_price: 商品金額總計, 商品金额总计, Total, 商品合計
+price_label: 價格, 价格, Price, 単価
+weight_label: 重量, 重量, Weight, 重量
+quantity_label: 數量, 数量, Quantity, 個数
+regular_interval_label: 送貨頻率, 送货频率, Delivery Frequency, 配送頻度
+delete_label: 刪除, 删除, Delete, 削除
+to_order: 下一步 填寫收件資料, 下一步 填写收件资料, Proceed with Check Out, 購入手続きへ
+continue_shopping: 繼續購物, 继续购物, Continue Shopping, ショッピングを続ける
+total_point_label: 本次預計獲得積分
+<common>
+language: language()
+lang_id: language_id()
+curRatio: cur_unit_ratio()
+unitFront: unit_front()
+unitBack: unit_back()
+decimalPoint: system_config('decimal_place')
+http_x: app.request.server.get('HTTP_X_REQUESTED_WITH')
 
 ------------
 

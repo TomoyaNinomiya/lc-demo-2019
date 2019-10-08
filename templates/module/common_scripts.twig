@@ -137,4 +137,17 @@ $(function () {
     });
   {%- endif -%}{# is_authorized() #}
 });
+
+
+//==========================================================
+// Global: format number
+//==========================================================
+function price_format(num, decimalPoint) {
+  return number_format(Math.floor(num * Math.pow(10, decimalPoint)) / Math.pow(10, decimalPoint));
+}
+function number_format (num) {
+  var parts = num.toString().split('.');
+  parts[0] = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+  return parts.join('.');
+}
 </script>
