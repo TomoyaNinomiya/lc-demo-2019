@@ -1,0 +1,363 @@
+<!-- input form UI for chinese address -->
+<div class="lc-selectAddress">
+  <ul class="lc-selectAddress__tab" role="tablist">
+    <li class="lc-selectAddress__tabItem" aria-controls="lc_selectAddress__province" aria-selected="true" aria-disabled="false" role="tab" id="lc_selectAddress__tab1">省</li>
+    <li class="lc-selectAddress__tabItem" aria-controls="lc_selectAddress__city" aria-selected="false" aria-disabled="true" role="tab" id="lc_selectAddress__tab2">市</li>
+    <li class="lc-selectAddress__tabItem" aria-controls="lc_selectAddress__area" aria-selected="false" aria-disabled="true" role="tab" id="lc_selectAddress__tab3">区</li>
+  </ul>
+  <ul class="lc-selectAddress__list" role="tabpanel" aria-hidden="false" aria-labelledby="lc_selectAddress__tab1" id="lc_selectAddress__province">
+  </ul>
+  <ul class="lc-selectAddress__list" role="tabpanel" aria-hidden="true" aria-labelledby="lc_selectAddress__tab2" id="lc_selectAddress__city"></ul>
+  <ul class="lc-selectAddress__list" role="tabpanel" aria-hidden="true" aria-labelledby="lc_selectAddress__tab3" id="lc_selectAddress__area"></ul>
+</div>
+<div class="lc-selectAddress__bg js-lc-selectAddress__close"></div>
+<!-- / input form UI for chinese address　-->
+
+<script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+<script>
+$(function () {
+  //==========================================================
+  // Confirm Concent Privacy Policy
+  //==========================================================
+  if ($('.js-confirmConsent').length) {
+    var $confirmConcent = $('.js-confirmConsent');
+    var $form = $confirmConcent.closest('form');
+    var $submit = $form.find(':submit');
+    confirmConcent();
+    $confirmConcent.on('change', function () {
+      confirmConcent();
+    })
+    function confirmConcent () {
+      $submit.prop('disabled', !$confirmConcent.prop('checked'));
+    }
+  }
+
+  //==========================================================
+  // Adjust forms with selected Country
+  //==========================================================
+  // set valiables of Elements
+  // form Elements (input, select, textarea)
+  var $form = {
+    country: $('[name="{{ form.country.vars.full_name }}"]'),
+    district: $('[name="{{ form.district.vars.full_name }}"]'),
+    zipcode: $('[name="{{ form.zipcode.vars.full_name }}"]'),
+    zipcode1: $('[name="{{ form.zipcode1.vars.full_name }}"]'),
+    zipcode2: $('[name="{{ form.zipcode2.vars.full_name }}"]'),
+    locality: $('[name="{{ form.locality.vars.full_name }}"]'),
+    localityChina: $('.js-lc-selectAddressChina'),
+    localityTaiwanCity: $('.js-lc-selectAddressTaiwanCity'),
+    localityTaiwanArea: $('.js-lc-selectAddressTaiwanArea'),
+    street: $('[name="{{ form.street.vars.full_name }}"]'),
+  };
+  // form container Elements (there will be change display status by the selected country)
+  var $container = {
+    zipcode: $('.js-lc--zipcode'),
+    zipcodeJp: $('.js-lc--zipcodeJp'),
+    tel: $('.js-lc--tel'),
+    telJp: $('.js-lc--telJp'),
+    district: $('.js-lc--district'),
+    locality: $('.js-lc--locality'),
+    cityTw: $('.js-lc--cityTw'),
+    areaTw: $('.js-lc--areaTw'),
+  }
+
+  $form.country.each(function () {
+    var $containerParent = $(this).closest('ul');
+    adjustFormsWithCountry($containerParent);
+  });
+  $form.country.on('change', function () {
+    var $containerParent = $(this).closest('ul');
+    $containerParent.find($form.zipcode).val('');
+    $containerParent.find($form.locality).val('');
+    $containerParent.find($form.street).val('');
+    $containerParent.find($form.localityChina).val('');
+    $containerParent.find($form.localityTaiwanCity).val('').attr('data-value', '');
+    $containerParent.find($form.localityTaiwanArea).val('').attr('data-value', '');
+    adjustFormsWithCountry($containerParent);
+  });
+  function adjustFormsWithCountry ($containerParent) {
+
+    // Japan
+    if ($containerParent.find($form.country).val() == 1) {
+      $containerParent.find($container.zipcode).hide();
+      $containerParent.find($container.zipcodeJp).show();
+      $containerParent.find($container.tel).hide();
+      $containerParent.find($container.telJp).show();
+      $containerParent.find($container.district).show();
+      $containerParent.find($form.district).val('');
+      $containerParent.find($form.zipcode).val('');
+      $containerParent.find($form.zipcodeJp).val('');
+
+    // not Japan
+    } else {
+      $containerParent.find($container.zipcodeJp).hide();
+      $containerParent.find($container.tel).show();
+      $containerParent.find($container.telJp).hide();
+      $containerParent.find($container.district).hide();
+      $containerParent.find($form.district).val('国外');
+
+      // Hong Kong
+      if ($containerParent.find($form.country).val() == 20) {
+        $containerParent.find($form.zipcode).val('11111');
+        $containerParent.find($container.zipcode).hide();
+      
+      // not Hong Kong
+      } else {
+        $containerParent.find($container.zipcode).show();
+      }
+    }
+
+    // Taiwan
+    if ($containerParent.find($form.country).val() == 11) {
+      $containerParent.find($container.locality).hide();
+      $containerParent.find($container.cityTw).show();
+      $containerParent.find($container.areaTw).show();
+
+    // not Taiwan
+    } else {
+      $containerParent.find($container.locality).show();
+      $containerParent.find($container.cityTw).hide();
+      $containerParent.find($container.areaTw).hide();
+    }
+
+    // China
+    if ($containerParent.find($form.country).val() == 12) {
+      $containerParent.find($form.locality).hide();
+      $containerParent.find($form.localityChina).show();
+
+    // not China
+    } else {
+      $containerParent.find($form.locality).show();
+      $containerParent.find($form.localityChina).hide();
+    }
+  }
+
+  // UI: Taiwan
+  $.ajax({
+    url: '/assets/json/taiwan-area_201910.json'
+  }).done(function (taiwanArea) {
+    var $cityOptions = '<option value="">{{ 'selection.common.empty_value' | trans({}, 'clients') }}</option>';
+    Object.keys(taiwanArea).forEach(function (key) {
+      $cityOptions += '<option value="' + key + '">' + key + '</option>';
+    });
+    $form.localityTaiwanCity.html($cityOptions);
+    
+    $form.localityTaiwanArea.on('change', function () {
+      var $containerParent = $(this).closest('.js-lc--areaTw').parent().parent();
+      var selectedArea = String($(this).val()).split(':');
+      $(this).attr('data-value', $(this).val());
+      $containerParent.find($form.locality).val($containerParent.find($form.localityTaiwanCity).val() + selectedArea[0]);
+      $containerParent.find($form.zipcode).val(selectedArea[1]);
+    });
+    
+    $form.localityTaiwanCity.on('change', function () {
+      var $containerParent = $(this).closest('.js-lc--cityTw').parent().parent();
+      var $areaOptions = '<option value="">{{ 'selection.common.empty_value' | trans({}, 'clients') }}</option>';
+      var selectedCity = $(this).val();
+      $(this).attr('data-value', $(this).val());
+      for (var i = 0; i < taiwanArea[selectedCity].length; i++) {
+        $areaOptions += '<option value="' + taiwanArea[selectedCity][i][0] + ':' + taiwanArea[selectedCity][i][1] + '">' + taiwanArea[selectedCity][i][0] + '</option>';
+      }
+      $containerParent.find($form.localityTaiwanArea).html($areaOptions);
+      $containerParent.find($form.locality).val($(this).val());
+      $containerParent.find($form.zipcode).val('');
+      if ($containerParent.find($form.localityTaiwanArea).attr('data-value')) {
+        $containerParent.find($form.localityTaiwanArea).val($containerParent.find($form.localityTaiwanArea).attr('data-value')).trigger('change');
+      }
+    });
+
+    // initialize
+    $form.localityTaiwanCity.each(function () {
+      if ($(this).attr('data-value')) {
+        $(this).val($(this).attr('data-value')).trigger('change');
+      }
+    });
+    
+  });
+
+  // UI: China
+  if ($form.localityChina.length) {
+    var $lcSelectAddressClose = $('.js-lc-selectAddress__close');
+    var $selectAddressFrom = $('.lc-selectAddress');
+    var $selectAddressTabs = $('.lc-selectAddress__tabItem');
+    var $tabProvince = $selectAddressTabs.filter('#lc_selectAddress__tab1');
+    var $tabCity = $selectAddressTabs.filter('#lc_selectAddress__tab2');
+    var $tabArea = $selectAddressTabs.filter('#lc_selectAddress__tab3');
+    var $selectAddressLists =  $('.lc-selectAddress__list');
+    var $province =  $selectAddressLists.filter('#lc_selectAddress__province');
+    var $city =  $selectAddressLists.filter('#lc_selectAddress__city');
+    var $area =  $selectAddressLists.filter('#lc_selectAddress__area');
+    var address = ['', '', ''];
+    initializeSelectAddressChina();
+    $(window).on('pageshow', initializeSelectAddressChina);
+    function initializeSelectAddressChina () {
+      if ($form.localityChina.val() && !$form.locality.val()) {
+        var displayedAddress = String($form.localityChina.val()).split(' / ');
+        $form.locality.val(String($form.localityChina.val()).split(' / ').join(''));
+        if (displayedAddress.length < 3) {
+          address[1] = displayedAddress[0];
+          address[2] = displayedAddress[1];
+        } else {
+          for (var i = 0; i <= 3; i++) {
+            address[i] = displayedAddress[i];
+          }
+        }
+      }
+    }
+    $.ajax({
+      url: '/assets/json/china-area_201906.min.json'
+    }).done(function (chinaArea) {
+      var items = '';
+      var current = {
+        province: false,
+        city: false
+      }
+      for (var i = 0; i < chinaArea.length; i++) {
+        if ('city' in chinaArea[i]) {
+          items += '<li class="lc-selectAddress__listItem" data-value="' + chinaArea[i].name + '">' + chinaArea[i].name + '</li>';
+        } else {
+          var label = String(chinaArea[i].name).replace('市', '');
+          items += '<li class="lc-selectAddress__listItem" data-value="' + chinaArea[i].name + '" data-city="true">' + label + '</li>';
+        }
+        $province.html(items);
+      }
+      $form.localityChina.on('click', function () {
+        var $containerParent = $(this).closest('.js-lc--locality').parent().parent();
+        $selectAddressFrom
+          .css({
+            'width':  $containerParent.find($form.localityChina).outerWidth() + 'px',
+            'left': $containerParent.find($form.localityChina).offset().left + 'px',
+            'top': ($containerParent.find($form.localityChina).offset().top + $containerParent.find($form.localityChina).outerHeight() - 1) + 'px'
+          })
+          .addClass('is-active')
+          .data('containerParent', $containerParent);
+      });
+      $lcSelectAddressClose.on('click', function () {
+        $selectAddressFrom.removeClass('is-active');
+      });
+      $selectAddressTabs.on('click', function () {
+        var $tab = $(this);
+        if ($tab.attr('aria-disabled') != 'true') {
+          $selectAddressTabs.attr('aria-selected', 'false');
+          $tab.attr('aria-selected', 'true');
+          $selectAddressLists.attr('aria-hidden', 'true');
+          $('#' + $tab.attr('aria-controls')).attr('aria-hidden', 'false');
+        }
+      });
+      $province.children().on('click', function () {
+        var $item = $(this);
+        var $name = $item.data('value');
+        var isCity = $item.data('city');
+        $item.parent().children().attr('aria-selected', 'false');
+        $item.attr('aria-selected', 'true');
+        setCities($name, isCity);
+        if (isCity) {
+          address = ['', $name, ''];
+        } else {
+          address = [$name, '', ''];
+        }
+        setInput();
+        $selectAddressFrom.data('containerParent').find($form.zipcode).val('');
+      });
+      function setCities (parent, isParentCity) {
+        $city.empty();
+        for (var i = 0; i < chinaArea.length; i++) {
+          if (chinaArea[i].name == parent) {
+            current.province =  chinaArea[i];
+            if (isParentCity) {
+              current.city =  chinaArea[i];
+              $city.html('<li class="lc-selectAddress__listItem" data-value="' + parent + '" aria-selected="true">' + parent + '</li>');
+              setAreas(parent);
+              changeTab('area');
+            } else {
+              var items = '';
+              for (var ii = 0; ii < chinaArea[i].city.length; ii++) {
+                items += '<li class="lc-selectAddress__listItem" data-value="' + chinaArea[i].city[ii].name + '">' + chinaArea[i].city[ii].name + '</li>';
+              }
+              $city.html(items);
+              changeTab('city');
+            }
+          }
+        }
+        $city.children().on('click', function () {
+          var $item = $(this);
+          var $name = $item.data('value');
+          $item.parent().children().attr('aria-selected', 'false');
+          $item.attr('aria-selected', 'true');
+          setAreas($name);
+          changeTab('area');
+          address[1] = $name;
+          address[2] = '';
+          setInput();
+          $selectAddressFrom.data('containerParent').find($form.zipcode).val('').trigger('change');
+        });
+      }
+      function setAreas (parent) {
+        $area.empty();
+        if (!current.city) {
+          for (var i = 0; i < current.province.city.length; i++) {
+            if (current.province.city[i].name == parent) {
+              current.city = current.province.city[i];
+            }
+          }
+        }
+        var items = '';
+        for (var i = 0; i < current.city.area.length; i++) {
+          items += '<li class="lc-selectAddress__listItem" data-value="' + current.city.area[i].name + '" data-zipcode="' + current.city.area[i].zipcode + '">' + current.city.area[i].name + '</li>';
+        }
+        $area.html(items);
+        $area.children().on('click', function () {
+          var $item = $(this);
+          var $name = $item.data('value');
+          $item.parent().children().attr('aria-selected', 'false');
+          $item.attr('aria-selected', 'true');
+          $selectAddressFrom.removeClass('is-active');
+          address[2] = $name;
+          setInput();
+          $selectAddressFrom.data('containerParent').find($form.zipcode).val($item.data('zipcode')).trigger('change');
+        });
+      }
+      function changeTab (after) {
+        if (after == 'city') {
+          $province.attr('aria-hidden', 'true');
+          $city.attr('aria-hidden', 'false');
+          $selectAddressTabs.attr('aria-selected', 'false');
+          $tabCity.attr({
+            'aria-disabled': 'false',
+            'aria-selected': 'true'
+          });
+          $tabArea.attr({
+            'aria-disabled': 'true'
+          });
+        } else if (after == 'area') {
+          $province.attr('aria-hidden', 'true');
+          $city.attr('aria-hidden', 'true');
+          $area.attr('aria-hidden', 'false');
+          $selectAddressTabs.attr('aria-selected', 'false');
+          $tabCity.attr({
+            'aria-disabled': 'false',
+            'aria-selected': 'false'
+          });
+          $tabArea.attr({
+            'aria-disabled': 'false',
+            'aria-selected': 'true'
+          });
+        }
+      }
+      function setInput () {
+        var inputValue = '';
+        var viewedValue = '';
+        for (var i = 0; i < address.length; i++) {
+          if (address[i]) {
+            inputValue += address[i];
+            viewedValue += address[i] + ' / ';
+          }
+        }
+        viewedValue = viewedValue.slice(0, -3);
+        $selectAddressFrom.data('containerParent').find($form.locality).val(inputValue).trigger('change');
+        $selectAddressFrom.data('containerParent').find($form.localityChina).val(viewedValue);
+      }
+    });
+  }
+});
+</script>
