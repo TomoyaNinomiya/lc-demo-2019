@@ -23,7 +23,11 @@
   <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #create_account# }}</h1>
   <div class="lc-contentsInner lc-contentsInner--form">
     <p class="lc-contentSection__note lc-contentSection__note--center"><i class="is-required"></i>{{ #required_label# }}</p>
+    {%- if not form.vars.valid -%}
+      <p class="lc-contentSection__note error">{{ form_errors(form) }}</p>
+    {%- endif -%}
     <form class="h-adr" action="" method="POST" name="form1" id="form1" novalidate="novalidate">
+      {{ form_widget(form._token) }}
       <input type="hidden" class="p-country-name" value="Japan">
       <ul class="lc-form">
         <li class="lc-form__item">
