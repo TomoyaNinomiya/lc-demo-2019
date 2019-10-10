@@ -33,6 +33,7 @@ $RECYCLE.BIN/
 *node_modules/
 package-lock.json
 /dist/
+/dev_src/files/multi_lang/
 
 #Visual Studio Code
 /.vscode/
