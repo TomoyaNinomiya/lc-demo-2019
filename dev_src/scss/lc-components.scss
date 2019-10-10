@@ -919,6 +919,11 @@ textarea {
         color: $c_main;
         font-weight: bold;
       }
+      &.error,
+      &.is-error {
+        padding: 5px 13px;
+        font-size: 1.4rem!important;
+      }
     }
     small {
       display: inline-block;
@@ -938,6 +943,12 @@ textarea {
       &__detail {
         > .error {
           font-size: 1.2rem !important;
+        }
+      }
+      &__note {
+        &.error,
+        &.is-error {
+          font-size: 1.2rem!important;
         }
       }
     }

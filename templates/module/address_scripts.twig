@@ -13,7 +13,7 @@
 <div class="lc-selectAddress__bg js-lc-selectAddress__close"></div>
 <!-- / input form UI for chinese address　-->
 
-<script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <script>
 $(function () {
   //==========================================================
@@ -33,21 +33,39 @@ $(function () {
   }
 
   //==========================================================
+  // Confirm Ship Address
+  //==========================================================
+  if ($('.js-lc--confirmShipAddress').length) {
+    var $confirmShipAddressInput = $('.js-lc--confirmShipAddress');
+    confirmShipAddress();
+    $confirmShipAddressInput.on('change', function () {
+      confirmShipAddress();
+    });
+    function confirmShipAddress () {
+      if ($confirmShipAddressInput.prop('checked')) {
+        $('.js-lc--shipAddressArea').hide();
+      } else {
+        $('.js-lc--shipAddressArea').show();
+      }
+    }
+  }
+
+  //==========================================================
   // Adjust forms with selected Country
   //==========================================================
   // set valiables of Elements
   // form Elements (input, select, textarea)
   var $form = {
-    country: $('[name="{{ form.country.vars.full_name }}"]'),
-    district: $('[name="{{ form.district.vars.full_name }}"]'),
-    zipcode: $('[name="{{ form.zipcode.vars.full_name }}"]'),
-    zipcode1: $('[name="{{ form.zipcode1.vars.full_name }}"]'),
-    zipcode2: $('[name="{{ form.zipcode2.vars.full_name }}"]'),
-    locality: $('[name="{{ form.locality.vars.full_name }}"]'),
+    country: $('[name="{{ form.country.vars.full_name }}"]{% if form.ship_country is defined %}, [name="{{ form.ship_country.vars.full_name }}"]{% endif %}'),
+    district: $('[name="{{ form.district.vars.full_name }}"]{% if form.ship_district is defined %}, [name="{{ form.ship_district.vars.full_name }}"]{% endif %}'),
+    zipcode: $('[name="{{ form.zipcode.vars.full_name }}"]{% if form.ship_zipcode is defined %}, [name="{{ form.ship_zipcode.vars.full_name }}"]{% endif %}'),
+    zipcode1: $('[name="{{ form.zipcode1.vars.full_name }}"]{% if form.ship_zipcode1 is defined %}, [name="{{ form.ship_zipcode1.vars.full_name }}"]{% endif %}'),
+    zipcode2: $('[name="{{ form.zipcode2.vars.full_name }}"]{% if form.ship_zipcode2 is defined %}, [name="{{ form.ship_zipcode2.vars.full_name }}"]{% endif %}'),
+    locality: $('[name="{{ form.locality.vars.full_name }}"]{% if form.ship_locality is defined %}, [name="{{ form.ship_locality.vars.full_name }}"]{% endif %}'),
     localityChina: $('.js-lc-selectAddressChina'),
     localityTaiwanCity: $('.js-lc-selectAddressTaiwanCity'),
     localityTaiwanArea: $('.js-lc-selectAddressTaiwanArea'),
-    street: $('[name="{{ form.street.vars.full_name }}"]'),
+    street: $('[name="{{ form.street.vars.full_name }}"]{% if form.ship_street is defined %}, [name="{{ form.ship_street.vars.full_name }}"]{% endif %}'),
   };
   // form container Elements (there will be change display status by the selected country)
   var $container = {
@@ -132,6 +150,15 @@ $(function () {
     }
   }
 
+  // Japan Zipcode
+  $form.zipcode2.on('keyup', function () {
+    if ($(this).filter('[name="{{ form.zipcode2.vars.full_name }}"]').length) {
+      AjaxZip3.zip2addr('{{ form.zipcode1.vars.full_name }}','{{ form.zipcode2.vars.full_name }}','{{ form.district.vars.full_name }}', '{{ form.locality.vars.full_name }}', '{{ form.street.vars.full_name }}');
+    }{% if form.ship_zipcode2 is defined %} else if ($(this).filter('[name="{{ form.ship_zipcode2.vars.full_name }}"]').length) {
+      AjaxZip3.zip2addr('{{ form.ship_zipcode1.vars.full_name }}','{{ form.ship_zipcode2.vars.full_name }}','{{ form.ship_district.vars.full_name }}', '{{ form.ship_locality.vars.full_name }}', '{{ form.ship_street.vars.full_name }}');
+    }{% endif %} 
+  });
+
   // UI: Taiwan
   $.ajax({
     url: '/assets/json/taiwan-area_201910.json'
@@ -211,6 +238,46 @@ $(function () {
       var current = {
         province: false,
         city: false
+      }
+      if ($form.locality.val() && !$form.localityChina.val()) {
+        var registedLocality = $form.locality.val();
+        var registedLocalityTmp = registedLocality;
+        var localityChinaValue = '';
+        var registedProvinceIndex = -1;
+        var registedCityIndex = -1;
+        var registedAreaIndex = -1;
+        for (var i = 0; i < chinaArea.length; i++) {
+          if (registedLocality.indexOf(chinaArea[i].name) === 0) {
+            registedProvinceIndex = i;
+          }
+        }
+        localityChinaValue += chinaArea[registedProvinceIndex].name;
+        registedLocalityTmp = registedLocalityTmp.slice(chinaArea[registedProvinceIndex].name.length);
+        if ('city' in chinaArea[registedProvinceIndex]) {
+          for (var i = 0; i < chinaArea[registedProvinceIndex].city.length; i++) {
+            if (registedLocalityTmp.indexOf(chinaArea[registedProvinceIndex].city[i].name) === 0) {
+              registedCityIndex = i;
+            }
+          }
+          localityChinaValue += ' / ' + chinaArea[registedProvinceIndex].city[registedCityIndex].name;
+          registedLocalityTmp = registedLocalityTmp.slice(chinaArea[registedProvinceIndex].city[registedCityIndex].name.length);
+          if ('area' in chinaArea[registedProvinceIndex].city[registedCityIndex]) {
+            for (var i = 0; i < chinaArea[registedProvinceIndex].city[registedCityIndex].area.length; i++) {
+              if (registedLocalityTmp.indexOf(chinaArea[registedProvinceIndex].city[registedCityIndex].area[i].name) === 0) {
+                registedAreaIndex = i;
+              }
+            }
+            localityChinaValue += ' / ' + chinaArea[registedProvinceIndex].city[registedCityIndex].area[registedAreaIndex].name;
+          }
+        } else {
+          for (var i = 0; i < chinaArea[registedProvinceIndex].area.length; i++) {
+            if (registedLocalityTmp.indexOf(chinaArea[registedProvinceIndex].area[i].name) === 0) {
+              registedAreaIndex = i;
+            }
+          }
+          localityChinaValue += ' / ' + chinaArea[registedProvinceIndex].area[registedCityIndex].name;
+        }
+        $form.localityChina.val(localityChinaValue);
       }
       for (var i = 0; i < chinaArea.length; i++) {
         if ('city' in chinaArea[i]) {

@@ -9,6 +9,18 @@
   </div>
 </div>
 
+{# Modal: Confirm #}
+<div class="lc-modal" id="modalConfirm">
+  <div class="lc-modal__bg js-lc--closeModal"></div>
+  <div class="lc-modal__body">
+    <p class="js-lc--modalConfirm lc-align--center"></p>
+    <p class="lc-modal__buttons">
+      <button class="lc-button--submit js-lc--submitModalConfirm" type="button"><span class="lc-button__label">OK</span><i class="lc-button__icon lc-icon--check"></i></button>
+      <button class="lc-button--cancel js-lc--closeModal" type="button"><i class="lc-button__icon lc-icon--close"></i><span class="lc-button__label">Cancel</span></button>
+    </p>
+  </div>
+</div>
+
 <script>
 $(function () {
   var $window = $(window);
@@ -37,7 +49,7 @@ $(function () {
    */
   window.openModalNotice = function (notice, autoCloseTime) {
     $('.lc-modal').removeClass('is-active');
-    $modalNotice.find('.js-lc--modalNotice').text(notice);
+    $modalNotice.find('.js-lc--modalNotice').html(notice);
     $modalNotice.find('.lc-modal__body').css({
       top: ($window.scrollTop() + 60) + 'px'
     });
@@ -47,6 +59,28 @@ $(function () {
         $modalNotice.removeClass('is-active');
       }, autoCloseTime);
     }
+  }
+
+  // open modal of confirm
+  var $modalConfirm = $('.lc-modal#modalConfirm');
+  /**
+   * global function: open modal of confirm
+   * @param {String}   confirmMessage   - confirm text (default: confirm delete)
+   * @param {Function} onConfirm - callback on confirm
+   */
+  window.openModalConfirm = function (confirmMessage, onConfirm) {
+    confirmMessage = confirmMessage ? confirmMessage : '{{ #message_confirm_delete# | raw }}<br><br>';
+    $('.js-lc--submitModalConfirm').off('click');
+    $('.lc-modal').removeClass('is-active');
+    $modalConfirm.find('.js-lc--modalConfirm').html(confirmMessage);
+    $modalConfirm.find('.lc-modal__body').css({
+      top: ($window.scrollTop() + 60) + 'px'
+    });
+    $modalConfirm.addClass('is-active');
+    $('.js-lc--submitModalConfirm').on('click', function () {
+      onConfirm();
+      $modalNotice.removeClass('is-active');
+    });
   }
 
   //==========================================================

@@ -23,7 +23,7 @@
   <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #create_account# }}</h1>
   <div class="lc-tab lc-tab--form">
     <div class="lc-tab__list">
-      <a href="{{ path('application_frontend_auth_regist') }}"  class="lc-tab__tab">{{ #login_label# }}</a>
+      <a href="{{ path('application_frontend_auth_login') }}"  class="lc-tab__tab">{{ #login_label# }}</a>
       <div class="lc-tab__tab is-active">{{ #create_account# }}</div>
     </div>
     <div class="lc-tab__panel is-active">
@@ -31,9 +31,8 @@
       {%- if not form.vars.valid -%}
         <p class="lc-contentSection__note error">{{ form_errors(form) }}</p>
       {%- endif -%}
-      <form class="h-adr" action="" method="POST" name="form1" id="form1" novalidate="novalidate">
+      <form action="" method="POST" name="form1" id="form1" novalidate="novalidate">
         {{ form_widget(form._token) }}
-        <input type="hidden" class="p-country-name" value="Japan">
         <ul class="lc-form">
           <li class="lc-form__item">
             <div class="lc-form__columns">
@@ -62,9 +61,9 @@
               <h4 class="lc-form__title is-required">{{ 'label.consumer.country' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
                 {{ form_widget(form.country) }}
-                {% if not form.country.vars.valid %}<span class="is-error error">{{ form_errors(form.country) }}</span>{% endif %}
               </p>
             </label>
+            {% if not form.country.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.country) }}</p>{% endif %}
           </li>
           <li class="lc-form__item">
             <label class="lc-form__label lc-form__label--half">
@@ -135,7 +134,7 @@
                 <label class="lc-form__label">
                   <h4 class="lc-form__title is-required">{{ 'label.consumer.zipcode' | trans({}, 'clients') }}</h4>
                   <p class="lc-form__detail">
-                    {{ form_widget(form.zipcode1, { attr: { class: 'p-postal-code' } }) }}
+                    {{ form_widget(form.zipcode1) }}
                   </p>
                 </label>
               </div>
@@ -143,7 +142,7 @@
               <div class="lc-form__column lc-form__column--natural">
                 <label class="lc-form__label">
                   <p class="lc-form__detail">
-                    {{ form_widget(form.zipcode2, { attr: { class: 'p-postal-code' } }) }}
+                    {{ form_widget(form.zipcode2) }}
                   </p>
                 </label>
               </div>
@@ -161,7 +160,7 @@
             <label class="lc-form__label">
               <h4 class="lc-form__title is-required">{{ 'label.consumer.district' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
-                {{ form_widget(form.district, { attr: { class: 'p-region' } }) }}
+                {{ form_widget(form.district) }}
                 {% if not form.district.vars.valid %}<span class="is-error error">{{ form_errors(form.district) }}</span>{% endif %}
               </p>
             </label>
@@ -170,7 +169,7 @@
             <label class="lc-form__label js-lc--locality">
               <h4 class="lc-form__title is-required">{{ 'label.consumer.locality' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
-                {{ form_widget(form.locality, { attr: { class: 'js-lc-selectAddress__input p-locality' } }) }}
+                {{ form_widget(form.locality, { attr: { class: 'js-lc-selectAddress__input' } }) }}
                 <input type="text" class="js-lc-selectAddressChina" name="locality_china" value="{{ app.request.get('locality_china') }}" readonly>
               </p>
             </label>
@@ -191,7 +190,7 @@
             <label class="lc-form__label">
               <h4 class="lc-form__title is-required">{{ 'label.consumer.street' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
-                {{ form_widget(form.street, { attr: { class: 'p-street-address p-extended-address' } }) }}
+                {{ form_widget(form.street) }}
                 {% if not form.street.vars.valid %}<span class="is-error error">{{ form_errors(form.street) }}</span>{% endif %}
               </p>
             </label>
@@ -201,18 +200,18 @@
               <h4 class="lc-form__title is-required">{{ 'label.consumer.currency' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
                 {{ form_widget(form.currency) }}
-                {% if not form.currency.vars.valid %}<span class="is-error error">{{ form_errors(form.currency) }}</span>{% endif %}
               </p>
             </label>
+            {% if not form.currency.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.currency) }}</p>{% endif %}
           </li>
           <li class="lc-form__item">
             <label class="lc-form__label lc-form__label--select">
               <h4 class="lc-form__title is-required">{{ 'label.consumer.language' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
                 {{ form_widget(form.language) }}
-                {% if not form.language.vars.valid %}<span class="is-error error">{{ form_errors(form.language) }}</span>{% endif %}
               </p>
             </label>
+            {% if not form.language.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.language) }}</p>{% endif %}
           </li>
           <li class="lc-form__item">
             <div class="lc-form__columns">
