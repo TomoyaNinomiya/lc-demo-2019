@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="lc-productInfo__detail__item">
                                   <dt class="lc-productInfo__detail__label">{{ #weight_label# }}</dt>
-                                  <dd class="lc-productInfo__detail__detail">{{ productsku.getWeight * product_array[1]|number_format }}</span>g</dd>
+                                  <dd class="lc-productInfo__detail__detail">{{ (productsku.getWeight * product_array[1])|number_format }}</span>g</dd>
                                 </div>
                                 <div class="lc-productInfo__detail__item">
                                   <dt class="lc-productInfo__detail__label">{{ #quantity_label# }}{% if (product_array[2] > 0) %} / {{ #regular_interval_label# }}{% endif %}</dt>
@@ -206,7 +206,7 @@
                                     {{ product_array[1]|number_format }}
                                     {%- if (product_array[2] > 0) -%}
                                       &nbsp;/&nbsp;
-                                      {% set regularInt = em.find('EcCoreBundle:RegularInterval',  product_array[2]) %}
+                                      {% set regularInt = get_entity_manager().find('EcCoreBundle:RegularInterval',  product_array[2]) %}
                                       {{ regularInt.getValue }}{{ ('regular.units.regular_interval.each_' ~ regularInt.getUnit) |trans({}, 'clients') }}
                                     {%- endif -%}
                                   </dd>

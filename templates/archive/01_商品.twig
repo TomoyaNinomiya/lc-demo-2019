@@ -170,6 +170,23 @@
             </div>
           </dl>
 
+          {%- if product.isRegular -%}
+            <dl class="skuList">
+              <div class="skuList__item">
+                <dt class="skuList__label">{{ #regular_interval_label# }}</dt>
+                <dd class="skuList__detail">
+                  <div class="lc-selectBox">
+                    <select class="lc-selectBox__select" name="regular_int">
+                      {%- for interval in product.getRegularIntervals -%}
+                        <option value="{{ interval.id }}">{{ interval.value }}{{ ('regular.units.regular_interval.each_' ~ interval.unit)|trans({}, 'clients') }}</option>
+                      {%- endfor -%}
+                    </select>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          {%- endif -%}
+
           <p class="cartInArea__actions">
             {# Cartin #}
             <button class="lc-button--submit lc-button--action js-lc--cartin" type="submit"><span class="lc-button__label">{{ #cart_in# }}</span><i class="lc-button__icon lc-icon--cart"></i></button>

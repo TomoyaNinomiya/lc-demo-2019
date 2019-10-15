@@ -82,7 +82,7 @@
             <div class="blogArchive__status">
               <p class="pageCategory">{%- if page.categories[1].getTransAttribute(lang_id) -%}{{ page.categories[1].getTransAttribute(lang_id) }}{%- else -%}{{ page.categories[1].name }}{%- endif -%}</p>
               <p class="pageDate">
-                <time datetime="page.getReleasedAt|date('Y-m-d')">{{ page.getReleasedAt|date('Y.m.d') }}</time>
+                <time datetime="{{ page.getReleasedAt|date('Y-m-d') }}">{{ page.getReleasedAt|date('Y.m.d') }}</time>
               </p>
             </div>
             <div class="blogArchive__title">{{ page.title|striptags }}</div>

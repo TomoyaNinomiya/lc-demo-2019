@@ -69,7 +69,9 @@
             {%- endfor -%}
 
             {# add list #}
-            <li class="lc-shipList__item"><a class="lc-shipList__box lc-shipList__box--button" href="{{ path('ec_client_consumer_address_add') }}"><i class="lc-icon--plus"></i>{{ #add_address_label# }}</a></li>
+            {%- if (addresses|length < 20) -%}
+              <li class="lc-shipList__item"><a class="lc-shipList__box lc-shipList__box--button" href="{{ path('ec_client_consumer_address_add') }}"><i class="lc-icon--plus"></i>{{ #add_address_label# }}</a></li>
+            {%- endif -%}
 
             {# select multiple address #}
             {%- if ((addresses|length > 1) and (cart_api.hasProductRegular == false)) and (cart_api.count > 1) -%}

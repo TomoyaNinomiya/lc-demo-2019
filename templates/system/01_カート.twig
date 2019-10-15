@@ -157,7 +157,7 @@
                         <span class="lc-selectBox">
                           <select class="lc-selectBox__select js-lc--changeCart" name="regular_int[{{ productsku.id }}]">
                             {%- for regularInterval in productsku.product.regularIntervals -%}
-                              <option value="{{ regularInterval.id }}" {% if (regularInterval.id == cart_object.regularInt) %}selected="selected"{% endif %}>{{ regularInterval.value }}{{ ('entity.units.regular_interval.' ~ regularInterval.unit)|trans }}</option>
+                              <option value="{{ regularInterval.id }}" {% if (regularInterval.id == cart_object.regularInt) %}selected="selected"{% endif %}>{{ regularInterval.value }}{{ ('regular.units.regular_interval.each_' ~ regularInterval.unit)|trans({}, 'clients') }}</option>
                             {%- endfor -%}
                           </select>
                         </span>

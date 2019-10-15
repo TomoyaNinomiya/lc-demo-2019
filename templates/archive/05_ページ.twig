@@ -55,7 +55,7 @@
           <p class="pageCategory">{{ hierarchyPrimaryCategory[0].getTransAttribute(lang_id) ? hierarchyPrimaryCategory[0].getTransAttribute(lang_id) : hierarchyPrimaryCategory[0].name }}</p>
           {# date #}
           <p class="pageDate">
-            <time datetime="page.getReleasedAt|date('Y-m-d')">{{ page.getReleasedAt|date('Y.m.d') }}</time>
+            <time datetime="{{ page.getReleasedAt|date('Y-m-d') }}">{{ page.getReleasedAt|date('Y.m.d') }}</time>
           </p>
         </div>
         {# sns buttons #}

@@ -1,0 +1,86 @@
+{# Reference: https://launchcart.jp/reference/11%e3%83%9e%e3%82%a4%e3%83%9a%e3%83%bc%e3%82%b8-%e8%b3%bc%e5%85%a5%e5%b1%a5%e6%ad%b4/ #}
+
+{# Variables Settings #}
+
+{# insert to html head title #}
+{%- set title = #purchase_history_label# -%}
+
+{# get base currency unit #}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
+
+{# end Variables Settings #}
+
+{% TemplateInclude "header" %}
+
+{# Contents #}
+
+{# Breadcrumb list (this variable setting method is written in module template "breadcrumb list") #}
+{%- set breadcrumbList = [] -%}
+{%- set breadcrumbListItems = [
+    {
+      name: #mypage_label# ,
+      href: path('ec_client_consumer')
+    },
+    {
+      name: #purchase_history_label# ,
+      href: app.request.uri
+    }
+  ]
+-%}
+{%- set breadcrumbList = breadcrumbList|merge(breadcrumbListItems) -%}
+{% TemplateInclude "breadcrumb list" %}
+
+<section class="lc-contentSection">
+  <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #purchase_history_label# }}</h1>
+
+  <div class="lc-tab">
+    <div class="lc-tab__list" role="tablist">
+      <a class="lc-tab__tab" href="{{ path('ec_client_consumer_history') }}">{{ #all_label# }}</a>
+      <div class="lc-tab__tab is-active">{{ #subscription_label# }}</div>
+    </div>
+    <div class="lc-tab__panel is-active">
+      <p class="lc-pagingNavi">{{ #pagingnavi_prev# }} <em>{{ _pager.adapter.getTotalResults|number_format }}</em> {{ #pagingnavi_next# }}<br><br></p>
+      <ul class="lc-list">
+        {%- for result in _pager.getResults -%}
+          {%- set productsku = result.getProductSku -%}
+          {%- set product = productsku.product -%}
+          <li class="lc-productInfo">
+            <figure class="lc-productInfo__figure">
+              <a class="lc-productInfo__figure__inner" href="{{ path('ec_client_consumer_regular_detail', {'id': result.id}) }}">
+                <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="product name"/>
+              </a>
+            </figure>
+            <div class="lc-productInfo__text">
+              <h2 class="lc-productInfo__name"><a href="{{ path('ec_client_consumer_regular_detail', {'id': result.id}) }}">{{ product.name }}</a></h2>
+              <div class="lc-productInfo__detail">
+                <dl class="lc-productInfo__detail__list">
+                  <div class="lc-productInfo__detail__item">
+                    <dt class="lc-productInfo__detail__label">{{ #next_delivery_date# }}</dt>
+                    <dd class="lc-productInfo__detail__detail">{{ (result.getNextDeliveryMonth ~ '-' ~ result.getArriveDay(true))|date("Y.m.d") }}</dd>
+                  </div>
+                  <div class="lc-productInfo__detail__item">
+                    <dt class="lc-productInfo__detail__label">{{ #purchase_date_label# }}</dt>
+                    <dd class="lc-productInfo__detail__detail">{{ result.getCreatedAt|date("Y.m.d H:i") }}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <div class="archiveGuide">
+        {% RenderPager %}
+      </div>
+    </div>
+  </div>
+
+  {# mypage navi #}
+  {% TemplateInclude "mypage navi" %}
+
+</section>
+
+{# end Contents #}
+
+{% TemplateInclude "footer" %}

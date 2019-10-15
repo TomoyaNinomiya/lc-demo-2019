@@ -1,3 +1,5 @@
+{# Reference: https://launchcart.jp/reference/8%e3%83%9e%e3%82%a4%e3%83%9a%e3%83%bc%e3%82%b8-%e3%81%8a%e5%b1%8a%e3%81%91%e5%85%88%e7%99%bb%e9%8c%b2/ #}
+
 {# Variables Settings #}
 
 {# insert to html head title #}
@@ -172,6 +174,7 @@
       </ul>
       <p class="lc-contentsInner__buttons">
         <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></button>
+        <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
       {% TemplateInclude "address scripts" %}
     </form>

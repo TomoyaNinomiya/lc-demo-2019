@@ -149,7 +149,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
             <div class="newsArchive__status">
               <p class="pageCategory">{%- if newsPage.categories[1].getTransAttribute(lang_id) -%}{{ newsPage.categories[1].getTransAttribute(lang_id) }}{%- else -%}{{ newsPage.categories[1].name }}{%- endif -%}</p>
               <p class="pageDate">
-                <time datetime="newsPage.getReleasedAt|date('Y-m-d')">{{ newsPage.getReleasedAt|date('Y.m.d') }}</time>
+                <time datetime="{{ newsPage.getReleasedAt|date('Y-m-d') }}">{{ newsPage.getReleasedAt|date('Y.m.d') }}</time>
               </p>
             </div>
             <div class="newsArchive__title">{{ newsPage.title|striptags }}</div>
@@ -176,7 +176,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
           <div class="blogArchive__status">
             <p class="pageCategory">{%- if blogPage.categories[1].getTransAttribute(lang_id) -%}{{ blogPage.categories[1].getTransAttribute(lang_id) }}{%- else -%}{{ blogPage.categories[1].name }}{%- endif -%}</p>
             <p class="pageDate">
-              <time datetime="blogPage.getReleasedAt|date('Y-m-d')">{{ blogPage.getReleasedAt|date('Y.m.d') }}</time>
+              <time datetime="{{ blogPage.getReleasedAt|date('Y-m-d') }}">{{ blogPage.getReleasedAt|date('Y.m.d') }}</time>
             </p>
           </div>
           <div class="blogArchive__title">{{ blogPage.title|striptags }}</div>

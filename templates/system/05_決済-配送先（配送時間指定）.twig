@@ -86,8 +86,15 @@
                             <div class="lc-productInfo__detail">
                               <dl class="lc-productInfo__detail__list">
                                 <div class="lc-productInfo__detail__item">
-                                  <dt class="lc-productInfo__detail__label">{{ #quantity_label# }}</dt>
-                                  <dd class="lc-productInfo__detail__detail">{{ product_array[1]|number_format }}</dd>
+                                  <dt class="lc-productInfo__detail__label">{{ #quantity_label# }}{% if  (cart_api.getRegularInt(productsku) > 0) %}/{{ #regular_interval_label# }}{% endif %}</dt>
+                                  <dd class="lc-productInfo__detail__detail">
+                                    {{ product_array[1]|number_format }}
+                                    {%- if (product_array[2] > 0) -%}
+                                      /
+                                      {%- set regularInt = get_entity_manager().find('EcCoreBundle:RegularInterval',  product_array[2]) -%}
+                                      {{ regularInt.getValue }}{{ ('regular.units.regular_interval.each_' ~ regularInt.getUnit) |trans({}, 'clients') }}
+                                    {%- endif -%}
+                                  </dd>
                                 </div>
                               </dl>
                             </div>
