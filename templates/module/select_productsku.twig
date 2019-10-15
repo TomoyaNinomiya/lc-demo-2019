@@ -156,14 +156,14 @@
   
         if ((hasSku1 && $form.sku1.filter(':checked').length === 0) || (hasSku2 && $form.sku2.filter(':checked').length === 0)) {
           $form.cartin.addClass('is-disabled');
-          $displayPrice.price.text(price_format(curRatio * productSkus[0].basePrice));
+          $displayPrice.price.text(price_format(curRatio * productSkus[0].basePrice, {{ decimalPoint }}));
           $displayPrice.basePrice.text(number_format(productSkus[0].basePrice));
           $form.quantity.find('option')
             .show()
             .prop('disabled', false);
         } else {
           $form.cartin.removeClass('is-disabled');
-          $displayPrice.price.text(price_format(curRatio * selectedSku.basePrice));
+          $displayPrice.price.text(price_format(curRatio * selectedSku.basePrice, {{ decimalPoint }}));
           $displayPrice.basePrice.text(number_format(selectedSku.basePrice));
           $form.quantity.find('option')
             .show()
@@ -190,24 +190,6 @@
       });
     }
   });
-  
-  /**
-    * 数値を小数点固定の価格表記へ変換
-    * @param {Number} num - 変換したい数値
-    */
-  function price_format(num) {
-    return number_format(parseFloat(num).toFixed(2));
-  }
-  
-  /**
-    * 数値をカンマつきの数値表記へ変換
-    * @param {Number} num - 変換したい数値
-    */
-  function number_format (num) {
-    var parts = num.toString().split('.');
-    parts[0] = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-    return parts.join('.');
-  }
 </script>
 
 {%- endif -%}
