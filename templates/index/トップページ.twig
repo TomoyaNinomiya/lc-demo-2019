@@ -12,7 +12,9 @@
 {% set title = "top" %}
 
 {# get base currency unit #}
-{% set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] %}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
 {# load current date #}
 {% set now = "now"|date("Y-m-d H:i:s") %}
@@ -69,7 +71,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
               <p class="productArchive__price">
                 <span class="productArchive__price__main">{{ #unitFront# }}{{ (minPrice * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}{% if isMultiplePrices %}-{% endif %}</span>
                 {%- if curRatio != 1 -%}
-                  <small class="productArchive__price__sub">({{ minPrice|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                  <small class="productArchive__price__sub">({{ baseUnitFront }}{{ minPrice|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                 {%- endif -%}
               </p>
             </a>
@@ -122,7 +124,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
               <p class="productArchive__price">
                 <span class="productArchive__price__main">{{ #unitFront# }}{{ (minPrice * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}{% if isMultiplePrices %}-{% endif %}</span>
                 {%- if curRatio != 1 -%}
-                  <small class="productArchive__price__sub">({{ minPrice|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                  <small class="productArchive__price__sub">({{ baseUnitFront }}{{ minPrice|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                 {%- endif -%}
               </p>
             </a>

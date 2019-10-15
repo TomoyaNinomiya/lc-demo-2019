@@ -43,7 +43,7 @@
               <dd class="lc-productInfo__detail__detail">
                 {{ #unitFront# }}{{ (minPrice * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}{% if isMultiplePrices %}-{% endif %}
                 {%- if curRatio != 1 -%}
-                  <small class="productArchive__price__sub">({{ minPrice|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                  <small class="productArchive__price__sub">({{ baseUnitFront }}{{ minPrice|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                 {%- endif -%}
               </dd>
             </div>

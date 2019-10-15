@@ -6,7 +6,9 @@
 {%- set title = #review_title# ~ ' | ' ~product.name -%}
 
 {# get base currency unit #}
-{% set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] %}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
 {# set primary category #}
 {%- set excludedCategories = #excluded_categories# |split(',') -%}

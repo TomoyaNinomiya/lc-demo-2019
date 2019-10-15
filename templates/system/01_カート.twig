@@ -34,7 +34,9 @@
   {%- set title = #cart_label# -%}
 
   {# get base currency unit #}
-  {%- set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] -%}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
   {# end Variables Settings #}
 
@@ -88,7 +90,7 @@
           <strong>
             {{ #unitFront# }}<span class="js-lc--cartTotal">{{ (cart_api.total * curRatio)|price_format(decimalPoint) }}</span>{{ #unitBack# }}
             {%- if curRatio != 1 -%}
-              <small class="productArchive__price__sub">(<span class="js-lc--cartTotalBase">{{ cart_api.total|price_format(decimalPoint) }}</span>{{ baseCurrencyUnit }})</small>
+              <small class="productArchive__price__sub">({{ baseUnitFront }}<span class="js-lc--cartTotalBase">{{ cart_api.total|price_format(decimalPoint) }}</span>{{ baseUnitBack }})</small>
             {%- endif -%}
           </strong>
         </p>
@@ -124,7 +126,7 @@
                         <dd class="lc-productInfo__detail__detail">
                           {{ #unitFront# }}{{ (productsku.price * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
                           {%- if curRatio != 1 -%}
-                            <small class="productArchive__price__sub">({{ productsku.price|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                            <small class="productArchive__price__sub">({{ baseUnitFront }}{{ productsku.price|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                           {%- endif -%}
                         </dd>
                       </div>
@@ -177,7 +179,7 @@
                               <dd class="lc-productInfo__detail__detail">
                                 {{ #unitFront# }}{{ (addition.price * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
                                 {%- if curRatio != 1 -%}
-                                  <small class="productArchive__price__sub">({{ addition.price|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                                  <small class="productArchive__price__sub">({{ baseUnitFront }}{{ addition.price|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                                 {%- endif -%}
                               </dd>
                             </div>

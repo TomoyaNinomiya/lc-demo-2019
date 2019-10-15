@@ -1,3 +1,5 @@
+{# Reference: https://launchcart.jp/reference/6-%e6%b1%ba%e6%b8%88-%e6%94%af%e6%89%95%e5%85%a5%e5%8a%9b/ #}
+
 {# Variables Settings #}
 
 {# insert to html head title #}
@@ -8,7 +10,9 @@
 {% set convenienceStores = ['lawson', 'family_mart', 'sunkus', 'circle_k', 'mini', 'daily', 'seven_ele', 'seico', 'three_f'] %}
 
 {# get base currency unit #}
-{%- set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] -%}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
 {# end Variables Settings #}
 
@@ -41,7 +45,7 @@
           <strong>
             {{ #unitFront# }}{{ (total_without_delivery_fee * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
             {%- if curRatio != 1 -%}
-              <small class="productArchive__price__sub">({{ total_without_delivery_fee|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+              <small class="productArchive__price__sub">({{ baseUnitFront }}{{ total_without_delivery_fee|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
             {%- endif -%}
           </strong>
         </dd>
@@ -52,7 +56,7 @@
           <strong>
             {{ #unitFront# }}{{ (delivery_fee_total * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
             {%- if curRatio != 1 -%}
-              <small class="productArchive__price__sub">({{ delivery_fee_total|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+              <small class="productArchive__price__sub">({{ baseUnitFront }}{{ delivery_fee_total|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
             {%- endif -%}
           </strong>
         </dd>

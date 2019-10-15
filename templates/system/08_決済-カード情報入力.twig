@@ -1,11 +1,9 @@
+{# Reference: https://launchcart.jp/reference/8-%e6%b1%ba%e6%b8%88-%e3%82%ab%e3%83%bc%e3%83%89%e6%83%85%e5%a0%b1%e5%85%a5%e5%8a%9b/ #}
+
 {# Variables Settings #}
 
 {# insert to html head title #}
 {%- set title = #enter_credit_card_info_label# -%}
-
-{# convenience store payment #}
-{% set convenienceSettlement = false %}
-{% set convenienceStores = ['lawson', 'family_mart', 'sunkus', 'circle_k', 'mini', 'daily', 'seven_ele', 'seico', 'three_f'] %}
 
 {# get base currency unit #}
 {%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}

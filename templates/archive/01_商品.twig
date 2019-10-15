@@ -6,7 +6,9 @@
 {%- set title = product.name -%}
 
 {# get base currency unit #}
-{%- set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] -%}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
 {# flag of subscription #}
 {%- set isRegular = product.productType == 'regular' ? true : false -%}
@@ -140,7 +142,7 @@
       <p class="productMainSection__price">
         <em>{{ unitFront }}<span class="js-lc--price">{{ (productskus[defaultSkuNum].price * curRatio)|price_format(decimalPoint) }}</span>{{ unitBack }}</em>
         {%- if curRatio != 1 -%}
-          <small>(<span class="js-lc--basePrice">{{ productskus[defaultSkuNum].price|price_format(decimalPoint) }}</span>{{ baseCurrencyUnit }})</small>
+          <small>(<span class="js-lc--basePrice">{{ baseUnitFront }}{{ productskus[defaultSkuNum].price|price_format(decimalPoint) }}</span>{{ baseUnitBack }})</small>
         {%- endif -%}
       </p>
 
@@ -192,7 +194,7 @@
                     <p class="additionsForm__price">
                       <em>{{ unitFront }}{{ (addition.price * curRatio)|price_format(decimalPoint) }}{{ unitBack }}</em>
                       {%- if curRatio != 1 -%}
-                        <small>({{ addition.price|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                        <small>({{ baseUnitFront }}{{ addition.price|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                       {%- endif -%}
                     </p>
                     {# description of optional product #}
@@ -333,7 +335,7 @@
               <p class="productArchive__price">
                 <span class="productArchive__price__main">{{ #unitFront# }}{{ (minPrice * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}{% if isMultiplePrices %}-{% endif %}</span>
                 {%- if curRatio != 1 -%}
-                  <small class="productArchive__price__sub">({{ minPrice|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                  <small class="productArchive__price__sub">({{ baseUnitFront }}{{ minPrice|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                 {%- endif -%}
               </p>
             </a>

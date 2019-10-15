@@ -1,3 +1,5 @@
+{# Reference: https://launchcart.jp/reference/7-%e6%b1%ba%e6%b8%88-%e7%a2%ba%e8%aa%8d/ #}
+
 {# Variables Settings #}
 
 {# insert to html head title #}
@@ -7,7 +9,9 @@
 {% set security_user_rank = is_granted('ROLE_USER') ? app.security.token.user.rank : null %}
 
 {# get base currency unit #}
-{%- set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] -%}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
 {# end Variables Settings #}
 
@@ -43,42 +47,42 @@
             <th>{{ #total_products_price_label# }}</th>
             <td><em>{{ #unitFront# }}{{ (productTotal * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}</em></td>
             {%- if curRatio != 1 -%}
-              <td>({{ productTotal|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</td>
+              <td>({{ baseUnitFront }}{{ productTotal|price_format(decimalPoint) }}{{ baseUnitBack }})</td>
             {%- endif -%}
           </tr>
           <tr>
             <th>{{ #total_optional_products_price_label# }}</th>
             <td><em>{{ #unitFront# }}{{ (additionTotal * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}</em></td>
             {%- if curRatio != 1 -%}
-              <td>({{ additionTotal|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</td>
+              <td>({{ baseUnitFront }}{{ additionTotal|price_format(decimalPoint) }}{{ baseUnitBack }})</td>
             {%- endif -%}
           </tr>
           <tr>
             <th>{{ #shipping_fee_label# }}</th>
             <td><em>{{ #unitFront# }}{{ (deliveryFeeTotal * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}</em></td>
             {%- if curRatio != 1 -%}
-              <td>({{ deliveryFeeTotal|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</td>
+              <td>({{ baseUnitFront }}{{ deliveryFeeTotal|price_format(decimalPoint) }}{{ baseUnitBack }})</td>
             {%- endif -%}
           </tr>
           <tr>
             <th>{{ #handling_fee_label# }}</th>
             <td><em>{{ #unitFront# }}{{ (chargeTotal * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}</em></td>
             {%- if curRatio != 1 -%}
-              <td>({{ chargeTotal|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</td>
+              <td>({{ baseUnitFront }}{{ chargeTotal|price_format(decimalPoint) }}{{ baseUnitBack }})</td>
             {%- endif -%}
           </tr>
           <tr>
             <th>{{ #points_used_label# }}</th>
             <td><em>-{{ #unitFront# }}{{ (usePoint * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}</em></td>
             {%- if curRatio != 1 -%}
-              <td>(-{{ usePoint|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</td>
+              <td>(-{{ baseUnitFront }}{{ usePoint|price_format(decimalPoint) }}{{ baseUnitBack }})</td>
             {%- endif -%}
           </tr>
           <tr>
             <th>{{ #coupon_used_label# }}</th>
             <td><em>-{{ #unitFront# }}{{ (useCouponDiscount * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}</em></td>
             {%- if curRatio != 1 -%}
-              <td>(-{{ useCouponDiscount|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</td>
+              <td>(-{{ baseUnitFront }}{{ useCouponDiscount|price_format(decimalPoint) }}{{ baseUnitBack }})</td>
             {%- endif -%}
           </tr>
         </tbody>
@@ -88,7 +92,7 @@
         <strong>
           {{ #unitFront# }}{{ (paymentTotal * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
           {%- if curRatio != 1 -%}
-            <small>({{ paymentTotal|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+            <small>({{ baseUnitFront }}{{ paymentTotal|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
           {%- endif -%}
         </strong>
       </p>
@@ -188,7 +192,7 @@
                                   <dd class="lc-productInfo__detail__detail">
                                     {{ #unitFront# }}{{ (productsku.getPrice(security_user_rank) * product_array[1]* curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
                                     {%- if curRatio != 1 -%}
-                                      <small class="productArchive__price__sub">({{ (productsku.getPrice(security_user_rank) * product_array[1])|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                                      <small class="productArchive__price__sub">({{ baseUnitFront }}{{ (productsku.getPrice(security_user_rank) * product_array[1])|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                                     {%- endif -%}
                                   </dd>
                                 </div>
@@ -224,7 +228,7 @@
                                           <dd class="lc-productInfo__detail__detail">
                                             {{ #unitFront# }}{{ (addition.price * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
                                             {%- if curRatio != 1 -%}
-                                              <small class="productArchive__price__sub">({{ addition.price|price_format(decimalPoint) }}{{ baseCurrencyUnit }})</small>
+                                              <small class="productArchive__price__sub">({{ baseUnitFront }}{{ addition.price|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
                                             {%- endif -%}
                                           </dd>
                                         </div>

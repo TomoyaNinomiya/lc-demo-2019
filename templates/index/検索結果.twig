@@ -13,7 +13,9 @@
 {%- endif -%}
 
 {# get base currency unit #}
-{% set baseCurrencyUnit = get_entity_manager().find("EcCoreBundle:Currency", system_config("base_currency"))|split('(')[0] %}
+{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
+{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
+{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
 
 {# In the case of Ajax, output JSON #}
 {%- if http_x == 'XMLHttpRequest' -%}
@@ -55,8 +57,6 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
       "name": {%- if product.attribute('Product Name') -%}{{ product.attribute('Product Name')|json_encode()|raw }}{%- else -%}{{ product.name|json_encode()|raw }}{%- endif -%},
       "base_price": "{{ productskus[0].price|price_format(decimalPoint) }}",
       "price": "{{ (curRatio * productskus[0].price)|price_format(decimalPoint) }}",
-      "unit_front": "{{ unitFront }}",
-      "unit_back": "{{ unitBack }}",
       "image": "{%- if product.attribute('image1') -%}{{ ('/uploads/media/' ~ em.find("MediaCoreBundle:Media", product.attribute('image1')).path) }}{% else %}/images/no-image.png{%- endif -%}",
       "description": {%- if product.attribute('description') -%}{{ product.attribute('description')|json_encode()|raw }}{%- endif -%},
       "categories": [
@@ -149,8 +149,10 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
           <figure class="productArchive__figure"><img src="{$ image $}" alt="product image"></figure>
           <h3 class="productArchive__name">{$ name $}</h3>
           <p class="productArchive__price">
-            <span class="productArchive__price__main">{$ unit_front $}{$ price $}{$ unit_back $}</span>
-            <small class="productArchive__price__sub">({$ base_price $}{{ baseCurrencyUnit }})</small>
+            <span class="productArchive__price__main">{{ unitFront }}{$ price $}{{ unitBack }}</span>
+            {%- if curRatio != 1 -%}
+              <small class="productArchive__price__sub">({{ baseUnitFront }}{$ base_price $}{{ baseUnitBack }})</small>
+            {%- endif -%}
           </p>
         </a>
       </li>
@@ -279,6 +281,8 @@ $(function () {
 
 });
 </script>
-</body>
-</html>
-{% endif %}
+{# end Contents #}
+
+{% TemplateInclude "footer" %}
+
+{% endif %}{# endif In the case of Ajax, output JSON #}
