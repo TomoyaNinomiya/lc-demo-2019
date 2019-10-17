@@ -63,7 +63,17 @@ body {
   padding: 0;
 }
 
+.hasImg {
+  background: $c_base_gray;
+}
+
 img {
+  .hasImg > & {
+    opacity: 0;
+  }
+  .hasImg.is-loaded > & {
+    opacity: 1;
+  }
   &[class^="lc-"],
   [class^="lc-"] > & {
     max-width: 100%;

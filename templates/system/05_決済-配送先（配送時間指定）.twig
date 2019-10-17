@@ -67,18 +67,19 @@
                       {%- for product_array in products -%}
                         {%- set productsku = get_entity_manager().find("EcCoreBundle:ProductSku", product_array[0]) -%}
                         {%- set product = productsku.product -%}
+                        {%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
                         <li class="lc-productInfo">
                           {# product image #}
                           <figure class="lc-productInfo__figure">
                             <a class="lc-productInfo__figure__inner" href="{{ path('ec_product_detail', {'id': product.id}) }}">
-                              <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="product name"/>
+                              <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="{{ productName|striptags }}"/>
                             </a>
                           </figure>
                           <div class="lc-productInfo__text">
                             {# product name and skus titles #}
                             <h2 class="lc-productInfo__name">
                               <a href="{{ path('ec_product_detail', {'id': product.id}) }}">
-                                {{ product.name }}
+                                {{ productName }}
                                 {% if productsku.skuDetail1 %}&emsp;{% if productsku.skuDetail1.getTransAttribute(lang_id) %}{{ productsku.skuDetail1.getTransAttribute(lang_id) }}{% else %}{{ productsku.skuDetail1.title }}{% endif %}{% endif %}
                                 {% if productsku.skuDetail2 %}&emsp;{% if productsku.skuDetail2.getTransAttribute(lang_id) %}{{ productsku.skuDetail2.getTransAttribute(lang_id) }}{% else %}{{ productsku.skuDetail2.title }}{% endif %}{% endif %}
                               </a>

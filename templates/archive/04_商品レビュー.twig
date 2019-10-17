@@ -3,7 +3,8 @@
 {# Variables Settings #}
 
 {# insert to html head title #}
-{%- set title = #review_title# ~ ' | ' ~product.name -%}
+{%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
+{%- set title = #review_title# ~ ' | ' ~ productName -%}
 
 {# get base currency unit #}
 {%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
@@ -55,7 +56,7 @@
   {%- set breadcrumbList = breadcrumbList|merge([breadcrumbListItem]) -%}
 {%- endfor -%}
 {%- set breadcrumbListItem = {
-    name: product.name,
+    name: productName,
     href: path('ec_product_detail', {'id': product.id})
   }
 -%}
