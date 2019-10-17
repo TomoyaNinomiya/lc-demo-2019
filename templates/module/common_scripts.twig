@@ -31,12 +31,20 @@ $(function () {
   //==========================================================
   // Modal
   //==========================================================
-  $('.js-lc--openModal').on('click', function() {
-    var $trigger = $(this);
-    $('#' + $trigger.attr('aria-controls')).addClass('is-active');
-    $('#' + $trigger.attr('aria-controls')).find('.lc-modal__body').css({
+  
+  /**
+   * global function: open modal
+   * @param {jQuery} $targetModal - target modal jQuery object
+   */
+  window.openModal = function ($targetModal) {
+    $targetModal.addClass('is-active');
+    $targetModal.find('.lc-modal__body').css({
       top: ($window.scrollTop() + 60) + 'px'
     });
+  }
+
+  $('.js-lc--openModal').on('click', function() {
+    openModal($('#' + $(this).attr('aria-controls')));
     return false;
   });
   $('.js-lc--closeModal').on('click', function () {
@@ -53,10 +61,7 @@ $(function () {
   window.openModalNotice = function (notice, autoCloseTime) {
     $('.lc-modal').removeClass('is-active');
     $modalNotice.find('.js-lc--modalNotice').html(notice);
-    $modalNotice.find('.lc-modal__body').css({
-      top: ($window.scrollTop() + 60) + 'px'
-    });
-    $modalNotice.addClass('is-active');
+    openModal($modalNotice);
     if (autoCloseTime) {
       setTimeout(function () {
         $modalNotice.removeClass('is-active');
@@ -76,10 +81,7 @@ $(function () {
     $('.js-lc--submitModalConfirm').off('click');
     $('.lc-modal').removeClass('is-active');
     $modalConfirm.find('.js-lc--modalConfirm').html(confirmMessage);
-    $modalConfirm.find('.lc-modal__body').css({
-      top: ($window.scrollTop() + 60) + 'px'
-    });
-    $modalConfirm.addClass('is-active');
+    openModal($modalConfirm);
     $('.js-lc--submitModalConfirm').on('click', function () {
       onConfirm();
       $modalNotice.removeClass('is-active');

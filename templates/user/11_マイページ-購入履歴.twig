@@ -45,26 +45,28 @@
       <ul class="lc-list">
         {%- for result in _pager.getResults -%}
           {%- set orders = result.orders -%}
-          {%- set order = orders[0] -%}
-          {%- set product = order.details[0].product -%}
-          <li class="lc-productInfo">
-            <figure class="lc-productInfo__figure">
-              <a class="lc-productInfo__figure__inner" href="{{ path('ec_client_consumer_history_detail', {'id': result.id}) }}">
-                <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="product name"/>
-              </a>
-            </figure>
-            <div class="lc-productInfo__text">
-              <h2 class="lc-productInfo__name"><a href="{{ path('ec_client_consumer_history_detail', {'id': result.id}) }}">{{ product.name }}</a></h2>
-              <div class="lc-productInfo__detail">
-                <dl class="lc-productInfo__detail__list">
-                  <div class="lc-productInfo__detail__item">
-                    <dt class="lc-productInfo__detail__label">{{ #purchase_date_label# }}</dt>
-                    <dd class="lc-productInfo__detail__detail"><time datetime="{{ result.getCreatedAt|date('Y-m-d H:i') }}">{{ result.getCreatedAt|date('Y.m.d H:i') }}</time></dd>
-                  </div>
-                </dl>
+          {%- set order = orders|first -%}
+          {%- if order -%}
+            {%- set product = order.details[0].product -%}
+            <li class="lc-productInfo">
+              <figure class="lc-productInfo__figure">
+                <a class="lc-productInfo__figure__inner" href="{{ path('ec_client_consumer_history_detail', {'id': result.id}) }}">
+                  <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="product name"/>
+                </a>
+              </figure>
+              <div class="lc-productInfo__text">
+                <h2 class="lc-productInfo__name"><a href="{{ path('ec_client_consumer_history_detail', {'id': result.id}) }}">{{ product.name }}</a></h2>
+                <div class="lc-productInfo__detail">
+                  <dl class="lc-productInfo__detail__list">
+                    <div class="lc-productInfo__detail__item">
+                      <dt class="lc-productInfo__detail__label">{{ #purchase_date_label# }}</dt>
+                      <dd class="lc-productInfo__detail__detail"><time datetime="{{ result.getCreatedAt|date('Y-m-d H:i') }}">{{ result.getCreatedAt|date('Y.m.d H:i') }}</time></dd>
+                    </div>
+                  </dl>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          {%- endif -%}
         {%- endfor -%}
       </ul>
       <div class="archiveGuide">

@@ -3,12 +3,7 @@
 {# Variables Settings #}
 
 {# insert to html head title #}
-{%- set title = #enter_credit_card_info_label# -%}
-
-{# get base currency unit #}
-{%- set baseCurrency = get_entity_manager().find('EcCoreBundle:Currency', system_config('base_currency')) -%}
-{%- set baseUnitFront = baseCurrency.getBeforeUnit() -%}
-{%- set baseUnitBack = baseCurrency.getAfterUnit() -%}
+{%- set title = #credit_card_info_label# -%}
 
 {# end Variables Settings #}
 
@@ -18,20 +13,22 @@
 
 {# Breadcrumb list (this variable setting method is written in module template "breadcrumb list") #}
 {%- set breadcrumbList = [] -%}
-{%- set breadcrumbListItem = {
-    name: #enter_credit_card_info_label# ,
-    href: app.request.uri
-  }
+{%- set breadcrumbListItems = [
+    {
+      name: #mypage_label# ,
+      href: path('ec_client_consumer')
+    },
+    {
+      name: #credit_card_info_label# ,
+      href: app.request.uri
+    }
+  ]
 -%}
-{%- set breadcrumbList = breadcrumbList|merge([breadcrumbListItem]) -%}
+{%- set breadcrumbList = breadcrumbList|merge(breadcrumbListItems) -%}
 {% TemplateInclude "breadcrumb list" %}
 
 <section class="lc-contentSection">
-  <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #enter_credit_card_info_label# }}</h1>
-  
-  {# step list #}
-  {%- set step = 6 -%}
-  {% TemplateInclude "step list" %}
+  <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #credit_card_info_label# }}</h1>
 
   <div class="lc-contentsInner lc-contentsInner--form">
 
@@ -47,22 +44,11 @@
       </p>
     {%- endif -%}
 
-    <form action="" method="post" name="form1" id="{{ form.vars.id }}">
+    <form action="{{ path('ec_client_consumer_card_add') }}" method="post" name="{{ form.vars.id }}" id="{{ form.vars.id }}">
       {{ form_widget(form._token) }}
       {% if form.token is defined %}{{ form_widget(form.token) }}{% endif %}
       {% if form.tokennumber is defined %}{{ form_widget(form.tokennumber) }}{% endif %}
       <input name="hdnSendChk" type="hidden" id="hdnSendChk" value="">
-      <dl>
-        <dt class="lc-heading--3">{{ #total_cost_label# }}</dt>
-        <dd class="lc-contentSection__note">
-          <strong>
-            {{ #unitFront# }}{{ (total * curRatio)|price_format(decimalPoint) }}{{ #unitBack# }}
-            {%- if curRatio != 1 -%}
-              <small class="productArchive__price__sub">({{ baseUnitFront }}{{ total|price_format(decimalPoint) }}{{ baseUnitBack }})</small>
-            {%- endif -%}
-          </strong>
-        </dd>
-      </dl>
       <ul class="lc-form">
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
@@ -114,31 +100,9 @@
           {% if not form.cardname.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.cardname) }}</p>{% endif %}
           <p class="lc-form__note"><small>{{ #card_holder_note# }}</small></p>
         </li>
-        {%- if form.paymode is defined -%}
-          <li class="lc-form__item">
-            <label class="lc-form__label lc-form__label--select">
-              <h4 class="lc-form__title is-required">{{ #paymode_label# }}</h4>
-              <p class="lc-form__detail">
-                {{ form_widget(form.paymode) }}
-              </p>
-            </label>
-            {% if not form.paymode.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.paymode) }}</p>{% endif %}
-          </li>
-        {%- endif -%}
-        {%- if showPaytimes -%}
-          <li class="lc-form__item">
-            <label class="lc-form__label lc-form__label--select">
-              <h4 class="lc-form__title is-required">{{ #paytimes_label# }}</h4>
-              <p class="lc-form__detail">
-                {{ form_widget(form.paytimes) }}
-              </p>
-            </label>
-            {% if not form.paytimes.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.paytimes) }}</p>{% endif %}
-          </li>
-        {%- endif -%}
       </ul>
       <p class="lc-contentsInner__buttons">
-        <button class="lc-button--submit js-lc--submit"><span class="lc-button__label">{{ #payment_label# }}</span><i class="lc-button__icon lc-icon--arrow2Right"></i></button>
+        <button class="lc-button--submit js-lc--submit" type="button"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
         <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
     </form>
@@ -174,6 +138,10 @@
     </div>
 
   </div>
+
+  {# mypage navi #}
+  {% TemplateInclude "mypage navi" %}
+
 </section>
 
 {#
