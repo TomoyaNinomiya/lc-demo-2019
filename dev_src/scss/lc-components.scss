@@ -1515,6 +1515,9 @@ textarea {
     }
     &__main {
       flex-grow: 1;
+      &:last-child {
+        width: 100%;
+      }
       .lc-productInfo {
         padding-bottom: 15px;
         margin-bottom: 15px;

@@ -95,13 +95,6 @@ block content
                             .lc-productInfo__detail__item
                               dt.lc-productInfo__detail__label 数量
                               dd.lc-productInfo__detail__detail 1
-                  dl.lc-shipList__info
-                    .lc-shipList__info__item
-                      dt.lc-shipList__info__label 送货方式
-                      dd.lc-shipList__info__detail EMS
-                    .lc-shipList__info__item
-                      dt.lc-shipList__info__label 送货时间
-                      dd.lc-shipList__info__detail 2019/10/10 14:00 - 16:00
         
         h2.lc-heading--3 付款方式
         p credit
@@ -117,7 +110,9 @@ block content
             aria-controls="modalCancelRegular"
             aria-haspopup="true"
           ).lc-button--submit.js-lc--openModal
+            i.lc-button__icon.lc-icon--close
             span.lc-button__label 取消
+        p.lc-contentsInner__buttons.lc-contentsInner__buttons--horizontal
           a(href="/ec/consumer/regular_list/").lc-button--cancel
             i.lc-button__icon.lc-icon--arrowLeft
             span.lc-button__label 返回

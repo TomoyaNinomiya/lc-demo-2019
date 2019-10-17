@@ -56,7 +56,7 @@
           </li>
         </ul>
         <p class="lc-contentsInner__buttons">
-          <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #login_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></button><a class="lc-button--cancel js-lc--closeModal" href="/auth/password_request/"><span class="lc-button__label">{{ #forget_password# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></a>
+          <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #login_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></button><a class="lc-button--cancel js-lc--closeModal" href="{{ path('application_frontend_auth_password_request') }}"><span class="lc-button__label">{{ #forget_password# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></a>
         </p>
       </form>
     </div>

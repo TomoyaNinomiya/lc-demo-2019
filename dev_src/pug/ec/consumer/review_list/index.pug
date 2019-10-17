@@ -35,7 +35,7 @@ block content
 
       ul.lc-reviewsArchive__list
         - for (var i = 0; i < 20; i++)
-          header.lc-productInfo
+          li.lc-productInfo
             figure.lc-productInfo__figure
               a.lc-productInfo__figure__inner(href="/product/1/")
                 img(src=`/assets/img/img_product_0${ i % 8 + 1 }.jpg`, alt="product title")
@@ -58,7 +58,6 @@ block content
 
 
       .archiveGuide
-        p.lc-pagingNavi <em>24</em> 件中 的 <em>1 - 20</em>件
         .pagination_nav
           a(href="/ec/consumer/favorite_list/")
             span.lc-icon-laquo.ir &laquo;

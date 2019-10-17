@@ -25,6 +25,10 @@
     },
     {
       name: #purchase_history_label# ,
+      href: path('ec_client_consumer_history')
+    },
+    {
+      name: #detail_label# ,
       href: app.request.uri
     }
   ]
@@ -184,7 +188,7 @@
                         <dl class="lc-productInfo__additions">
                           {%- for addition in detail.additions -%}
                             <div class="lc-productInfo__additions__item">
-                              <dt class="lc-productInfo__additions__name">{% if addition.getTitleTransAttribute(lang_id) %}{{ addition.getTitleTransAttribute(lang_id) }}{% else %}{{ addition.title }}{% endif %}</dt>
+                              <dt class="lc-productInfo__additions__name">{% if addition.addition.getTitleTransAttribute(lang_id) %}{{ addition.addition.getTitleTransAttribute(lang_id) }}{% else %}{{ addition.addition.title }}{% endif %}</dt>
                               <dd class="lc-productInfo__additions__detail">
                                 <dl class="lc-productInfo__detail__list">
                                   <div class="lc-productInfo__detail__item">
@@ -235,7 +239,13 @@
     <h2 class="lc-heading--3">{{ #payment_method_label# }}</h2>
     <p>{% if order_group.payment.getTransAttribute(lang_id) %}{{ order_group.payment.getTransAttribute(lang_id) }}{% else %}{{ order_group.payment.name }}{% endif %}</p>
     <h2 class="lc-heading--3">{{ #inquiry_label# }}</h2>
-    <p>{{ #not_input_label# }}</p>
+    <p>
+      {%- if order_group.request -%}
+        {{ order_group.request }}
+      {%- else -%}
+        {{ #not_input_label# }}
+      {%- endif -%}
+    </p>
     <p class="lc-contentsInner__buttons">
       <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
     </p>

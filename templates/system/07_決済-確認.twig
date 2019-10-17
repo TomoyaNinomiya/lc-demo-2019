@@ -273,7 +273,13 @@
       <h2 class="lc-heading--3">{{ #payment_method_label# }}</h2>
       <p>{% if payment.getTransAttribute(lang_id) %}{{ payment.getTransAttribute(lang_id) }}{% else %}{{ payment.name }}{% endif %}</p>
       <h2 class="lc-heading--3">{{ #inquiry_label# }}</h2>
-      <p>{{ #not_input_label# }}</p>
+      <p>
+        {%- if message -%}
+          {{ message }}
+        {%- else -%}
+          {{ #not_input_label# }}
+        {%- endif -%}
+      </p>
       <p class="lc-contentsInner__buttons">
         <button type="submit" class="lc-button--submit lc-button--action"><span class="lc-button__label">{{ #order_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
         <a href="{{ path("ec_client_cart_payment")}}" class="lc-button--cancel"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></a>
