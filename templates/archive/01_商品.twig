@@ -269,7 +269,7 @@
 
   {# Table of Product Shipping Fees #}
   <section class="lc-contentsInner productDetail">
-    <h2>邮费</h2>
+    <h2>{{ #delivery_fee_label# }}</h2>
     {%- set delivery_abroads = product.delivery.abroads -%}
     {%- for delivery_abroad in delivery_abroads -%}
       {%- if delivery_abroad.isValid and delivery_abroad.isEnabled -%}
@@ -293,7 +293,7 @@
           <table class="is-align--center">
             <thead>
               <tr>
-                <th>重量</th>
+                <th>{{ #weight_label# }}</th>
                 {%- for weight in weights_sorted -%}
                   <th class="lc-align--right">{% if not loop.first %}{{ weights_sorted[loop.index0 - 1].weight }}g{% endif %} - {{ weight.weight }}g</th>
                 {%- endfor -%}
