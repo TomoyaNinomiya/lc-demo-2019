@@ -578,6 +578,7 @@ textarea {
     }
     &--onlyIcon {
       width: 50px;
+      min-width: 0;
       > .lc-button__label {
         display: none;
       }

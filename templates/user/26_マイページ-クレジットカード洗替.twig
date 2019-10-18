@@ -49,6 +49,17 @@
       {% if form.token is defined %}{{ form_widget(form.token) }}{% endif %}
       {% if form.tokennumber is defined %}{{ form_widget(form.tokennumber) }}{% endif %}
       <input name="hdnSendChk" type="hidden" id="hdnSendChk" value="">
+      {%- if cardNo -%}
+        <dl>
+          <dt class="lc-heading--3">{{ #registed_cardno_label# }}</dt>
+          <dd class="lc-contentSection__note">
+            {{ cardNo }}
+          </dd>
+        </dl>
+        <hr>
+        <h3 class="lc-heading--3">{{ #change_card_info_label# }}</h3>
+        <br>
+      {%- endif -%}
       <ul class="lc-form">
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
