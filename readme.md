@@ -1,4 +1,4 @@
-# Dev environment for static web pages
+# Dev environment for LaunchCart DEMO 2019
 The environment is to use for cording LaunchCart DEMO 2019.  
 
 ## Requirement
