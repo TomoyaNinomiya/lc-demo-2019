@@ -1,6 +1,5 @@
 # Dev environment for static web pages
-The environment is to use for cording static web pages.  
-When create a new project, copy the files to a new project directory.
+The environment is to use for cording LaunchCart DEMO 2019.  
 
 ## Requirement
 * Node.js
@@ -13,13 +12,6 @@ When create a new project, copy the files to a new project directory.
 * .browserslistrc - The config to share target browsers and Node.js versions between different front-end tools. https://www.npmjs.com/package/browserslist
 
 ## Installation
-* Copy the files to a new project directory
-* Remove the following directory and file
-  * .git/
-  * reademe.md (this file)
-* Rewite package.json
-  * "name" - new project name
-  * "description" - new project description
 * Run the following command in terminal  
   ```npm install```
 
@@ -30,6 +22,7 @@ When create a new project, copy the files to a new project directory.
 ## Directory structure
 ```
 /
+├── templates/ - contain the LaunchCart template files
 ├── dev_src/ - contain the development files  
 │   ├── pug/   - html templates by Pug  
 │   │   └── _include/ - common included files (_header, _footer, _layout etc.)  
