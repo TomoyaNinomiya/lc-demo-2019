@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "LaunchCart"
-AuthUserFile /home/ud-ac/www/lc-demo-2019/.htpasswd
-Require user lc
