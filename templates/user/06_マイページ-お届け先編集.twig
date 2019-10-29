@@ -171,11 +171,16 @@
           </label>
         </li>
       </ul>
+      
       <p class="lc-contentsInner__buttons">
+        {# submit #}
         <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></button>
+        {# back #}
         <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
+
       {% TemplateInclude "address scripts" %}
+
     </form>
   </div>
 

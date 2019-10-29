@@ -36,7 +36,10 @@
     </p>
     <form action="" method="POST" name="form1" id="form1">
       <p class="lc-modal__buttons">
-        <button class="lc-button--submit js-lc--openModal" type="submit" aria-controls="modalWithdraw" aria-haspopup="true"><span class="lc-button__label">{{ #withdraw_label# }}</span><i class="lc-button__icon lc-icon--close"></i></button><a class="lc-button--cancel" href="{{ path('ec_client_consumer') }}"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></a>
+        {# submit #}
+        <button class="lc-button--submit js-lc--openModal" type="submit" aria-controls="modalWithdraw" aria-haspopup="true"><span class="lc-button__label">{{ #withdraw_label# }}</span><i class="lc-button__icon lc-icon--close"></i></button>
+        {# back #}
+        <a class="lc-button--cancel" href="{{ path('ec_client_consumer') }}"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></a>
       </p>
     </form>
   </div>
@@ -46,6 +49,7 @@
 
 </section>
 
+{# Modal: confirm delete account #}
 <div class="lc-modal" id="modalWithdraw">
   <div class="lc-modal__bg js-lc--closeModal"></div>
   <div class="lc-modal__body">
