@@ -44,6 +44,8 @@
               <li class="lc-shipList__item">
                 <div class="lc-shipList__box">
                   <div class="lc-shipList__main">
+
+                    {# address #}
                     <header class="lc-shipList__header">
                       <h3 class="lc-shipList__name"><i class="c-inputUI c-inputUI--checkbox"></i>{{ address.lastName }} {{ address.firstName }}</h3>
                       <p class="lc-shipList__tel">{{ address.tel }}</p>
@@ -52,6 +54,8 @@
                       {% if address.country.id == 1 %}〒 {% endif %}{% if address.country.id != 20 %}{{ address.zipcode }}<br>{% endif %}
                       {% if address.country.id == 1 %}{{ address.district }} {% endif %}{{ address.locality }} {{ address.street }}
                     </p>
+
+                    {# products #}
                     <ul class="lc-list">
                       {%- for productsku in products[delivery.id] -%}
                         {%- set product = productsku.product -%}
@@ -105,6 +109,8 @@
                         </li>
                       {%- endfor -%}
                     </ul>
+
+                    {# delivery method #}
                     <dl class="lc-shipList__info">
                       <div class="lc-shipList__info__item">
                         <dt class="lc-shipList__info__label">{{ #shipping_method_label# }}</dt>

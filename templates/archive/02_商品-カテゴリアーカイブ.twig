@@ -41,13 +41,22 @@
 {%- set breadcrumbList = breadcrumbList|merge([breadcrumbListItem]) -%}
 {% TemplateInclude "breadcrumb list" %}
 
-{# Products #}
+
  <section class="lc-contentSection">
+
+  {# category name #}
   <h1 class="lc-contentSection__title">{{ category_name }}</h1>
+
+  {# paging controller UI #}
   <div class="archiveController">
+
+    {# page information #}
     <p class="lc-pagingNavi">{{ #pagingnavi_prev# }}<em>{{ _pager.adapter.getTotalResults }}</em>{{ #pagingnavi_middle# }}<em>{{ (_pager.page - 1) * _pager.limit + 1 }} - {% if (_pager.page * _pager.limit > _pager.adapter.getTotalResults) %}{{ _pager.adapter.getTotalResults }}{% else %}{{ _pager.page * _pager.limit }}{% endif %}</em>{{ #pagingnavi_next# }}</p>
+    
     <form name="form_product_list" id="form_product_list" method="GET" action="">
       <dl class="archiveController__list">
+
+        {# number of items #}
         <div class="archiveController__item">
           <dt class="archiveController__label">{{ #pagingnavi_number# }}</dt>
           <dd class="archiveController__form">
@@ -60,6 +69,8 @@
             </div>
           </dd>
         </div>
+
+        {# sort order #}
         <div class="archiveController__item">
           <dt class="archiveController__label">{{ #order_by_label# }}</dt>
           <dd class="archiveController__form">
@@ -72,6 +83,7 @@
             </div>
           </dd>
         </div>
+
         <script>
           $(function () {
             $('.js-lc--dispNum, .js-lc--orderBy').on('change', function () {
@@ -83,6 +95,8 @@
       <input type="hidden" name="pageno" value="1">
     </form>
   </div>
+
+  {# Products #}
   <ul class="productArchive">
     {%- for product in _pager.getResults -%}
       {%- set productskus = get_entity_manager().getRepository('EcCoreBundle:ProductSku').createQueryBuilder('ps').innerJoin('ps.product', 'p').where('p.id = :id').setParameter('id', product.id).getQuery().getResult() -%}
@@ -121,9 +135,15 @@
       </li>
     {%- endfor -%}
   </ul>
+
   <div class="archiveGuide">
+
+    {# page information #}
     <p class="lc-pagingNavi">{{ #pagingnavi_prev# }}<em>{{ _pager.adapter.getTotalResults }}</em>{{ #pagingnavi_middle# }}<em>{{ (_pager.page - 1) * _pager.limit + 1 }} - {% if (_pager.page * _pager.limit > _pager.adapter.getTotalResults) %}{{ _pager.adapter.getTotalResults }}{% else %}{{ _pager.page * _pager.limit }}{% endif %}</em>{{ #pagingnavi_next# }}</p>
+
+    {# pager #}
     {% RenderPager %}
+
   </div>
 </section>
 {# end Products #}

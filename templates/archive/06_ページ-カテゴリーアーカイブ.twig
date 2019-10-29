@@ -28,8 +28,8 @@
 {%- if (category.getAncestors|length > 0) -%}
   {%- for AncestorCategory in category.getAncestors -%}
     {%- set breadcrumbListItem = {
-        name: AncestorCategory.getTransAttribute(lang_id) ? AncestorCategory.getTransAttribute(lang_id) : AncestorCategory.name,
-        href: path('page_category_archive', {'id': AncestorCategory.id})
+        name: AncestorCategory.node.getTransAttribute(lang_id) ? AncestorCategory.node.getTransAttribute(lang_id) : AncestorCategory.node.name,
+        href: path('page_category_archive', {'id': AncestorCategory.node.id})
     } -%}
     {%- set breadcrumbList = breadcrumbList|merge([breadcrumbListItem]) -%}
   {%- endfor -%}

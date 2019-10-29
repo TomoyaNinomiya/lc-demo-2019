@@ -143,6 +143,8 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
       </div>
     </dl>
   </div>
+   
+ {# Products #}
   <ul class="productArchive lc_searchResults">
     <script id="item_template" type="text/template">
       <li class="productArchive__item">
@@ -158,10 +160,14 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
         </a>
       </li>
     </script>
+    
+    {# no results #}
     <script id="search_empty_template" type="text/template">
       <p><br><br>{{ #no_result_label# }}</p>
     </script>
   </ul>
+  
+  {# paging navi #}
   <div class="archiveGuide">
     <p class="lc-pagingNavi">{{ #pagingnavi_prev# }}<em><span class="js-searchCount"></span></em>{{ #pagingnavi_middle# }}<em><span class="js-searchStart"></span> - <span class="js-searchEnd"></span></em>{{ #pagingnavi_next# }}</p>
     <div class="pagination_nav js-searchPager">

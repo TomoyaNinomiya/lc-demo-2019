@@ -99,6 +99,8 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
         {%- set productskus = get_entity_manager().getRepository('EcCoreBundle:ProductSku').createQueryBuilder('ps').innerJoin('ps.product', 'p').where(' p.id = :id').setParameter('id', product.id).getQuery().getResult() -%}
         {%- set productAvailable = false -%}
         {%- set isMultiplePrices = false -%}
+
+        {# confirm the stock and the min price in sku #}
         {%- set minPrice = 0 -%}
         {%- set displayed_price = 0 -%}
         {%- for productsku in productskus -%}
@@ -116,6 +118,8 @@ expr().andx(qb.expr().eq('p.release_status', '2'), qb.expr().lte('p.released_at'
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
+
+        {# if no stock then not output the item #}
         {%- if productAvailable -%}
           {%- set countProducts = countProducts + 1 -%}
           {%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
