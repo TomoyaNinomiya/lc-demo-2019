@@ -35,6 +35,7 @@
 
   <div class="lc-contentsInner lc-contentsInner--form">
 
+    {# errors #}
     {%- if (errors|length > 0) -%}
       {%- for error in errors -%}
         <p class="lc-contentSection__note error">
@@ -52,6 +53,8 @@
       {% if form.token is defined %}{{ form_widget(form.token) }}{% endif %}
       {% if form.tokennumber is defined %}{{ form_widget(form.tokennumber) }}{% endif %}
       <input name="hdnSendChk" type="hidden" id="hdnSendChk" value="">
+
+      {# total cost #}
       <dl>
         <dt class="lc-heading--3">{{ #total_cost_label# }}</dt>
         <dd class="lc-contentSection__note">
@@ -63,6 +66,8 @@
           </strong>
         </dd>
       </dl>
+
+      {# registered card in the login account #}
       {%- if (form.member_card_number.vars.value != '') -%}
         <dl>
           <dt class="lc-heading--3">{{ #registed_cardno_label# }}</dt>
@@ -78,6 +83,8 @@
         <h3 class="lc-heading--3">{{ #new_card_info_label# }}</h3>
         <br>
       {%- endif -%}
+
+      {# input card information  #}
       <ul class="lc-form">
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
@@ -152,8 +159,11 @@
           </li>
         {%- endif -%}
       </ul>
+      
       <p class="lc-contentsInner__buttons">
+        {# to payment #}
         <button class="lc-button--submit js-lc--submit"><span class="lc-button__label">{{ #payment_label# }}</span><i class="lc-button__icon lc-icon--arrow2Right"></i></button>
+        {# back #}
         <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
     </form>

@@ -39,7 +39,7 @@
   </div>
 </section>
 
-{%- if order_group.payment.isChinesePayment -%}
+{%- if order_group.payment.isChinesePayment or order_group.payment.isTwoCTwoPPayment -%}
   {%- set securepay_url = url('ec_client_cart_card_securepay',{'consumerId': order_group.consumer.id, 'orderStr': order_group.getLastOrderPaymentId}) -%}
   {%- if securepay_url -%}
     <script>

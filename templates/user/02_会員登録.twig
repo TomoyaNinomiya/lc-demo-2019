@@ -25,6 +25,7 @@
   <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #create_account# }}</h1>
   <div class="lc-tab lc-tab--form">
     <div class="lc-tab__list">
+      {# link to login #}
       <a href="{{ path('application_frontend_auth_login') }}"  class="lc-tab__tab">{{ #login_label# }}</a>
       <div class="lc-tab__tab is-active">{{ #create_account# }}</div>
     </div>
@@ -35,6 +36,8 @@
       {%- endif -%}
       <form action="" method="POST" name="form1" id="form1" novalidate="novalidate">
         {{ form_widget(form._token) }}
+
+        {# input forms #}
         <ul class="lc-form">
           <li class="lc-form__item">
             <div class="lc-form__columns">
@@ -248,14 +251,21 @@
             </div>
           </li>
         </ul>
+
+        {# confirm concent privacy policy #}
         <p class="lc-contentSection__note lc-contentSection__note--center"> 
           <input class="js-confirmConsent" id="checkbox_1" type="checkbox"/>
           <label for="checkbox_1">{{ #concent_privacy_policy# }}</label><a class="lc-button--cancel js-lc--closeModal" href="{{ path('homepage') }}privacy" target="_blank"><span class="lc-button__label">{{ #privacy_policy_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></a>
         </p>
+
+        {# submit button #}
         <p class="lc-contentsInner__buttons">
           <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #confirm_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></button>
         </p>
+
+        {# include address scripts #}
         {% TemplateInclude "address scripts" %}
+        
       </form>
     </div>
   </div>

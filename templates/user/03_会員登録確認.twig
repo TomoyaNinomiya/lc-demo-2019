@@ -24,7 +24,7 @@
 <section class="lc-contentSection">
   <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #check_member_registration# }}</h1>
   <div class="lc-contentsInner lc-contentsInner--form">
-    <form action="{{ path("application_frontend_auth_complete") }}" method="post" id="customerinfo">
+    <form action="{{ path("application_frontend_auth_complete") }}" method="POST" id="customerinfo">
       <table class="lc-table lc-table--wide">
         <tr>
           <th>{{ 'label.consumer.last_name' | trans({}, 'clients') }} {{ 'label.consumer.first_name' | trans({}, 'clients') }}</th>
@@ -72,7 +72,10 @@
         </tr>
       </table>
       <p class="lc-contentsInner__buttons">
+        {# submit #}
         <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
+        
+        {# modify #}
         <a class="lc-button--cancel" href="{{ path("application_frontend_auth_regist")}}"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #modify_label# }}</span></button>
       </p>
     </form>

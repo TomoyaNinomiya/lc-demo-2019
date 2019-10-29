@@ -41,6 +41,8 @@
       <p class="lc-contentsInner__buttons">
         <button type="submit" class="lc-button--submit lc-button--action"><span class="lc-button__label">{{ #order_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
       </p>
+
+      {# breakdown of the order price #}
       <table class="lc-table lc-table--numbers">
         <tbody> 
           <tr>
@@ -87,6 +89,8 @@
           </tr>
         </tbody>
       </table>
+
+      {# total price #}
       <p class="lc-contentSection__note lc-contentSection__note--large lc-align--right">
         {{ #total_label# }}:
         <strong>
@@ -96,6 +100,8 @@
           {%- endif -%}
         </strong>
       </p>
+
+      {# points information #}
       <h2 class="lc-heading--3">{{ #points_label# }}</h2>
       <table class="lc-table lc-table--numbers">
         <tbody>
@@ -125,6 +131,8 @@
           {%- endif -%}
         </tbody>
       </table>
+
+      {# products and delivery information #}
       <section class="lc-shipList">
         <h2 class="lc-shipList__title">{{ #address_list_label# }}</h2>
         <ul class="lc-shipList__list">
@@ -271,8 +279,12 @@
           {%- endfor -%}
         </ul>
       </section>
+
+      {# payment method #}
       <h2 class="lc-heading--3">{{ #payment_method_label# }}</h2>
       <p>{% if payment.getTransAttribute(lang_id) %}{{ payment.getTransAttribute(lang_id) }}{% else %}{{ payment.name }}{% endif %}</p>
+
+      {# message #}
       <h2 class="lc-heading--3">{{ #inquiry_label# }}</h2>
       <p>
         {%- if message -%}
@@ -281,8 +293,15 @@
           {{ #not_input_label# }}
         {%- endif -%}
       </p>
+
+      {# When you seted option1 - option10 on the previous page, you can output data of option1 - option10.
+       # example) {{ option1 }}
+       #}
+
       <p class="lc-contentsInner__buttons">
+        {# to order (or payment) #}
         <button type="submit" class="lc-button--submit lc-button--action"><span class="lc-button__label">{{ #order_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
+        {# back #}
         <a href="{{ path("ec_client_cart_payment")}}" class="lc-button--cancel"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></a>
       </p>
     </form>

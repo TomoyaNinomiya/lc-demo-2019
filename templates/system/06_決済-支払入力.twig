@@ -39,6 +39,8 @@
 
   <div class="lc-contentsInner lc-contentsInner--form">
     <form name="form1" id="form1" method="post" action="">
+
+      {# total price without delivery fee #}
       <dl>
         <dt class="lc-heading--3">{{ #product_total_price_label# }} <small>({{ #without_delivery_fee# }})</small></dt>
         <dd class="lc-contentSection__note">
@@ -50,6 +52,8 @@
           </strong>
         </dd>
       </dl>
+    
+      {# delivery fee #}
       <dl>
         <dt class="lc-heading--3">{{ #delivery_fee_label# }}</dt>
         <dd class="lc-contentSection__note">
@@ -62,6 +66,8 @@
         </dd>
       </dl>
       <ul class="lc-form">
+    
+        {# payment method #}
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--select">
             <h4 class="lc-form__title is-required">{{ #payment_method_label# }}</h4>
@@ -104,6 +110,8 @@
             <p class="lc-form__note error is-error">{{ errors['payment'] }}</p>
           {%- endif -%}
         </li>
+    
+        {# use points #}
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
             <h4 class="lc-form__title">{{ #input_points_label# }}</h4>
@@ -116,6 +124,8 @@
             <p class="lc-form__note error is-error">{{ errors['use_point'] }}</p>
           {%- endif -%}
         </li>
+    
+        {# use coupon #}
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
             <h4 class="lc-form__title">{{ #input_coupon_label# }}</h4>
@@ -127,6 +137,8 @@
             <p class="lc-form__note error is-error">{{ errors['use_coupon'] }}</p>
           {%- endif -%}
         </li>
+
+        {# message #}
         <li class="lc-form__item">
           <label class="lc-form__label">
             <h4 class="lc-form__title">{{ #inquiry_label# }}</h4>
@@ -135,9 +147,16 @@
             </p>
           </label>
         </li>
+
+        {# If you want to set other options with the order, you can set forms here.
+         # Name attributes of the forms are option1 - option10.
+         # example) <input type="text" name="option1" value="{{ option1 }}">
+         #}
       </ul>
       <p class="lc-contentsInner__buttons">
+        {# to next step #}
         <button type="submit" class="lc-button--submit"><span class="lc-button__label">{{ #proceed_label# }}</span><i class="lc-button__icon lc-icon--arrow2Right"></i></button>
+        {# back #}
         <a href="{{ path('ec_client_cart_addition') }}" class="lc-button--cancel"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
     </form>
