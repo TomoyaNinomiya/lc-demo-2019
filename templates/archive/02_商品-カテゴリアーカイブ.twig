@@ -136,7 +136,7 @@
     {%- endfor -%}
   </ul>
 
-  <div class="archiveGuide">
+  <div class="lc-archiveGuide">
 
     {# page information #}
     <p class="lc-pagingNavi">{{ #pagingnavi_prev# }}<em>{{ _pager.adapter.getTotalResults }}</em>{{ #pagingnavi_middle# }}<em>{{ (_pager.page - 1) * _pager.limit + 1 }} - {% if (_pager.page * _pager.limit > _pager.adapter.getTotalResults) %}{{ _pager.adapter.getTotalResults }}{% else %}{{ _pager.page * _pager.limit }}{% endif %}</em>{{ #pagingnavi_next# }}</p>

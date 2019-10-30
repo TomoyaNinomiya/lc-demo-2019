@@ -676,56 +676,6 @@
     }
   }
 }
-.archiveGuide {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 60px;
-  > .lc-pagingNavi {
-    margin-bottom: 20px;
-  }
-  @include media(tab) {
-    margin-top: 30px;
-    > .lc-pagingNavi {
-      margin-bottom: 15px;
-    }
-  }
-}
-.pagination_nav {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  > a,
-  > strong {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 32px;
-    height: 32px;
-    margin: 0 10px;
-    &.current {
-      color: $c_main;
-    }
-  }
-  > a {
-    @include media(tab-min) {
-      &:hover {
-        color: $c_main;
-        opacity: 1;
-      }
-    }
-  }
-  @include media(tab) {
-    font-size: 1.6rem;
-    > a,
-    > strong {
-      margin: 0 5px;
-    }
-  }
-}
 
 .productMainSection {
   padding: 0 calc(50vw - 580px) 60px;

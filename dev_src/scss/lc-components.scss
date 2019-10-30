@@ -2055,73 +2055,128 @@ textarea {
     }
   }
 
-
-.lc-selectAddress {
-  display: none;
-  background: $c_base;
-  border: solid 1px $c_border;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  z-index: 11;
-  &__bg {
+  //==========================================================
+  // select form of Chinese Address
+  //==========================================================
+  .lc-selectAddress {
     display: none;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.01);
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 10;
-  }
-  &.is-active {
-    display: block;
-     + .lc-selectAddress__bg {
-       display: block;
-     }
-  }
-  &__tab {
-    display: flex;
-    &Item {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 32px;
-      background: $c_base_gray;
-      color: $c_text_gray;
-      font-size: 14px;
-      cursor: pointer;
-      &[aria-selected="true"] {
-        background: $c_base;
-        color: $c_text;
-      }
-      &[aria-disabled="true"] {
-        cursor: default;
-        user-select: none;
-      }
-    }
-  }
-  &__list {
-    padding: 15px;
-    max-height: 320px;
-    overflow: auto;
-    &[aria-hidden="true"] {
+    background: $c_base;
+    border: solid 1px $c_border;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    z-index: 11;
+    &__bg {
       display: none;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.01);
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 10;
     }
-    &Item {
-      line-height: 32px;
-      cursor: pointer;
-      &[aria-selected="true"] {
-        color: $c_main;
+    &.is-active {
+      display: block;
+      + .lc-selectAddress__bg {
+        display: block;
       }
-      @include media(tab-min) {
-        &:hover {
+    }
+    &__tab {
+      display: flex;
+      &Item {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        background: $c_base_gray;
+        color: $c_text_gray;
+        font-size: 14px;
+        cursor: pointer;
+        &[aria-selected="true"] {
+          background: $c_base;
+          color: $c_text;
+        }
+        &[aria-disabled="true"] {
+          cursor: default;
+          user-select: none;
+        }
+      }
+    }
+    &__list {
+      padding: 15px;
+      max-height: 320px;
+      overflow: auto;
+      &[aria-hidden="true"] {
+        display: none;
+      }
+      &Item {
+        line-height: 32px;
+        cursor: pointer;
+        &[aria-selected="true"] {
           color: $c_main;
+        }
+        @include media(tab-min) {
+          &:hover {
+            color: $c_main;
+          }
         }
       }
     }
   }
-}
-  
+
+  //==========================================================
+  // Paging UI
+  //==========================================================
+  .lc-archiveGuide {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+    > .lc-pagingNavi {
+      margin-bottom: 20px;
+    }
+    @include media(tab) {
+      margin-top: 30px;
+      > .lc-pagingNavi {
+        margin-bottom: 15px;
+      }
+    }
+    > .pagination_nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      > a,
+      > strong {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+        margin: 0 10px;
+        &.current {
+          color: $c_main;
+        }
+      }
+      > a {
+        @include media(tab-min) {
+          &:hover {
+            color: $c_main;
+            opacity: 1;
+          }
+        }
+      }
+      @include media(tab) {
+        font-size: 1.6rem;
+        > a,
+        > strong {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
 
 }
