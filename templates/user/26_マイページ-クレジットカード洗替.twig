@@ -49,6 +49,8 @@
       {% if form.token is defined %}{{ form_widget(form.token) }}{% endif %}
       {% if form.tokennumber is defined %}{{ form_widget(form.tokennumber) }}{% endif %}
       <input name="hdnSendChk" type="hidden" id="hdnSendChk" value="">
+
+      {# registered card information #}
       {%- if cardNo -%}
         <dl>
           <dt class="lc-heading--3">{{ #registed_cardno_label# }}</dt>
@@ -60,6 +62,8 @@
         <h3 class="lc-heading--3">{{ #change_card_info_label# }}</h3>
         <br>
       {%- endif -%}
+
+      {# input forms #}
       <ul class="lc-form">
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
@@ -112,10 +116,14 @@
           <p class="lc-form__note"><small>{{ #card_holder_note# }}</small></p>
         </li>
       </ul>
+
       <p class="lc-contentsInner__buttons">
+        {# submit #}
         <button class="lc-button--submit js-lc--submit" type="button"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
+        {# back #}
         <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
+
     </form>
 
     {# Modal: help for CSC #}

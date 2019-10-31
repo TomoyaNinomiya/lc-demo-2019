@@ -42,6 +42,8 @@
   <div class="lc-contentsInner">
     {%- set product = review.product -%}
     {%- set productskus = product.getProductSku -%}
+
+    {# calculate min price in sku #}
     {%- set isMultiplePrices = false -%}
     {%- set minPrice = 0 -%}
     {%- set displayed_price = 0 -%}
@@ -59,21 +61,28 @@
         {%- endif -%}
       {%- endif -%}
     {%- endfor -%}
+
     {%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
     <header class="lc-productInfo">
+
       {# product image #}
       <figure class="lc-productInfo__figure">
         <a class="lc-productInfo__figure__inner" href="{{ path('ec_product_detail', {'id': product.id}) }}">
           <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="{{ productName|striptags }}">
         </a>
       </figure>
+
       <div class="lc-productInfo__text">
-        {# product name and skus titles #}
+
+        {# product name #}
         <h2 class="lc-productInfo__name">
           <a href="{{ path('ec_product_detail', {'id': product.id}) }}">{{ productName }}</a>
         </h2>
+
         <div class="lc-productInfo__detail">
           <dl class="lc-productInfo__detail__list">
+
+            {# price #}
             <div class="lc-productInfo__detail__item">
               <dt class="lc-productInfo__detail__label">{{ #unit_price_label# }}</dt>
               <dd class="lc-productInfo__detail__detail">
@@ -83,14 +92,20 @@
                 {%- endif -%}
               </dd>
             </div>
+
           </dl>
         </div>
     </header>
-    <form action="#" method="post" name="form1" id="form1">
+
+    <form action="" method="POST" name="form1" id="form1">
       {{ form_widget(form._token) }}
+
+      {# errors #}
       {%- if not form.vars.valid -%}
         <p class="lc-contentSection__note error">{{ form_errors(form) }}</p>
       {%- endif -%}
+
+      {# input forms #}
       <ul class="lc-form">
         <li class="lc-form__item">
           <label class="lc-form__label lc-form__label--half">
@@ -132,11 +147,16 @@
           {% if not form.description.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(form.country) }}</p>{% endif %}
         </li>
       </ul>
-      <p class="lc-modal__buttons">
+
+      <p class="lc-contentsInner__buttons">
+        {# register #}
         <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
+        {# back #}
         <button class="lc-button--cancel" type="button" onclick="history.back();"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></button>
       </p>
+
     </form>
+
   </div>
 
   {# mypage navi #}

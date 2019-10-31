@@ -31,9 +31,13 @@
     <p class="lc-contentSection__note lc-contentSection__note--center">{{ #message_request_password# | raw }}</p>
       <form name="form1" id="form1" method="post" action="">
       {{ form_widget(_form._token) }}
+
+      {# errors #}
       {%- if not _form.vars.valid -%}
         <p class="lc-contentSection__note error">{{ form_errors(_form) }}</p>
       {%- endif -%}
+
+      {# input form #}
       <ul class="lc-form">
         <li class="lc-form__item">
           <label class="lc-form__label">
@@ -45,9 +49,12 @@
           {% if not _form.username.vars.valid %}<p class="lc-form__note error is-error">{{ form_errors(_form.username) }}</p>{% endif %}
         </li>
       </ul>
+
+      {# submit #}
       <p class="lc-contentsInner__buttons">
         <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #next_label# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></button>
       </p>
+      
     </form>
   </div>
 

@@ -28,10 +28,15 @@
   <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #request_passowrd_error_label# }}</h1>
 
   <div class="lc-contentsInner lc-contentsInner--form">
+
+    {# error #}
     <p class="lc-contentSection__note error">{{ error }}</p>
+    
+    {# link to top page #}
     <p class="lc-contentsInner__buttons">
       <a class="lc-button--submit" href="{{ path('homepage') }}"><span class="lc-button__label">{{ #back_to_home_label# }}</span><i class="lc-button__icon lc-icon--arrowLeft"></i></a>
     </p>
+
   </div>
 
 </section>

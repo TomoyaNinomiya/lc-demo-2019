@@ -165,6 +165,8 @@
               <li class="lc-shipList__item">
                 <div class="lc-shipList__box">
                   <div class="lc-shipList__main">
+
+                    {# delivery information #}
                     <header class="lc-shipList__header">
                       <h3 class="lc-shipList__name"><i class="c-inputUI c-inputUI--checkbox"></i>{{ address.lastName }} {{ address.firstName }}</h3>
                       <p class="lc-shipList__tel">{{ address.tel }}</p>
@@ -173,19 +175,24 @@
                       {% if address.country.id == 1 %}〒 {% endif %}{% if address.country.id != 20 %}{{ address.zipcode }}<br>{% endif %}
                       {% if address.country.id == 1 %}{{ address.district }} {% endif %}{{ address.locality }} {{ address.street }}
                     </p>
+
+                    {# products information #}
                     <ul class="lc-list">
                       {%- for product_array in products -%}
                         {%- set productsku = get_entity_manager().find("EcCoreBundle:ProductSku", product_array[0]) -%}
                         {%- set product = productsku.product -%}
                         {%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
                         <li class="lc-productInfo">
+
                           {# product image #}
                           <figure class="lc-productInfo__figure">
                             <a class="lc-productInfo__figure__inner" href="{{ path('ec_product_detail', {'id': product.id}) }}">
                               <img src="{% if product.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', product.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="{{ productName|striptags }}"/>
                             </a>
                           </figure>
+
                           <div class="lc-productInfo__text">
+                          
                             {# product name and skus titles #}
                             <h2 class="lc-productInfo__name">
                               <a href="{{ path('ec_product_detail', {'id': product.id}) }}">
@@ -194,8 +201,11 @@
                                 {% if productsku.skuDetail2 %}&emsp;{% if productsku.skuDetail2.getTransAttribute(lang_id) %}{{ productsku.skuDetail2.getTransAttribute(lang_id) }}{% else %}{{ productsku.skuDetail2.title }}{% endif %}{% endif %}
                               </a>
                             </h2>
+
                             <div class="lc-productInfo__detail">
                               <dl class="lc-productInfo__detail__list">
+
+                                {# price #}
                                 <div class="lc-productInfo__detail__item">
                                   <dt class="lc-productInfo__detail__label">{{ #unit_price_label# }}</dt>
                                   <dd class="lc-productInfo__detail__detail">
@@ -205,10 +215,14 @@
                                     {%- endif -%}
                                   </dd>
                                 </div>
+
+                                {# weight #}
                                 <div class="lc-productInfo__detail__item">
                                   <dt class="lc-productInfo__detail__label">{{ #weight_label# }}</dt>
                                   <dd class="lc-productInfo__detail__detail">{{ (productsku.getWeight * product_array[1])|number_format }}</span>g</dd>
                                 </div>
+
+                                {# quantity and regular interval #}
                                 <div class="lc-productInfo__detail__item">
                                   <dt class="lc-productInfo__detail__label">{{ #quantity_label# }}{% if (product_array[2] > 0) %} / {{ #regular_interval_label# }}{% endif %}</dt>
                                   <dd class="lc-productInfo__detail__detail">
@@ -220,9 +234,12 @@
                                     {%- endif -%}
                                   </dd>
                                 </div>
+
                               </dl>
                             </div>
                           </div>
+                          
+                          {# additions (optional service) #}
                           {%- if (additions|length > 0) -%}
                             <dl class="lc-productInfo__additions">
                               {%- for addition_array in additions -%}
@@ -248,14 +265,19 @@
                               {%- endfor -%}
                             </dl>
                           {%- endif -%}
+
                         </li>
                       {%- endfor -%}
                     </ul>
                     <dl class="lc-shipList__info">
+
+                      {# delivery method #}
                       <div class="lc-shipList__info__item">
                         <dt class="lc-shipList__info__label">{{ #delivery_method_label# }}</dt>
                         <dd class="lc-shipList__info__detail">{% if delivery_abroad is defined %}{{delivery_abroad.name}}{% else %}{{ delivery.name }}{% endif %}</dd>
                       </div>
+
+                      {# delivery date time #}
                       <div class="lc-shipList__info__item">
                         <dt class="lc-shipList__info__label">{{ #delivery_datetime_label# }}</dt>
                         <dd class="lc-shipList__info__detail">
@@ -271,6 +293,7 @@
                           {%- endif -%}
                         </dd>
                       </div>
+                      
                     </dl>
                   </div>
                 </div>
@@ -294,7 +317,7 @@
         {%- endif -%}
       </p>
 
-      {# When you seted option1 - option10 on the previous page, you can output data of option1 - option10.
+      {# When you set option1 - option10 on the previous page, you can output data of option1 - option10.
        # example) {{ option1 }}
        #}
 

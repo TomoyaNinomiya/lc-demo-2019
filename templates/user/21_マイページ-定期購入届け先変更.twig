@@ -39,7 +39,7 @@
   <h1 class="lc-contentSection__title lc-contentSection__title--center">{{ #purchase_history_label# }}</h1>
   
   <div class="lc-contentsInner">
-    <form action="{{ path('ec_client_consumer_regular_address_edit_confirm', {'id': order_regular.id}) }}" name="form" id="form" method="post">
+    <form action="{{ path('ec_client_consumer_regular_address_edit_confirm', {'id': order_regular.id}) }}" name="form" id="form" method="POST">
       <p class="lc-contentSection__note">{{ #message_select_address# | raw }}</p>
       <section class="lc-shipList">
         <h2 class="lc-shipList__title">{{ #address_list_label# }}</h2>
@@ -77,12 +77,17 @@
           {%- if (addresses|length < 20) -%}
             <li class="lc-shipList__item"><a class="lc-shipList__box lc-shipList__box--button" href="{{ path('ec_client_consumer_address_add') }}"><i class="lc-icon--plus"></i>{{ #add_address_label# }}</a></li>
           {%- endif -%}
+
         </ul>
       </section>
+
       <p class="lc-contentsInner__buttons">
+        {# register #}
         <button type="submit" class="lc-button--submit"><span class="lc-button__label">{{ #edit_label# }}</span><i class="lc-button__icon lc-icon--arrow2Right"></i></button>
+        {# back #}
         <a href="{{ path('ec_client_consumer_regular_detail', {'id': order_regular.id}) }}" class="lc-button--cancel"><i class="lc-button__icon lc-icon--arrowLeft"></i><span class="lc-button__label">{{ #back_label# }}</span></a>
       </p>
+      
     </form>
   </div>
 

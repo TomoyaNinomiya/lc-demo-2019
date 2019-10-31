@@ -30,9 +30,13 @@
   <div class="lc-contentsInner lc-contentsInner--form">
     <form name="form1" id="form1" method="post" action="">
       {{ form_widget(_form._token) }}
+
+      {# errors #}
       {%- if not _form.vars.valid -%}
         <p class="lc-contentSection__note error">{{ form_errors(_form) }}</p>
       {%- endif -%}
+
+      {# input forms #}
       <ul class="lc-form">
         <li class="lc-form__item">
           <div class="lc-form__columns">
@@ -56,9 +60,12 @@
           {% if not (_form.new.vars.valid and _form.new.first.vars.valid and _form.new.second.vars.valid) %}<p class="lc-form__note error is-error">{{ form_errors(_form.new) }}{{ form_errors(_form.new.first) }}{{ form_errors(_form.new.second) }}</span>{% endif %}
         </li>
       </ul>
+
+      {# register #}
       <p class="lc-contentsInner__buttons">
         <button class="lc-button--submit" type="submit"><span class="lc-button__label">{{ #register_label# }}</span><i class="lc-button__icon lc-icon--check"></i></button>
       </p>
+      
     </form>
   </div>
 
