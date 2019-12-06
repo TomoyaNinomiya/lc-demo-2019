@@ -195,8 +195,35 @@ $(function () {
 
     // initialize
     $form.localityTaiwanCity.each(function () {
-      if ($(this).attr('data-value')) {
-        $(this).val($(this).attr('data-value')).trigger('change');
+      var $inputTwCity = $(this);
+      if ($inputTwCity.attr('data-value')) {
+        $inputTwCity.val($inputTwCity.attr('data-value')).trigger('change');
+      } else if ($form.country.val() == 11) {
+        var $containerParent = $inputTwCity.closest('.js-lc--cityTw').parent().parent();
+        var enteredValue = $containerParent.find($form.locality).val();
+        var $inputTwArea = $containerParent.find($form.localityTaiwanArea);
+        if (enteredValue) {
+          Object.keys(taiwanArea).forEach(function (city) {
+            if (enteredValue.indexOf(city) === 0) {
+              var area = enteredValue.replace(city, '');
+              $inputTwCity
+                .val(city)
+                .attr('data-value', city)
+                .trigger('change');
+              var timer = setTimeout(function () {
+                clearTimeout(timer);
+                taiwanArea[city].forEach(function (value) {
+                  if (value[0] == area) {
+                    $inputTwArea
+                      .val(value[0] + ':' + value[1])
+                      .attr('data-value', value[0] + ':' + value[1])
+                      .trigger('change');
+                  }
+                });
+              }, 100);
+            }
+          });
+        }
       }
     });
     
@@ -239,7 +266,7 @@ $(function () {
         province: false,
         city: false
       }
-      if ($form.locality.val() && !$form.localityChina.val()) {
+      if ($form.locality.val() && !$form.localityChina.val() && $form.country.val() == 12) {
         var registedLocality = $form.locality.val();
         var registedLocalityTmp = registedLocality;
         var localityChinaValue = '';
