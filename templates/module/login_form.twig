@@ -68,6 +68,9 @@
 
           {# forgot password #}
           <a class="lc-button--cancel js-lc--closeModal" href="{{ path('application_frontend_auth_password_request') }}"><span class="lc-button__label">{{ #forgot_password# }}</span><i class="lc-button__icon lc-icon--arrowRight"></i></a>
+
+          {# social login #}
+          <button class="lc-button--sns lc-button--snsWeChat js-lc--WeChatLogin"><i class="lc-button__icon lc-icon--arrowRight"></i><span class="lc-button__label">WeChat Login</span></a>
         </p>
       </form>
     </div>
@@ -82,3 +85,5 @@
 {# end Contents #}
 
 {% TemplateInclude "footer" %}
+
+<script src="{{ asset('system/js/social_media_login.js') }}"></script>
