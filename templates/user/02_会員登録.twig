@@ -74,7 +74,7 @@
             <label class="lc-form__label lc-form__label--half">
               <h4 class="lc-form__title is-required">{{ 'label.consumer.birthday' | trans({}, 'clients') }}</h4>
               <p class="lc-form__detail">
-                <input type="date" name="{{ form.birthday.vars.full_name }}" value="{{ form.birthday.vars.value }}">
+                <input type="date" name="{{ form.birthday.vars.full_name }}" value="{{ form.birthday.vars.value|replace({'/': '-'}) }}">
                 {% if not form.birthday.vars.valid %}<span class="is-error error">{{ form_errors(form.birthday) }}</span>{% endif %}
               </p>
             </label>
