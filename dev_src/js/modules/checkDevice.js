@@ -1,154 +1,169 @@
 export default () => {
 
-  const $w = $(window)
+  window.deviceInfo = {};
 
-  const checkImg = () => {
-    $('img').each(function () {
-      const $img = $(this);
-      if (this.naturalWidth / this.naturalHeight < $img.parent().outerWidth() / $img.parent().outerHeight()) {
-        $img.addClass('is-portrait')
+  /**
+   * Check <img> Orientation relative to the parent element.
+   *     If a <img> is vertically long relative to the parent element add class 'is-portrait'.
+   */
+  const checkImgOrientation = () => {
+    const imgs = document.getElementsByTagName('img');
+    imgs.forEach(img => {
+      if (img.naturalWidth / img.naturalHeight < img.parentNode.offsetWidth / img.parentNode.offsetHeight) {
+        img.classList.add('is-portrait');
       } else {
-        $img.removeClass('is-portrait')
+        img.classList.remove('is-portrait');
       }
     })
   }
 
-  const checkDevice = () => {
-    $('body').append('<div class="windowSize" /><div class="deviseSize" />');
-    $('.windowSize').css({
-      'position': 'fixed',
-      'left': '0',
-      'bottom': '0',
-      'z-index': '-1',
-      'width': '100%'
-    });
-    $('.deviseSize').css({
-      'position': 'fixed',
-      'left': '0',
-      'bottom': '0',
-      'z-index': '-1',
-      'width': '100vw'
-    });
-    if($('.windowSize').outerWidth() !== $('.deviseSize').outerWidth()) {
-      $('body').addClass('has-scroll-bar')
-    }
-    if(window.userAgent.indexOf('iphone') > -1 || window.userAgent.indexOf('ipod') > -1) {
-      $('.windowSize').css({
-        'bottom': 'auto',
-        'top': '0',
-        'width': '0',
-        'height': '100%'
-      });
-      $('.deviseSize').css({
-        'bottom': 'auto',
-        'top': '0',
-        'width': '0',
-        'height': '100vh'
-      });
-      if(Math.round($('.windowSize').outerHeight()) !== Math.round($('.deviseSize').outerHeight())) {
-        $('body').addClass('is-not-fit-100vh')
-      } else {
-        $('body').removeClass('is-not-fit-100vh')
-      }
-    }
-    $('.windowSize, .deviseSize').remove()
-
-    checkImg()
-  }
-
-  $(() => {
-
-    let isIe = false
-
-    if (window.userAgent.indexOf('msie') != -1 || window.userAgent.indexOf('trident') != -1) {
-      isIe = true
-      $('body').addClass('is-IE')
-      if (window.appVersion.indexOf("msie 9.") != -1) {
-        $('body').addClass('is-IE9')
-      }
-    }
-  
-    if (window.userAgent.indexOf('iphone') != -1 || window.userAgent.indexOf('ipod') != -1) {
-      $('body').addClass('is-ios')
-    }
-
-    var elm = document.createElement('div')
-    window.deviceInfo = {
-      css: {
-        display: {
-          contents: true,
-          grid: true
-        },
-        position: {
-          sticky: true
-        }
-      }
-    }
-    elm.style.display = isIe ? '-ms-grid' : 'grid'
-    if (elm.style.display !== 'grid' && elm.style.display !== '-ms-grid') {
-      $('body').addClass('no-css--dispGrid')
-      deviceInfo.css.display.grid = false;
-    }
-    elm.style.display = 'contents'
-    if (elm.style.display !== 'contents') {
-      $('body').addClass('no-css--dispContents')
-      deviceInfo.css.display.contents = false;
-    }
-    elm.style.position = 'sticky'
-    if (elm.style.position !== 'sticky' && userAgent.indexOf('iphone') === -1 && userAgent.indexOf('ipad') === -1) {
-      $('body').addClass('no-css--posSticky')
-      deviceInfo.css.position.sticky = false;
-    }
-    elm = null;
-
-    checkDevice()
-
-    const $img = $('img')
-    let isAllImgCompleted = false
-    const confirmImgCompleted = () => {
-      if (!isAllImgCompleted) {
+  /**
+   * Check complete of <img> load.
+   *     Add class 'hasImg' to <img>'s parents.
+   *     When is complete load of <img>, add class 'is-loaded'.
+   */
+  const checkImgComplete = () => {
+    const imgs = document.getElementsByTagName('img');
+    let isCompleteAllImg = false;
+    imgs.forEach(img => {
+      img.parentNode.classList.add('hasImg');
+    })
+    const loop = () => {
+      if (!isCompleteAllImg) {
         let countImgComplete = 0
-        $img.each((index, img) => {
+        imgs.forEach(img => {
           if (img.complete) {
-            $(img).parent().addClass('is-loaded hasImg')
-            countImgComplete++
+            img.parentNode.classList.add('is-loaded');
+            countImgComplete++;
           }
         })
-        if (countImgComplete === $img.length) {
-          isAllImgCompleted = true
+        if (countImgComplete === imgs.length) {
+          isCompleteAllImg = true;
         } else {
-          requestAnimationFrame(confirmImgCompleted)
+          requestAnimationFrame(loop);
         }
       }
     }
+    requestAnimationFrame(loop);
+  }
 
-    requestAnimationFrame(confirmImgCompleted)
-
-  })
-
-  $w.on('pageshow', () => {
-    checkDevice()
-  })
-  
   /**
-   * @type {Boolean} - リサイズイベントに紐付いたイベントがが実行中かどうか
+   * Check size match
+   *     window width and 100vw
+   *     window height and 100vh
    */
-  let isRunning = true
+  const checkWindowSizeMatch = () => {
+    const windowSizeElement = document.createElement('div');
+    const viewportSizeElement = document.createElement('div');
+    document.body.appendChild(windowSizeElement); 
+    document.body.appendChild(viewportSizeElement);
+    windowSizeElement.style.setProperty('position', 'fixed');
+    windowSizeElement.style.setProperty('left', '0');
+    windowSizeElement.style.setProperty('bottom', '0');
+    windowSizeElement.style.setProperty('z-index', '-1');
+    windowSizeElement.style.setProperty('width', '100%');
+    viewportSizeElement.style.setProperty('position', 'fixed');
+    viewportSizeElement.style.setProperty('left', '0');
+    viewportSizeElement.style.setProperty('bottom', '0');
+    viewportSizeElement.style.setProperty('z-index', '-1');
+    viewportSizeElement.style.setProperty('width', '100vw');
+    if (windowSizeElement.offsetWidth !== viewportSizeElement.offsetWidth) {
+      document.body.classList.add('isNotFit100vw');
+    } else {
+      document.body.classList.remove('isNotFit100vw');
+    }
+    if (window.userAgent.indexOf('iphone') > -1 || window.userAgent.indexOf('ipod') > -1) {
+      windowSizeElement.style.setProperty('bottom', 'auto');
+      windowSizeElement.style.setProperty('top', '0');
+      windowSizeElement.style.setProperty('width', '0');
+      windowSizeElement.style.setProperty('height', '100%');
+      viewportSizeElement.style.setProperty('bottom', 'auto');
+      viewportSizeElement.style.setProperty('top', '0');
+      viewportSizeElement.style.setProperty('width', '0');
+      viewportSizeElement.style.setProperty('wiheightdth', '100vh');
+      if (Math.round(windowSizeElement.offsetHeight) !== Math.round(viewportSizeElement.offsetHeight)) {
+        document.body.classList.add('isNotFit100vh');
+      } else {
+        document.body.classList.remove('isNotFit100vh');
+      }
+    }
+    document.body.removeChild(windowSizeElement);
+    document.body.removeChild(viewportSizeElement);
+  }
+
   /**
-   * @type {Number} - 前のリサイズイベント時の window の横幅
+   * Check OS
    */
-  let prevWndWidth = $w.width()
-  $w.on('resize', e => {
+  const checkOS = () => {
+    window.deviceInfo.os = {
+      isIE: false,
+      isIOS: false
+    }
+    if (window.userAgent.indexOf('msie') != -1 || window.userAgent.indexOf('trident') != -1) {
+      document.body.classList.add('is-IE');
+      window.deviceInfo['os']['isIE'] = true;
+    }
+    if (window.userAgent.indexOf('iphone') != -1 || window.userAgent.indexOf('ipod') != -1) {
+      document.body.classList.add('is-ios');
+      window.deviceInfo['os']['isIOS'] = true;
+    }
+  }
+
+  /**
+   * Check CSS compativility
+   *     - display: grid, contents
+   *     - positon: sticky
+   */
+  const checkCSSCompativility = () => {
+    const element = document.createElement('div')
+    window.deviceInfo['css'] = {
+      display: {
+        contents: true,
+        grid: true
+      },
+      position: {
+        sticky: true
+      }
+    }
+    element.style.display = deviceInfo.os.isIE ? '-ms-grid' : 'grid';
+    if (element.style.display !== 'grid' && element.style.display !== '-ms-grid') {
+      document.body.classList.add('no-css--dispGrid');
+      deviceInfo.css.display.grid = false;
+    }
+    element.style.display = 'contents';
+    if (element.style.display !== 'contents') {
+      document.body.classList.add('no-css--dispContents');
+      deviceInfo.css.display.contents = false;
+    }
+    element.style.position = 'sticky'
+    if (element.style.position !== 'sticky' && userAgent.indexOf('iphone') === -1 && userAgent.indexOf('ipad') === -1) {
+      document.body.classList.add('no-css--posSticky');
+      deviceInfo.css.position.sticky = false;
+    }
+  }
+
+  window.addEventListener('pageshow', () => {
+    checkOS();
+    checkImgOrientation();
+    checkWindowSizeMatch();
+    checkCSSCompativility();
+    checkImgComplete();
+  });
+
+  let isRunning = true;
+  let previousWindowWidth = window.innerWidth;
+  window.addEventListener('resize', () => {
     if (isRunning) {
-      isRunning = false
+      isRunning = false;
       requestAnimationFrame(function () {
-        isRunning = true
-        if ($w.width() !== prevWndWidth) {
-          prevWndWidth = $w.width()
-          checkDevice()
+        isRunning = true;
+        if (window.innerWidth !== previousWindowWidth) {
+          previousWindowWidth =  window.innerWidth;
+          checkImgOrientation();
+          checkWindowSizeMatch();
         }
       })
     }
-  })
+  });
 
 }

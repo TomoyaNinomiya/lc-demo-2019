@@ -1,74 +1,68 @@
 export default () => {
 
-  $(() => {
-    const $window = $(window)
+  window.addEventListener('DOMContentLoaded', () => {
 
     /**
      * アニメーションのターゲット各要素のjQueryオブジェクトを配列で格納
      * @type {Array}
      */
-    var $animationTargets = [];
-    $(".js-animation").each(function() {
-      $animationTargets.push($(this));
-    });
+    var animationTargets = document.getElementsByClassName('js-animation');
 
-    if($animationTargets.length) {
-      let isInitAnimationExcecuted = false
-      $window.on("pageshow scroll", function() {
-        isInitAnimationExcecuted = true
-        updateAnimation()
+    if(animationTargets.length) {
+      let isInitAnimationExcecuted = false;
+      window.addEventListener('pageshow', () => {
+        isInitAnimationExcecuted = true;
+        updateAnimation();
       })
-      let timer = setTimeout(() => {
-        clearTimeout(timer)
+      window.addEventListener('scroll', function() {
+        updateAnimation();
+      });
+      const timer = setTimeout(() => {
+        clearTimeout(timer);
         if (!isInitAnimationExcecuted) {
-          updateAnimation()
-          isInitAnimationExcecuted = true
+          updateAnimation();
+          isInitAnimationExcecuted = true;
         }
-      }, 1000)
+      }, 1000);
     }
 
     /**
      * アニメーションの状態を更新する
      */
     function updateAnimation() {
-      /**
-       * 画面の縦スクロール位置
-       * @type {Number}
-       */
-      var windowScrollTop = $window.scrollTop();
-      /**
-       * 画面の高さ
-       * @type {Number}
-       */
-      var windowHeight = $window.height();
-      var applyPosition = $window.width() > 768 ? 4 / 5 : 1;
-      for(var i = 0; i < $animationTargets.length; i++) {
-        if((windowScrollTop + windowHeight * applyPosition) > $animationTargets[i].offset().top) {
-          $animationTargets[i].addClass("is-animated");
+      var windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      var applyPosition = window.innerWidth > 768 ? 4 / 5 : 1;
+      animationTargets.forEach(animationTarget => {
+        if((windowScrollTop + window.innerHeight * applyPosition) > window.pageYOffset + animationTarget.getBoundingClientRect().top) {
+          animationTarget.classList.add('is-animated');
         }
-      }
+      });
     }
 
     /**
      * スムーススクロール実装
      */
-    $('a[href*="#"].js-scroll, area[href*="#"].js-scroll').on('click', function (e) {
-      e.preventDefault();
-      window.smoothScroll($(this).prop('href'))
-    })
+    const smoothScrollTriggers = document.querySelectorAll('.js-scroll[href*="#"]');
+    smoothScrollTriggers.forEach(smoothScrollTrigger => {
+      smoothScrollTrigger.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        smoothScroll(smoothScrollTrigger.href);
+      });
+    });
 
     /**
      * ハッシュリンクの位置を調整
      */
     const hashPosFix = () => {
       if (location.hash) {
-        window.smoothScroll(location.href, false, 0)
+        smoothScroll(location.href, false, 0)
       }
     }
     hashPosFix()
-    $window.on('hashchange', () => {
+    window.addEventListener('hashchange', () => {
       hashPosFix()
-    })
+    });
 
   })
 
