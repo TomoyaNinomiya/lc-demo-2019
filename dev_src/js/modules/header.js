@@ -15,88 +15,95 @@ export default () => {
     EVENT.TOUCH_END = 'mouseup'
   }
   
-  $(() => {
+  window.addEventListener('DOMContentLoaded', () => {
 
-    const $window = $(window)
-    const $body = $('body')
-    const $header = $('.l-header')
+    const header = document.getElementsByClassName('l-header')[0];
 
-    let prevTouchPosition = false;
-    let prevScrollTop = $window.scrollTop();
-    let isRunning = true
+    let prevTouchPosition = false;;
+    let prevScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    let isRunning = true;
 
-    $window
-      .on(EVENT.TOUCH_START, e => {
-        prevTouchPosition = {}
-        prevTouchPosition['top'] = e.originalEvent.pageY ? e.originalEvent.pageY : e.originalEvent.changedTouches[0].pageY
-      })
-      .on(EVENT.TOUCH_MOVE, e => {
-        if (prevTouchPosition) {
-          let currentPageY = e.originalEvent.pageY ? e.originalEvent.pageY : e.originalEvent.changedTouches[0].pageY
-          if ('top' in prevTouchPosition) {
-            if (prevTouchPosition.top - currentPageY >= 0) {
-              $body.addClass('is-scrollUp')
-            } else {
-              $body.removeClass('is-scrollUp')
-            }
+    window.addEventListener(EVENT.TOUCH_START, e => {
+      prevTouchPosition = {};
+      prevTouchPosition['top'] = e.pageY ? e.pageY : e.changedTouches[0].pageY;
+    });
+    window.addEventListener(EVENT.TOUCH_MOVE, e => {
+      if (prevTouchPosition) {
+        let currentPageY = e.pageY ? e.pageY : e.changedTouches[0].pageY;
+        if ('top' in prevTouchPosition) {
+          if (prevTouchPosition.top - currentPageY > 0) {
+            document.body.classList.add('is-scrollUp');
+          } else if (prevTouchPosition.top - currentPageY < 0) {
+            document.body.classList.remove('is-scrollUp');
           }
         }
-      })
-      .on(EVENT.TOUCH_END, e => {
-        prevTouchPosition = false;
-      })
-      .on('scroll', () => {
-        if (isRunning) {
-          isRunning = false
-          requestAnimationFrame(function () {
-            isRunning = true
-            const winScrollTop = $window.scrollTop()
-            onScroll (winScrollTop)
-            prevScrollTop = winScrollTop;
-          })
-        }
-      })
+      }
+    });
+    window.addEventListener(EVENT.TOUCH_END, e => {
+      prevTouchPosition = false;
+    });
+    window.addEventListener('scroll', () => {
+      if (isRunning) {
+        isRunning = false;
+        requestAnimationFrame(function () {
+          isRunning = true;
+          const winScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          onScroll (winScrollTop);
+          prevScrollTop = winScrollTop;
+        })
+      }
+    });
 
-    onScroll($window.scrollTop())
+    onScroll(document.documentElement.scrollTop || document.body.scrollTop)
     function onScroll (winScrollTop) {
       if (winScrollTop > 0) {
-        if (winScrollTop - prevScrollTop >= 0) {
-          $body.addClass('is-scrollUp')
-        } else {
-          $body.removeClass('is-scrollUp')
+        if (winScrollTop - prevScrollTop > 0) {
+          document.body.classList.add('is-scrollUp');
+        } else if (winScrollTop - prevScrollTop < 0) {
+          document.body.classList.remove('is-scrollUp');
         }
         if (winScrollTop >= 300) {
-          $body.removeClass('is-pageTopHide')
+          document.body.classList.remove('is-pageTopHide');
         } else {
-          $body.addClass('is-pageTopHide')
+          document.body.classList.add('is-pageTopHide');
         }
       } else {
-        $body.removeClass('is-scrollUp')
-        $body.addClass('is-pageTopHide')
+        document.body.classList.remove('is-scrollUp');
+        document.body.classList.add('is-pageTopHide');
       }
-      if ($header.hasClass('l-header--top')) {
-        if (winScrollTop > $header.outerHeight() + $window.height() - 120) {
-          $body.addClass('is-headerFixed')
+      if (header.classList.contains('l-header--top')) {
+        if (winScrollTop > header.offsetHeight + window.innerHeight - 120) {
+          document.body.classList.add('is-headerFixed');
         } else {
-          $body.removeClass('is-headerFixed')
+          document.body.classList.remove('is-headerFixed');
         }
       } else {
-        if (winScrollTop > $header.outerHeight()) {
-          $body.addClass('is-headerFixed')
+        if (winScrollTop > window.innerHeight) {
+          document.body.classList.add('is-headerFixed');
         } else {
-          $body.removeClass('is-headerFixed')
+          document.body.classList.remove('is-headerFixed');
         }
       }
     }
 
-    $('.js-toggleMenu').on('click', () => {
-      $body.toggleClass('is-menuActive')
-    })
-    $('.js-closeMenu').on('click', () => {
-      $body.removeClass('is-menuActive')
-    })
+    const toggleMenuTriggers = document.getElementsByClassName('js-toggleMenu');
+    toggleMenuTriggers.forEach(toggleMenuTrigger => {
+      toggleMenuTrigger.addEventListener('click', () => {
+        if (document.body.classList.contains('is-menuActive')) {
+          document.body.classList.remove('is-menuActive');
+        } else {
+          document.body.classList.add('is-menuActive');
+        }
+      });
+    });
+    const closeMenuTriggers = document.getElementsByClassName('js-closeMenu');
+    closeMenuTriggers.forEach(closeMenuTrigger => {
+      closeMenuTrigger.addEventListener('click', () => {
+        document.body.classList.remove('is-menuActive');
+      });
+    });
 
-  })
+  });
 
 
 

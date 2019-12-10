@@ -68,13 +68,13 @@ import checkDevice from './modules/checkDevice'
 import animation from './modules/animation'
 import component from './modules/component'
 
+document.createElement('main');
+
+header();
+checkDevice();
+animation();
+
 (($) => {
-
-  document.createElement('main')
-
-  header()
-  checkDevice()
-  animation()
   component()
 
 })(jQuery);
