@@ -755,6 +755,13 @@
         font-size: 1.6rem;
       }
     }
+    ~ .lc-contentsInner {
+      padding-left: 15px;
+      padding-right: 15px;
+      &.lc-reviewsArchive {
+        padding: 20px 15px;
+      }
+    }
   }
 }
 .productImages {

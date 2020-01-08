@@ -1964,7 +1964,7 @@ textarea {
           }
         }
         > .lc-button--cancel {
-          margin-top: 15spx;
+          margin-top: 15px;
         }
       }
     }
@@ -1976,6 +1976,17 @@ textarea {
         &--horizontal {
           > .lc-button--submit {
             margin-right: 15px;
+          }
+        }
+      }
+    }
+    @include media(sp) {
+      &__buttons {
+        &--horizontal {
+          flex-direction: column;
+          > .lc-button--submit {
+            margin-right: 0;
+            margin-bottom: 15px;
           }
         }
       }
