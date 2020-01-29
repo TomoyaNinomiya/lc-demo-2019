@@ -1996,7 +1996,7 @@ textarea {
   .lc-contentSection {
     padding: 60px calc(50vw - 580px);
     &:first-of-type {
-      padding-top: 0;
+      padding-top: 60px;
     }
     &__title {
       margin-bottom: 20px;

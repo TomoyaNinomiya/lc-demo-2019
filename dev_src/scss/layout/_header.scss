@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
   background: $c_base;
   box-shadow: $s_float;
@@ -67,70 +67,8 @@
       visibility: hidden;
     }
   }
-  &__subMenu {
-    padding: 15px;
-    background: $c_base;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
-    white-space: nowrap;
-    position: absolute;
-    left: 50%;
-    top: 56px;
-    transform: translate(-50%, 0);
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s;
-    &::before {
-      content: "";
-      display: block;
-      border-left: solid 12px transparent;
-      border-right: solid 12px transparent;
-      border-bottom: solid 12px $c_base;
-      position: absolute;
-      left: 50%;
-      top: -12px;
-      z-index: 1;
-      transform: translate(-50%, 0);
-    }
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 12px;
-      background: transparent;
-      position: absolute;
-      left: 0;
-      top: -12px;
-      z-index: 0;
-    }
-    &__item {
-      line-height: 1.25;
-      > a {
-        display: flex;
-        align-items: center;
-        padding: 5px 0;
-        padding-right: 24px;
-        min-height: 32px;
-        position: relative;
-        @extend .lc-icon;
-        @extend .lc-icon--arrow2Right;
-        &::before {
-          color: $c_text_gray;
-          position: absolute;
-          right: -0.25em;
-          top: 50%;
-          transform: translate(0, -50%);
-        }
-        @include media(tab-min) {
-          &:hover {
-            color: $c_main;
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
   @include media(tab) {
-    padding-bottom: 15px;
+    padding-bottom: 0px;
     &__logo {
       height: 50px;
       img {
@@ -217,8 +155,7 @@
 }
 .l-navi {
   order: 2;
-  width: 320px;
-  margin-right: 45px;
+  width: 890px;
   &__list {
     display: flex;
     justify-content: flex-end;
@@ -334,11 +271,13 @@
   }
   @include media(840px) {
     width: 260px;
-    margin-right: 15px;
+  }
+  @include media(tab-min) {
+    margin: 12px 45px 12px auto;
   }
   @include media(tab) {
     width: auto;
-    margin-right: 0;
+    height: 50px;
     &:first-of-type {
       order: 0;
     }
@@ -361,55 +300,6 @@
     &__badge {
       right: 6px;
       top: 6px;
-    }
-  }
-}
-.searchForm {
-  order: 0;
-  width: 320px;
-  margin-left: 45px;
-  position: relative;
-  &__input[type="search"] {
-    width: 100%;
-    height: 32px;
-    padding-left: 36px;
-    border: solid 1px $c_border;
-    border-radius: 16px;
-  }
-  &__button {
-    width: 20px;
-    height: 20px;
-    text-indent: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    position: absolute;
-    left: 12px;;
-    top: 50%;
-    transform: translate(0, -50%);
-    &::before {
-      font-size: 2rem;
-      text-indent: 0;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  @include media(840px) {
-    width: 260px;
-    margin-left: 15px;
-  }
-  @include media(tab) {
-    order: 3;
-    width: calc(100% - 30px);
-    height: 32px;
-    margin: 0 15px;
-    transition: 0.5s;
-    body.is-scrollUp:not(.is-pageTopHide) & {
-      height: 0;
-      overflow: hidden;
-      opacity: 0;
-      visibility: hidden;
     }
   }
 }
