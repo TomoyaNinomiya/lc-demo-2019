@@ -266,6 +266,7 @@ $(function () {
         province: false,
         city: false
       }
+      // initialize locality china value
       if ($form.locality.val() && !$form.localityChina.val() && $form.country.val() == 12) {
         var registedLocality = $form.locality.val();
         var registedLocalityTmp = registedLocality;
@@ -306,6 +307,8 @@ $(function () {
         }
         $form.localityChina.val(localityChinaValue);
       }
+
+      // set province tab panel (municipality and ministry)
       for (var i = 0; i < chinaArea.length; i++) {
         if ('city' in chinaArea[i]) {
           items += '<li class="lc-selectAddress__listItem" data-value="' + chinaArea[i].name + '">' + chinaArea[i].name + '</li>';
@@ -315,6 +318,8 @@ $(function () {
         }
         $province.html(items);
       }
+
+      // click input form of locality china
       $form.localityChina.on('click', function () {
         var $containerParent = $(this).closest('.js-lc--locality').parent().parent();
         $selectAddressFrom
@@ -326,9 +331,13 @@ $(function () {
           .addClass('is-active')
           .data('containerParent', $containerParent);
       });
+
+      // click background
       $lcSelectAddressClose.on('click', function () {
         $selectAddressFrom.removeClass('is-active');
       });
+
+      // click tab
       $selectAddressTabs.on('click', function () {
         var $tab = $(this);
         if ($tab.attr('aria-disabled') != 'true') {
@@ -338,6 +347,8 @@ $(function () {
           $('#' + $tab.attr('aria-controls')).attr('aria-hidden', 'false');
         }
       });
+
+      // click province
       $province.children().on('click', function () {
         var $item = $(this);
         var $name = $item.data('value');
@@ -353,6 +364,7 @@ $(function () {
         setInput();
         $selectAddressFrom.data('containerParent').find($form.zipcode).val('');
       });
+      
       function setCities (parent, isParentCity) {
         $city.empty();
         for (var i = 0; i < chinaArea.length; i++) {
@@ -365,6 +377,7 @@ $(function () {
               changeTab('area');
             } else {
               var items = '';
+              current.city = false;
               for (var ii = 0; ii < chinaArea[i].city.length; ii++) {
                 items += '<li class="lc-selectAddress__listItem" data-value="' + chinaArea[i].city[ii].name + '">' + chinaArea[i].city[ii].name + '</li>';
               }
