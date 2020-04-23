@@ -8,7 +8,7 @@
   },
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test.js",
     "gulp": "gulp"
   },
   "author": "Sterfield Co., Ltd.",
@@ -16,7 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "acorn": "^6.2.1",
+    "acorn": "^6.4.1",
     "autoprefixer": "^9.6.1",
     "babel": "^6.23.0",
     "babelify": "^10.0.0",
@@ -35,6 +35,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
+    "selenium-webdriver": "^4.0.0-alpha.7",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
