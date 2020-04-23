@@ -37,11 +37,7 @@
         <tr>
           <th>{{ 'label.consumer.phone' | trans({}, 'clients') }}</th>
           <td>
-            {%- if data.country.id == '1' -%}
-              {{ data.tel1 }}-{{ data.tel2 }}-{{ data.tel3 }}
-            {%- else -%}
-              {{ data.tel }}
-            {%- endif -%}
+            {{ data.tel }}
           </td>
         </tr>
         <tr>
