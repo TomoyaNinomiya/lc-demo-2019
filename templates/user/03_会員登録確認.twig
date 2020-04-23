@@ -52,7 +52,7 @@
           <th>{{ #address_label# }}</th>
           <td>
             {%- if data.country.id == '1' -%}
-              〒{{ data.zipcode1 }}-{{ data.zipcode2 }} {{ data.country.name }} {{ data.district }}{{ data.locality }}{{ data.street }}
+              〒{{ data.zipcode }} {{ data.country.name }} {{ data.district }}{{ data.locality }}{{ data.street }}
             {%- else -%}
               {% if data.country.id != '20' %}{{ data.zipcode }} {% endif %}{{ data.country.engName }} {{ data.locality }} {{ data.street }}
             {%- endif -%}
