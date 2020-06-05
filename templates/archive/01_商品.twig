@@ -38,7 +38,7 @@
 {%- set hierarchyPrimaryCategory = [primaryCategory] -%}
 {%- set wrapedPrimaryCategory = product_api.wrapProductCategory(primaryCategory) -%}
 {%- if (wrapedPrimaryCategory.getAncestors|length > 0) -%}
-  {%- for primaryCategoryAncestor in wrapedPrimaryCategory.getAncestors -%}
+  {%- for primaryCategoryAncestor in wrapedPrimaryCategory.getAncestors|reverse -%}
     {%- set hierarchyPrimaryCategory = hierarchyPrimaryCategory|merge([primaryCategoryAncestor.node]) -%}
   {%- endfor -%}
 {%- endif -%}
