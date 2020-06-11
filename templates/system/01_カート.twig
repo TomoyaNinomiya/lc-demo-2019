@@ -223,6 +223,7 @@
                   $('.js-lc--cartTotal').text(price_format(data.cart_total * curRatio, decimalPoint));
                   $('.js-lc--cartTotalBase').text(price_format(data.cart_total, decimalPoint));
                   $('.js-lc--pointTotal').text(number_format(data.point_total));
+                  $('.js-lc--cartBadge').text(data.cart_count);
                 } else {
                   // fail
                   console.error('Error: ' + data.message);

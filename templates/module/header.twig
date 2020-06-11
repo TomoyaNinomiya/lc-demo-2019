@@ -1,3 +1,4 @@
+{# {{ basic_auth_with('demo', 'kakunin') }} #}
 {% TemplateInclude "html head" %}
 
 {# set current language #}
@@ -61,7 +62,7 @@
         {%- else -%}
           <li class="l-navi__item"><a class="l-navi__button" href="{{ path('application_frontend_auth_login') }}"><i class="l-navi__icon lc-icon--user"></i><span class="l-navi__label">{{ #login# }}</span></a></li>
         {%- endif -%}
-        <li class="l-navi__item"><a class="l-navi__button" href="{{ path('ec_client_cart_list') }}"><i class="l-navi__icon lc-icon--cart"></i><span class="l-navi__label">{{ #cart# }}</span>{% if cart_api.count %}<span class="l-navi__badge">{{ cart_api.count }}</span>{% endif %}</a></li>
+        <li class="l-navi__item"><a class="l-navi__button" href="{{ path('ec_client_cart_list') }}"><i class="l-navi__icon lc-icon--cart"></i><span class="l-navi__label">{{ #cart# }}</span>{% if cart_api.count %}<span class="l-navi__badge js-lc--cartBadge">{{ cart_api.count }}</span>{% endif %}</a></li>
       </ul>
     </nav>
 
