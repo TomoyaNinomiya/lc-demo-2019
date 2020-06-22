@@ -59,7 +59,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
       "base_price": "{{ productskus[0].price|price_format(decimalPoint) }}",
       "price": "{{ (curRatio * productskus[0].price)|price_format(decimalPoint) }}",
       "image": "{%- if product.attribute('image1') -%}{{ ('/uploads/media/' ~ em.find("MediaCoreBundle:Media", product.attribute('image1')).path) }}{% else %}/images/no-image.png{%- endif -%}",
-      "description": {%- if product.attribute('description') -%}{{ product.attribute('description')|json_encode()|raw }}{%- endif -%},
+      "description": "{%- if product.attribute('description') -%}{{ product.attribute('description')|json_encode()|raw }}{%- endif -%}",
       "categories": [
 {%- set excludedCategories = #excluded_categories# |split(',') -%}
 {%- set count_categories = 0 -%}
