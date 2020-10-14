@@ -44,7 +44,7 @@
     <ul class="lc-reviewsArchive__list">
       {%- for result in _pager.getResults -%}
         {%- set product = result.product -%}
-        {%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
+        {%- set productName = product.attribute('product name', language) ? product.attribute('product name', language) : product.name -%}
         <li class="lc-productInfo">
 
           {# product image #}

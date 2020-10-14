@@ -44,7 +44,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
 {%- endif -%}
 {%- endfor -%}
 {%- if (productAvailable) -%}
-{%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
+{%- set productName = product.attribute('product name', language) ? product.attribute('product name', language) : product.name -%}
 {%- set count = count + 1 -%}
 {%- if (count >= range[0]) and (count <= range[1]) -%}
 {%- set count_in_range = count_in_range + 1 -%}
@@ -59,7 +59,7 @@ expr().andx(qb.expr().eq('p.release_status', '2'),qb.expr().lte('p.released_at',
       "base_price": "{{ productskus[0].price|price_format(decimalPoint) }}",
       "price": "{{ (curRatio * productskus[0].price)|price_format(decimalPoint) }}",
       "image": "{%- if product.attribute('image1') -%}{{ ('/uploads/media/' ~ em.find("MediaCoreBundle:Media", product.attribute('image1')).path) }}{% else %}/images/no-image.png{%- endif -%}",
-      "description": "{%- if product.attribute('description') -%}{{ product.attribute('description')|json_encode()|raw|trim }}{%- endif -%}",
+      "description": "{%- if product.attribute('description', language) -%}{{ product.attribute('description', language)|json_encode()|raw|trim }}{%- endif -%}",
       "categories": [
 {%- set excludedCategories = #excluded_categories# |split(',') -%}
 {%- set count_categories = 0 -%}

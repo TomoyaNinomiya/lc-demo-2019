@@ -160,7 +160,7 @@
                   {% for detail in order.details %}
                     {%- set productsku = detail.productSku -%}
                     {%- set product = detail.product -%}
-                    {%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
+                    {%- set productName = product.attribute('product name', language) ? product.attribute('product name', language) : product.name -%}
                     <li class="lc-productInfo">
 
                       {# product image #}

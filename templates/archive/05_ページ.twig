@@ -118,7 +118,7 @@
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
-        {%- set relationProductName = relationProduct.attribute('product name') ? relationProduct.attribute('product name') : relationProduct.name -%}
+        {%- set relationProductName = relationProduct.attribute('product name', language) ? relationProduct.attribute('product name', language) : relationProduct.name -%}
         <li class="productArchive__item">
           <a href="{{ path('ec_product_detail', {'id': relationProduct.id}) }}">
             <figure class="productArchive__figure"><img src="{% if relationProduct.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', relationProduct.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="{{ relationProductName|striptags }}"></figure>

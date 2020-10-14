@@ -3,7 +3,7 @@
 {# Variables Settings #}
 
 {# insert to html head title #}
-{%- set productName = product.attribute('product name') ? product.attribute('product name') : product.name -%}
+{%- set productName = product.attribute('product name', language) ? product.attribute('product name', language) : product.name -%}
 {%- set title = productName -%}
 
 {# get base currency unit #}
@@ -245,19 +245,19 @@
   </div><!-- /.productMainSection -->
 
   {# Product Descriptions #}
-  {%- if product.attribute('description') or product.attribute('detail') -%}
+  {%- if product.attribute('description', language) or product.attribute('detail', language) -%}
     <section class="lc-contentsInner productDetail">
       <h2>{{ #about_product# }}</h2>
-      {%- if product.attribute('description') -%}
+      {%- if product.attribute('description', language) -%}
         <section>
           <h3>{{ #description_label# }}</h3>
-          {{ product.attribute('description')|raw }}
+          {{ product.attribute('description', language)|raw }}
         </section>
       {%- endif -%}
-      {%- if product.attribute('detail') -%}
+      {%- if product.attribute('detail', language) -%}
         <section>
           <h3>{{ #detail_label# }}</h3>
-          {{ product.attribute('detail')|raw }}
+          {{ product.attribute('detail', language)|raw }}
         </section>
       {%- endif -%}
     </section>
@@ -346,7 +346,7 @@
               {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
-          {%- set relationProductName = relationProduct.attribute('product name') ? relationProduct.attribute('product name') : relationProduct.name -%}
+          {%- set relationProductName = relationProduct.attribute('product name', language) ? relationProduct.attribute('product name', language) : relationProduct.name -%}
           <li class="productArchive__item">
             <a href="{{ path('ec_product_detail', {'id': relationProduct.id}) }}">
               <figure class="productArchive__figure"><img src="{% if relationProduct.attribute('image1') %}{{ ('/uploads/media/'~get_entity_manager().find('MediaCoreBundle:Media', relationProduct.attribute('image1')).path) }}{% else %}{{ asset('assets/img/no-image.png') }}{% endif %}" alt="{{ relationProductName|striptags }}"></figure>
